@@ -52,7 +52,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['sample'] = 'welcome/sample';
 
-$route['admin'] = 'admin/AdminHomepageController';
+$route['admin'] = 'admin/AdminLoginController';
+$route['admin/admin-login-exec'] = 'admin/AdminLoginController/login_exec';
+$route['admin/homepage'] = 'admin/AdminHomepageController';
+
+$route['admin/admin-user-add'] = 'admin/AdminUserController/add';
+$route['admin/admin-adduser-exec'] = 'admin/adminusercontroller/add_exec';
+$route['admin/admin-user-view'] = 'admin/adminusercontroller/view';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
