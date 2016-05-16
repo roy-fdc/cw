@@ -87,6 +87,7 @@ class AdminUserController extends CI_Controller {
             $this->load->model('AdminUser');
             $data['all_admin'] = $this->AdminUser->get_all();
             $data['pagetitle'] = 'Admin (all admin users)';
+            $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
             $this->load->view('admin/header/head', $data);
             $this->load->view('admin/header/header-bar');
             $this->load->view('admin/header/menu-bar');
