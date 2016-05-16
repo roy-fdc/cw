@@ -8,7 +8,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
-    <link href="<?php echo base_url().'css/admin-style.css';?>" rel="stylesheet">
     <link href="<?php echo base_url().'css/bootstrap.min.css';?>" rel="stylesheet">
     <link href="<?php echo base_url();?>css/sb-admin-2.css" rel="stylesheet">
     <link href="<?php echo base_url();?>bower_components/morrisjs/morris.css" rel="stylesheet">
@@ -17,16 +16,6 @@
     <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
     <script src="<?php echo base_url();?>bower_components/metisMenu/metisMenu.js"></script>
     <script src="<?php echo base_url();?>js/sb-admin-2.js"></script>
-
-
-    <link href="<?php echo base_url();?>js/external/google-code-prettify/prettify.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>css/font-awesome.css" rel="stylesheet">
-    <script src="<?php echo base_url();?>js/external/jquery.hotkeys.js"></script>
-    <script src="<?php //echo base_url();?>js/external/google-code-prettify/prettify.js"></script>
-    <link href="<?php echo base_url();?>css/wysiwyg.css" rel="stylesheet">
-    <script src="<?php echo base_url();?>js/bootstrap-wysiwyg.js"></script>
 </head>
 
 <body>

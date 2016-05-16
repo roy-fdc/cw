@@ -1,13 +1,13 @@
-   
-<style>
-    .image-circle {
-    border-radius: 50% !important;
-    border: 5px solid orange;
-}</style>
+<div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Admin Careers</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
 
-<div class="col-md-10">
-        <h2>Admin Careers</h2>
-        <div class="breadcrumb">
+            <!-- /.row -->
             <div class="row">
                 <div class="col-sm-12">
                     <span class="text-success"><?php echo $this->session->flashdata('success');?></span>
@@ -45,5 +45,5 @@
                     </div>
                 </div>
             </div>
+            <!-- /.row -->
         </div>
-    </div>

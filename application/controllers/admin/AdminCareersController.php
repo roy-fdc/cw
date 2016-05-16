@@ -45,7 +45,6 @@ class AdminCareersController extends CI_Controller {
                 'rules' => 'callback_handle_upload'
             )
         );
-
         $config['upload_path'] = 'image/careers';
         $config['allowed_types'] = 'gif|jpg|png';
         $this->load->library('upload', $config);

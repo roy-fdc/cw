@@ -1,8 +1,15 @@
-    <div class="col-md-10">
-        <h2>Admin user</h2>
-        <div class="breadcrumb">
+<div id="page-wrapper">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Admin user</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-sm-12">
                     <span class="text-success"><?php echo $this->session->flashdata('success');?></span>
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -16,14 +23,16 @@
                                     <th>Last Login</th>
                                     <th>Last Logout</th>
                                 </tr>
-                                <tr>
+                                
                                 <?php foreach($all_admin as $row) { ?>
+                                <tr>
                                     <td><?php echo ucwords(strtolower($row->admin_firstname));?></td>
                                     <td><?php echo ucwords(strtolower($row->admin_lastname));?></td>
                                     <td><?php echo (!empty($row->admin_lastlogin))? $row->admin_lastlogin : '.......';?></td>
                                     <td><?php echo (!empty($row->admin_lastlogout))? $row->admin_lastlogout : '.......';?></td>
-                                <?php } ?>
                                 </tr>
+                                <?php } ?>
+                                
                             </table>
                         </div>
                         <div class="panel-footer">
@@ -31,5 +40,5 @@
                     </div>
                 </div>
             </div>
+            <!-- /.row -->
         </div>
-    </div>

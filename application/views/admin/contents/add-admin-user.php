@@ -1,8 +1,14 @@
-    <div class="col-md-10">
-        <h2>Admin user</h2>
-        <div class="breadcrumb">
+<div id="page-wrapper">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Admin user</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-sm-12">
                     <span class="text-error"><?php echo $this->session->flashdata('error');?></span>
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -44,5 +50,5 @@
                     </div>
                 </div>
             </div>
+            <!-- /.row -->
         </div>
-    </div>
