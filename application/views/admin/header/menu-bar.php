@@ -1,5 +1,6 @@
 
 
+
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -38,9 +39,7 @@
                                     <a href="<?php echo base_url();?>admin/admin-add-career"><i class="glyphicon glyphicon-plus"></i> Add Careers </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url();?>admin/admin-user-view">
-                                        <i class="glyphicon glyphicon-list"></i> Careers List
-                                    </a>
+                                    <a href="<?php echo base_url();?>admin/admin-view-career"><i class="glyphicon glyphicon-list"></i> Careers List </a>
                                 </li>
                             </ul>
                         </li>
