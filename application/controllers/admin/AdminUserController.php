@@ -6,11 +6,13 @@ class AdminUserController extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
+        $this->session_data = $this->session->userdata('logged_in');
     }
     
     public function add() {
         if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
             $data['pagetitle'] = 'Admin-users';
+            $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
             $this->load->view('admin/header/head', $data);
             $this->load->view('admin/header/header-bar');
             $this->load->view('admin/header/menu-bar');
