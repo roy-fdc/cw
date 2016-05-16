@@ -71,6 +71,8 @@ $route['admin/admin-user-view'] = 'admin/adminusercontroller/view';
 
 $route['admin/admin-add-career'] = 'admin/admincareerscontroller';
 $route['admin/admin-add-career-exec'] = 'admin/admincareerscontroller/add_exec';
+$route['admin/admin-view-career'] = 'admin/admincareerscontroller/view';
+$route['admin/admin-edit-career/(:num)'] = 'admin/admincareerscontroller/edit/$1';
 
 
 $route['404_override'] = '';
