@@ -24,7 +24,7 @@
     <link href="<?php echo base_url();?>css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/font-awesome.css" rel="stylesheet">
     <script src="<?php echo base_url();?>js/external/jquery.hotkeys.js"></script>
-    <script src="<?php //echo base_url();?>js/external/google-code-prettify/prettify.js"></script>
+    <script src="<?php echo base_url();?>js/external/google-code-prettify/prettify.js"></script>
     <link href="<?php echo base_url();?>css/wysiwyg.css" rel="stylesheet">
     <script src="<?php echo base_url();?>js/bootstrap-wysiwyg.js"></script>
 </head>
