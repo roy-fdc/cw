@@ -46,7 +46,7 @@ class AdminCareersController extends CI_Controller {
         );
 
         $config['upload_path'] = 'image';
-        $config['allowed_types'] = 'png';
+        $config['allowed_types'] = 'gif|jpg|png';
         $this->load->library('upload', $config);
         $this->form_validation->set_rules($validate);
         if  ($this->form_validation->run() == false) {

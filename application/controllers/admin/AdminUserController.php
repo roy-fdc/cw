@@ -92,10 +92,17 @@ class AdminUserController extends CI_Controller {
             $this->load->view('admin/header/header-bar');
             $this->load->view('admin/header/menu-bar');
             $this->load->view('admin/contents/view-admin-user');
-            $this->load->view('admin/modal/add-admin-user');
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
         }
+    }
+
+    public function sample(){
+        $this->load->view('header');
+        $this->load->view('top-nav');
+        $this->load->view('left-nav');
+        $this->load->view('content');
+        $this->load->view('footer');
     }
 }
