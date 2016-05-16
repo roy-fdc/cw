@@ -11,7 +11,7 @@
                         <li><a href="<?php echo base_url();?>admin/admin-user-view"><i class="glyphicon glyphicon-pencil"></i> View Admin User </a></li>
                         <hr>
                         <li><a href="<?php echo base_url();?>admin/admin-add-career"><i class="glyphicon glyphicon-pencil"></i> Add Careers </a></li>
-                        <li><a href="<?php echo base_url();?>admin/admin-user-view"><i class="glyphicon glyphicon-pencil"></i> View Admin User </a></li>
+                        <li><a href="<?php echo base_url();?>admin/admin-view-career"><i class="glyphicon glyphicon-pencil"></i> View Careers </a></li>
                         <hr>
                         <li><a href="calendar.html"><i class="glyphicon glyphicon-calendar"></i> Calendar</a></li>
                         <li><a href="stats.html"><i class="glyphicon glyphicon-stats"></i> Statistics (Charts)</a></li>
