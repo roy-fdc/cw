@@ -69,6 +69,9 @@ $route['admin/admin-user-add'] = 'admin/AdminUserController/add';
 $route['admin/admin-adduser-exec'] = 'admin/adminusercontroller/add_exec';
 $route['admin/admin-user-view'] = 'admin/adminusercontroller/view';
 
+$route['admin/admin-add-career'] = 'admin/admincareerscontroller';
+$route['admin/admin-add-career-exec'] = 'admin/admincareerscontroller/add_exec';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
