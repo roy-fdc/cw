@@ -48,10 +48,10 @@
                             <a href="#"><i class="glyphicon glyphicon-user"></i> Teams<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?php echo base_url();?>admin/admin-add-team"><i class="glyphicon glyphicon-plus"></i> Add Careers </a>
+                                    <a href="<?php echo base_url();?>admin/admin-add-team"><i class="glyphicon glyphicon-plus"></i> Add Team </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url();?>admin/admin-view-team"><i class="glyphicon glyphicon-list"></i> Careers List </a>
+                                    <a href="<?php echo base_url();?>admin/admin-view-team"><i class="glyphicon glyphicon-list"></i> Teams List </a>
                                 </li>
                             </ul>
                         </li>

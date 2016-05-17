@@ -13,10 +13,17 @@ class AdminCareersController extends CI_Controller {
         if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
             $data['pagetitle'] = 'Admin-careers';
             $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
+            $data['page_header'] = 'Admin Careers';
+            $data['form'] = array(
+                'title' => true,
+                'action' => 'admin-add-career-exec',
+                'detail' => true
+            );
             $this->load->view('admin/header/head', $data);
             $this->load->view('admin/header/header-bar');
             $this->load->view('admin/header/menu-bar');
-            $this->load->view('admin/contents/add-careers');
+            //$this->load->view('admin/contents/add-careers');
+            $this->load->view('admin/contents/form-content');
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
@@ -26,12 +33,12 @@ class AdminCareersController extends CI_Controller {
     public function add_exec() {  
         $validate = array(
             array(
-                'field' => 'career_title',
+                'field' => 'title',
                 'label' => 'Title',
                 'rules' => 'required' 
             ),
             array(
-                'field' => 'career_description',
+                'field' => 'description',
                 'label' => 'Descriptions',
                 'rules' => 'required'
             ),
@@ -41,7 +48,7 @@ class AdminCareersController extends CI_Controller {
                 'rules' => 'required'
             ),
             array(
-                'field' => 'career_image',
+                'field' => 'image',
                 'label' => 'Image',
                 'rules' => 'callback_handle_upload'
             )
@@ -54,28 +61,20 @@ class AdminCareersController extends CI_Controller {
             $this->index();
         } else {
             $to_save = array(
-                'career_title' => $this->input->post('career_title'),
-                'career_description' => $this->input->post('career_description'),
+                'career_title' => $this->input->post('title'),
+                'career_description' => $this->input->post('description'),
                 'career_detail' => $this->input->post('details'),
+                'career_image' => $this->input->post('image'),
+                'career_created' => date('Y-m-d H:i:s')
             );
-            
-            // add save array index
-            if (isset($_POST['id']) && !empty($_POST['id'])) {
-                $to_save['career_modified'] = date('Y-m-d H:i:s');
-                if ($this->input->post('image') != '') {
-                    $to_save['career_image'] = $this->input->post('image');
-                }
-                $action = $this->input->post('id');
+            $response = $this->Career->insert($to_save);
+            if (!$response['added']) {
+                $this->session->set_flashdata('error', $this->alert->show('Cannot add career.', 0));
             } else {
-                $to_save['career_image'] = $this->input->post('image');
-                $to_save['career_created'] = date('Y-m-d H:i:s');
-                $action = 'add';
+                $this->session->set_flashdata('success', $this->alert->show('Add success', 1));
             }
-            
-            $response = $this->add_edit($to_save, $action);
-            $ident = ($response['status'] == 0) ? 'error' : 'success';
-            $this->session->set_flashdata($ident, $this->alert->show($response['message'], $response['status']));
-            redirect(base_url().'admin/'.$response['link']);
+            redirect(base_url().'admin/admin-add-career');
+            exit();
         }
     }
     
@@ -105,8 +104,8 @@ class AdminCareersController extends CI_Controller {
     }
     
     function handle_upload() {
-        if (isset($_FILES['career_image']) && !empty($_FILES['career_image']['name'])) {
-            if ($this->upload->do_upload('career_image')) {
+        if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
+            if ($this->upload->do_upload('image')) {
                 // set a $_POST value for 'image' that we can use later
                 $upload_data    = $this->upload->data();
                 $_POST['image'] = $upload_data['file_name'];
@@ -134,12 +133,14 @@ class AdminCareersController extends CI_Controller {
             $data['pagetitle'] = 'Admin-careers';
             $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
             $data['all_careers'] = $this->Career->get_all();
+            $data['action_status_link'] = 'admin-status-career';
+            $data['action_delete_link'] = 'admin-delete-career';
             $this->load->view('admin/header/head', $data);
             $this->load->view('admin/header/header-bar');
             $this->load->view('admin/header/menu-bar');
             $this->load->view('admin/contents/view-careers');
-            $this->load->view('admin/modal/disable-career-modal');
-            $this->load->view('admin/modal/delete-career-modal');
+            $this->load->view('admin/modal/status-modal');
+            $this->load->view('admin/modal/delete-modal');
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
@@ -162,10 +163,10 @@ class AdminCareersController extends CI_Controller {
     }
     
     public function change_status(){
-        $id = $this->input->post('career_id');
-        $status = $this->input->post('career_status');
-        $career_status = ($status == 0) ? 1 : 0;
-        $response = $this->Career->change_status($id, $career_status);
+        $id = $this->input->post('id');
+        $status = $this->input->post('status');
+        $status = ($status == 0) ? 1 : 0;
+        $response = $this->Career->change_status($id, $status);
         if (!$response['changed']) {
             $this->session->set_flashdata('error', $this->alert->show('Cannot change career status', 0));
         } else {
@@ -177,7 +178,7 @@ class AdminCareersController extends CI_Controller {
     
     public function delete() {
         if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
-            $id = $this->input->post('career_id');
+            $id = $this->input->post('id');
             $response = $this->Career->delete($id);
             if (!$response['deleted']) {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot delete career', 0));
