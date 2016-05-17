@@ -82,6 +82,11 @@ $route['admin/admin-add-benefit-exec'] = 'admin/adminbenefitscontroller/add_exec
 $route['admin/admin-view-benefit'] = 'admin/adminbenefitscontroller/view'; // benefits list
 $route['admin/admin-edit-benefit/(:num)'] = 'admin/adminbenefitscontroller/edit/$1';
 
+//teams
+$route['admin/admin-add-team'] = 'admin/adminteamscontroller';
+$route['admin/admin-add-team-exec'] = 'admin/adminteamscontroller/add_exec';
+$route['admin/admin-view-team'] = 'admin/adminteamscontroller/view';
+$route['admin/admin-edit-team/(:num)'] = 'admin/adminteamscontroller/edit/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
