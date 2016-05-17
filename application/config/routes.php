@@ -75,5 +75,11 @@ $route['admin/admin-view-career'] = 'admin/admincareerscontroller/view';
 $route['admin/admin-edit-career/(:num)'] = 'admin/admincareerscontroller/edit/$1';
 
 
+$route['admin/admin-add-benefit'] = 'admin/adminbenefitscontroller'; //add benefits
+$route['admin/admin-add-benefit-exec'] = 'admin/adminbenefitscontroller/add_exec'; // process -> adding benefits
+$route['admin/admin-view-benefit'] = 'admin/adminbenefitscontroller/view'; // benefits list
+$route['admin/admin-edit-benefit/(:num)'] = 'admin/adminbenefitscontroller/edit/$1';
+
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
