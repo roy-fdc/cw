@@ -74,6 +74,11 @@ $route['admin/admin-add-career-exec'] = 'admin/admincareerscontroller/add_exec';
 $route['admin/admin-view-career'] = 'admin/admincareerscontroller/view';
 $route['admin/admin-edit-career/(:num)'] = 'admin/admincareerscontroller/edit/$1';
 
+//teams
+$route['admin/admin-add-team'] = 'admin/adminteamscontroller';
+$route['admin/admin-add-team-exec'] = 'admin/adminteamscontroller/add_exec';
+$route['admin/admin-view-team'] = 'admin/adminteamscontroller/view';
+$route['admin/admin-edit-team/(:num)'] = 'admin/adminteamscontroller/edit/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
