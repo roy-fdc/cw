@@ -44,6 +44,17 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="#"><i class="glyphicon glyphicon-glyphicon glyphicon-cutlery"></i> Benefits<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url();?>admin/admin-add-benefit"><i class="glyphicon glyphicon-plus"></i> Add Benefits </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url();?>admin/admin-view-benefit"><i class="glyphicon glyphicon-list"></i> Benefits List </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                     </ul>

@@ -27,7 +27,7 @@ class AdminCareersController extends CI_Controller {
             array(
                 'field' => 'career_title',
                 'label' => 'Title',
-                'rules' => 'required'
+                'rules' => 'required' 
             ),
             array(
                 'field' => 'career_description',

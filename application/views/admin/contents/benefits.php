@@ -1,7 +1,7 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Benefit List</h1>
+                    <h1 class="page-header">Admin Careers</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -17,25 +17,25 @@
                         </div>
                         <div class="panel-body">
                             <ul class="nav nav-tabs">
-                                <?php foreach ($all_careers as $row) { ?>
+                                <?php foreach ($all_benefits as $row) { ?>
                                 <li class="<?php echo ($row->id == 1) ? 'active' :'';?>">
-                                    <a data-toggle="tab" href="#<?php echo $row->id;?>"><?php echo $row->career_title;?></a>
+                                    <a data-toggle="tab" href="#<?php echo $row->id;?>"><?php echo $row->benefit_title;?></a>
                                 </li>
                                 <?php } ?>
                             </ul>
 
                             <div class="tab-content">
-                                <?php foreach ($all_careers as $row) { ?>
+                                <?php foreach ($all_benefits as $row) { ?>
                                 <div id="<?php echo $row->id;?>" class="tab-pane fade in <?php echo ($row->id == 1) ? 'active' :'';?>">
                                     
-                                    <img src="<?php echo base_url().'image/careers/'.$row->career_image;?>" class="image-circle"/> <br><br>
-                                    <a href="<?php echo base_url().'admin/admin-edit-career/'.$row->id;?>" class="btn btn-primary">Update</a>
+                                    <img src="<?php echo base_url().'image/benefits/'.$row->benefit_image;?>" class="image-circle"/> <br><br>
+                                    <a href="<?php echo base_url().'admin/admin-edit-benefit/'.$row->id;?>" class="btn btn-primary">Update</a>
                                     <button class="btn btn-warning">Disable</button>
                                     <button class="btn btn-danger">Delete</button>
                                     <br>
-                                    <h3><?php echo $row->career_title;?></h3>
-                                    <p><?php echo $row->career_description;?></p>
-                                    <?php echo $row->career_detail;?>
+                                    <h3><?php echo $row->benefit_title;?></h3>
+
+                                    <?php echo $row->benefit_detail;?>
                                 </div>
                                 <?php } ?>
                             </div>
