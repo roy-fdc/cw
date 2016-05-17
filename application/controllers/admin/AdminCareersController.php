@@ -5,6 +5,7 @@ class AdminCareersController extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->session_data = $this->session->userdata('logged_in');
+        $this->load->library('alert');
         $this->load->model('Career');
     }
     
@@ -56,21 +57,51 @@ class AdminCareersController extends CI_Controller {
                 'career_title' => $this->input->post('career_title'),
                 'career_description' => $this->input->post('career_description'),
                 'career_detail' => $this->input->post('details'),
-                'carrer_image' => $this->input->post('image'),
-                'career_created' => date('Y-m-d H:i:s')
             );
-            $this->load->library('alert');
-            $response = $this->Career->insert($to_save);
-            if (!$response['added']) {
-                $this->session->set_flashdata('error', $this->alert->show('Cannot add career.', 0));
-                redirect(base_url().'admin/admin-add-career');
-                exit();
+            
+            // add save array index
+            if (isset($_POST['id']) && !empty($_POST['id'])) {
+                $to_save['career_modified'] = date('Y-m-d H:i:s');
+                if ($this->input->post('image') != '') {
+                    $to_save['career_image'] = $this->input->post('image');
+                }
+                $action = $this->input->post('id');
             } else {
-                $this->session->set_flashdata('success', $this->alert->show('Add Success!' , 1));
-                redirect(base_url().'admin/admin-add-career');
-                exit();
+                $to_save['career_image'] = $this->input->post('image');
+                $to_save['career_created'] = date('Y-m-d H:i:s');
+                $action = 'add';
             }
+            
+            $response = $this->add_edit($to_save, $action);
+            $ident = ($response['status'] == 0) ? 'error' : 'success';
+            $this->session->set_flashdata($ident, $this->alert->show($response['message'], $response['status']));
+            redirect(base_url().'admin/'.$response['link']);
         }
+    }
+    
+    public function add_edit($to_save, $action) {
+        if ($action == 'add') {
+            $add = $this->Career->insert($to_save);
+            if (!$add['added']) {
+                $message['message'] = 'Cannot add career.';
+                $message['status'] = 0;
+            } else {
+                $message['message'] = 'Add Success!';
+                $message['status'] = 1;
+            }
+            $message['link'] = 'admin-add-career';
+        } else {
+            $update = $this->Career->update($to_save, $action);
+            if (!$update['updated']) {
+                $message['message'] = 'Cannot update career';
+                $message['status'] = 0;
+            } else {
+                $message['message'] = 'Update Success!';
+                $message['status'] = 1;
+            }
+            $message['link'] = 'admin-edit-career/'.$action;
+        }
+        return $message;
     }
     
     function handle_upload() {
@@ -86,9 +117,14 @@ class AdminCareersController extends CI_Controller {
                 return false;
             }
         } else {
-          // throw an error because nothing was uploaded
-          $this->form_validation->set_message('handle_upload', "You must upload an image!");
-          return false;
+            if (isset($_POST['id']) && !empty($_POST['id'])) {
+                $_POST['image'] = '';
+                return true;
+            } else {
+                // throw an error because nothing was uploaded
+                $this->form_validation->set_message('handle_upload', "You must upload an image!");
+                return false;
+            }
         }
     }
     
@@ -102,6 +138,8 @@ class AdminCareersController extends CI_Controller {
             $this->load->view('admin/header/header-bar');
             $this->load->view('admin/header/menu-bar');
             $this->load->view('admin/contents/view-careers');
+            $this->load->view('admin/modal/disable-career-modal');
+            $this->load->view('admin/modal/delete-career-modal');
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
@@ -122,4 +160,35 @@ class AdminCareersController extends CI_Controller {
             redirect(base_url().'admin');
         }
     }
+    
+    public function change_status(){
+        $id = $this->input->post('career_id');
+        $status = $this->input->post('career_status');
+        $career_status = ($status == 0) ? 1 : 0;
+        $response = $this->Career->change_status($id, $career_status);
+        if (!$response['changed']) {
+            $this->session->set_flashdata('error', $this->alert->show('Cannot change career status', 0));
+        } else {
+            $this->session->set_flashdata('success', $this->alert->show('Success change status.', 1));
+        }
+        redirect(base_url().'admin/admin-view-career');
+        exit();
+    }
+    
+    public function delete() {
+        if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
+            $id = $this->input->post('career_id');
+            $response = $this->Career->delete($id);
+            if (!$response['deleted']) {
+                $this->session->set_flashdata('error', $this->alert->show('Cannot delete career', 0));
+            } else {
+                $this->session->set_flashdata('success', $this->alert->show('Succecss delete!', 1));
+            }
+            redirect(base_url().'admin/admin-view-career');
+        } else {
+            redirect(base_url().'admin');
+        }
+        exit();
+    }
+    
 }

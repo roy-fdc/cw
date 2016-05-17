@@ -17,8 +17,9 @@
                     Edit
                 </div>
                 <?php //echo form_open(base_url().'admin/admin-add-career-exec');?>
-                <form name="my_form" method="post" enctype="multipart/form-data" onSubmit="document.my_form.details.value = $('#editor').html()" action="admin-edit-career-exec">
+                <form name="my_form" method="post" enctype="multipart/form-data" onSubmit="document.my_form.details.value = $('#editor').html()" action="<?php echo base_url();?>admin/admin-add-career-exec">
                 <div class="panel-body">
+                    <input type="hidden" name="id" value="<?php echo $career->id;?>"/>
                     <div class="form-group">
                         <label for="career_title">Title</label>
                         <span class="text-error"><?php echo form_error('career_title');?></span>
