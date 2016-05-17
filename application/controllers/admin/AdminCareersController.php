@@ -117,7 +117,7 @@ class AdminCareersController extends CI_Controller {
     }
     
     public function edit_exec(){
-        $config['upload_path'] = 'image/teams';
+        $config['upload_path'] = 'image/careers';
         $config['allowed_types'] = 'gif|jpg|png';
         $this->load->library('upload', $config);
         $this->form_validation->set_rules($this->validation());
