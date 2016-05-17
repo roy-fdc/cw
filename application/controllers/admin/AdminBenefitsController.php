@@ -1,120 +1,199 @@
 <?php
 
 class AdminBenefitsController extends CI_Controller {
-		public function __construct() {
-	        parent::__construct();
-	        $this->session_data = $this->session->userdata('logged_in');
-	        $this->load->model('Benefit');
-	    }
+    
+    public function __construct() {
+        parent::__construct();
+        $this->session_data = $this->session->userdata('logged_in');
+        $this->load->model('Benefit');
+        $this->load->library('Alert');
+    }
 
-	    public function index() {
-	    	if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
-	            $data['pagetitle'] = 'Admin-benefits';
-	            $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
-	            $this->load->view('admin/header/head', $data);
-	            $this->load->view('admin/header/header-bar');
-	            $this->load->view('admin/header/menu-bar');
-	            $this->load->view('admin/contents/add-benefits');
-	            $this->load->view('admin/footer/footer');
-	        } else {
-	            redirect(base_url().'admin');
-	        }
-	    }
-
-	    public function view(){
-	        if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
-	            $data['pagetitle'] = 'Admin-benefits';
-	            $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
-	            $data['all_benefits'] = $this->Benefit->get_all();
-	            $this->load->view('admin/header/head', $data);
-	            $this->load->view('admin/header/header-bar');
-	            $this->load->view('admin/header/menu-bar');
-	            $this->load->view('admin/contents/benefits');
-	            $this->load->view('admin/footer/footer');
-	        } else {
-	            redirect(base_url().'admin');
-	        }
-	    }
-	    
-	    public function edit($id) {
-	        if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
-	            $data['pagetitle'] = 'Admin-benefits';
-	            $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
-	            $data['benefits'] = $this->Benefit->single($id);
-	            $this->load->view('admin/header/head', $data);
-	            $this->load->view('admin/header/header-bar');
-	            $this->load->view('admin/header/menu-bar');
-	            $this->load->view('admin/contents/edit-benefits');
-	            $this->load->view('admin/footer/footer');
-	        } else {
-	            redirect(base_url().'admin');
-	        }
-	    }
-
-	    public function add_exec() {  
-	        $validate = array(
-	            array(
-	                'field' => 'benefit_title',
-	                'label' => 'Title',
-	                'rules' => 'required' 
-	            ),
-	            array(
-	                'field' => 'details',
-	                'label' => 'Details',
-	                'rules' => 'required'
-	            ),
-	            array(
-	                'field' => 'benefit_image',
-	                'label' => 'Image',
-	                'rules' => 'callback_handle_upload'
-	            )
-	        );
-	        
-	        $config['upload_path'] = 'image/benefits';
-	        $config['allowed_types'] = 'gif|jpg|png';
-	        $this->load->library('upload', $config);
-	        $this->form_validation->set_rules($validate);
-	        if  ($this->form_validation->run() == false) {
-	            $this->index();
-	        } else {
-	            $to_save = array(
-	                'benefit_title' => $this->input->post('benefit_title'),
-	                'benefit_detail' => $this->input->post('details'),
-	                'benefit_image' => $this->input->post('image'),
-	                'created' => date('Y-m-d H:i:s'),
-	                'modified' => date('Y-m-d H:i:s')
-	            );
-	            $this->load->library('alert');
-	            $response = $this->Benefit->insert($to_save);
-	            if (!$response['added']) {
-	                $this->session->set_flashdata('error', $this->alert->show('Cannot add benefit.', 0));
-	                redirect(base_url().'admin/admin-add-benefit');
-	                exit();
-	            } else {
-	                $this->session->set_flashdata('success', $this->alert->show('Add Success!' , 1));
-	                redirect(base_url().'admin/admin-add-benefit');
-	                exit();
-	            }
-	        }
-	    }
-	    
-	    function handle_upload() {
-	        if (isset($_FILES['benefit_image']) && !empty($_FILES['benefit_image']['name'])) {
-	            if ($this->upload->do_upload('benefit_image')) {
-	                // set a $_POST value for 'image' that we can use later
-	                $upload_data    = $this->upload->data();
-	                $_POST['image'] = $upload_data['file_name'];
-	                return true;
-	            } else {
-	                // possibly do some clean up ... then throw an error
-	                $this->form_validation->set_message('handle_upload', $this->upload->display_errors());
-	                return false;
-	            }
-	        } else {
-	          // throw an error because nothing was uploaded
-	          $this->form_validation->set_message('handle_upload', "You must upload an image!");
-	          return false;
-	        }
-	    }
+    public function index() {
+        if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
+            $data['pagetitle'] = 'Admin-benefits';
+            $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
+            $data['page_header'] = 'Admin Benefits';
+            $data['form'] = array(
+                'title' => true,
+                'action' => 'admin-add-benefit-exec'
+            );
+            $this->load->view('admin/header/head', $data);
+            $this->load->view('admin/header/header-bar');
+            $this->load->view('admin/header/menu-bar');
+            $this->load->view('admin/contents/form-content');
+            $this->load->view('admin/footer/footer');
+        } else {
+            redirect(base_url().'admin');
+        }
+    }
+    
+public function add_exec() {  
+        $config['upload_path'] = 'image/benefits';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $this->load->library('upload', $config);
+        $this->form_validation->set_rules($this->validation());
+        if  ($this->form_validation->run() == false) {
+            $this->index();
+        } else {
+            $to_save = array(
+                'benefit_title' => $this->input->post('title'),
+                'benefit_description' => $this->input->post('description'),
+                'benefit_image' => $this->input->post('image'),
+                'created' => date('Y-m-d H:i:s'),
+            );
+            $response = $this->Benefit->insert($to_save);
+            if (!$response['added']) {
+                $this->session->set_flashdata('error', $this->alert->show('Cannot add Team', 0));
+            } else {
+                $this->session->set_flashdata('success', $this->alert->show('Add success', 1));
+            }
+            redirect(base_url().'admin/admin-add-benefit');
+            exit();
+        }
+    }
+    
+    
+    public function edit_exec() {
+        $config['upload_path'] = 'image/benefits';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $this->load->library('upload', $config);
+        $this->form_validation->set_rules($this->validation());
+        if  ($this->form_validation->run() == false) {
+            $this->edit($_POST['id']);
+        } else {
+            $to_update = array(
+                'benefit_title' => $this->input->post('title'),
+                'benefit_description' => $this->input->post('description'),
+                'modified' => date('Y-m-d H:i:s')
+            );
+            $id = $this->input->post('id');
+            if ($_POST['image'] != ''){
+                $to_update['benefit_image'] = $_POST['image'];
+            }
+            $response = $this->Benefit->update($to_update, $id);
+            if (!$response['updated']) {
+                $this->session->set_flashdata('error', $this->alert->show('Cannot update benefit', 0));
+            } else {
+                $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
+            }
+            redirect(base_url().'admin/admin-edit-benefit/'.$id);
+            exit();
+        }
+        
+    }
+    
+    private function validation() {
+        $validate = array(
+            array(
+                'field' => 'title',
+                'label' => 'Title',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'description',
+                'label' => 'Description',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'image',
+                'label' => 'Image',
+                'rules' => 'callback_handle_upload'
+            )
+        );
+        return $validate;
+    }
+    
+    
+    function handle_upload() {
+        if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
+            if ($this->upload->do_upload('image')) {
+                // set a $_POST value for 'image' that we can use later
+                $upload_data    = $this->upload->data();
+                $_POST['image'] = $upload_data['file_name'];
+                return true;
+            } else {
+                // possibly do some clean up ... then throw an error
+                $this->form_validation->set_message('handle_upload', $this->upload->display_errors());
+                return false;
+            }
+        } else {
+            if (isset($_POST['id']) && !empty($_POST['id'])) {
+                $_POST['image'] = '';
+                return true;
+            } else {
+                // throw an error because nothing was uploaded
+                $this->form_validation->set_message('handle_upload', "You must upload an image!");
+                return false;
+            }
+        }
+    }
+    
+    
+    public function view(){
+        if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
+            $data['pagetitle'] = 'Admin-benefits';
+            $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
+            $data['all_benefits'] = $this->Benefit->get_all();
+            $data['action_status_link'] = 'admin-status-benefit';
+            $data['action_delete_link'] = 'admin-delete-benefit';
+            $this->load->view('admin/header/head', $data);
+            $this->load->view('admin/header/header-bar');
+            $this->load->view('admin/header/menu-bar');
+            $this->load->view('admin/contents/view-benefits');
+            $this->load->view('admin/modal/status-modal');
+            $this->load->view('admin/modal/delete-modal');
+            $this->load->view('admin/footer/footer');
+        } else {
+            redirect(base_url().'admin');
+        }
+    }
+    
+    public function edit($id) {
+        if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
+            $data['pagetitle'] = 'Admin-teams';
+            $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
+            $data['benefit'] = $this->Benefit->single($id);
+            $this->load->view('admin/header/head', $data);
+            $this->load->view('admin/header/header-bar');
+            $this->load->view('admin/header/menu-bar');
+            $this->load->view('admin/contents/edit-benefits');
+            $this->load->view('admin/footer/footer');
+        } else {
+            redirect(base_url().'admin');
+        }
+    }
+    
+    
+    
+    public function change_status(){
+        $id = $this->input->post('id');
+        $status = $this->input->post('status');
+        $status = ($status == 0) ? 1 : 0;
+        $response = $this->Benefit->change_status($id, $status);
+        if (!$response['changed']) {
+            $this->session->set_flashdata('error', $this->alert->show('Cannot change benefit status', 0));
+        } else {
+            $this->session->set_flashdata('success', $this->alert->show('Success change status.', 1));
+        }
+        redirect(base_url().'admin/admin-view-benefit');
+        exit();
+    }
+    
+    public function delete() {
+        if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
+            $id = $this->input->post('id');
+            $response = $this->Benefit->delete($id);
+            if (!$response['deleted']) {
+                $this->session->set_flashdata('error', $this->alert->show('Cannot delete benefit', 0));
+            } else {
+                $this->session->set_flashdata('success', $this->alert->show('Succecss delete!', 1));
+            }
+            redirect(base_url().'admin/admin-view-benefit');
+        } else {
+            redirect(base_url().'admin');
+        }
+        exit();
+    }
+    
 }
-?>
