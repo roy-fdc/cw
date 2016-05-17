@@ -12,6 +12,12 @@ class Career extends CI_Model {
         return $response;
     }
     
+    public function update($data, $id) {
+        $this->db->where('id', $id);
+        $response['updated'] = ($this->db->update('careers', $data)) ? true : false;
+        return $response;
+    }
+    
     public function get_all() {
         $select = array(
             'id',
@@ -31,4 +37,17 @@ class Career extends CI_Model {
         $query = $this->db->get('careers');
         return $query->row();
     }
+    
+    public function change_status($id, $status){
+        $this->db->where('id', $id);
+        $response['changed'] = ($this->db->update('careers', array('career_status' => $status))) ? true : false;
+        return $response;
+    }
+    
+    public function delete($id) {
+        $this->db->where('id', $id);
+        $response['deleted'] = ($this->db->delete('careers')) ? true : false;
+        return $response;
+    }
+    
 }
