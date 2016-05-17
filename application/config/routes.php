@@ -73,6 +73,7 @@ $route['admin/admin-add-career'] = 'admin/admincareerscontroller';
 $route['admin/admin-add-career-exec'] = 'admin/admincareerscontroller/add_exec';
 $route['admin/admin-view-career'] = 'admin/admincareerscontroller/view';
 $route['admin/admin-edit-career/(:num)'] = 'admin/admincareerscontroller/edit/$1';
+$route['admin/admin-edit-career-exec'] = 'admin/admincareerscontroller/edit_exec';
 $route['admin/admin-status-career'] = 'admin/admincareerscontroller/change_status';
 $route['admin/admin-delete-career'] = 'admin/admincareerscontroller/delete';
 
