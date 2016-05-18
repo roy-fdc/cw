@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" ng-app="fupApp">
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +19,14 @@
       <script type="text/javascript" src="<?php echo base_url();?>js/user/jquery-1.8.3.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url();?>js/user/jquery-ui.min.js"></script>    
       <script type="text/javascript" src="<?php echo base_url();?>js/user/modernizr.js"></script>
-      <script type="text/javascript" src="<?php echo base_url();?>js/user/responsee.js"></script>   
+      <script type="text/javascript" src="<?php echo base_url();?>js/user/responsee.js"></script> 
+
+      <!-- angularjs !-->
+      <script type="text/javascript" src="<?php echo base_url();?>js/angular-route.js"></script>
+      <script type="text/javascript" src="<?php echo base_url();?>js/displayApp.js"></script>
+      <script type="text/javascript" src="<?php echo base_url();?>js/dirPagination.js"></script>
+      <!-- end angularjs !-->
+       
       <!--[if lt IE 9]>
 	      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>

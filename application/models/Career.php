@@ -49,5 +49,11 @@ class Career extends CI_Model {
         $response['deleted'] = ($this->db->delete('careers')) ? true : false;
         return $response;
     }
+
+    public function single_data() {
+        $sql = "SELECT id, career_title, career_description, career_detail, career_image FROM careers WHERE career_status = ? order by career_created desc limit 1"; 
+        $query = $this->db->query($sql, array(1));
+        return $query->result();
+    }
     
 }
