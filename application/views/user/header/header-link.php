@@ -23,7 +23,7 @@
 
       <!-- angularjs !-->
       <script type="text/javascript" src="<?php echo base_url();?>js/angular-route.js"></script>
-      <script type="text/javascript" src="<?php echo base_url();?>js/displayApp.js"></script>
+      <script type="text/javascript" src="<?php echo base_url();?>js/api/app.js"></script>
       <script type="text/javascript" src="<?php echo base_url();?>js/dirPagination.js"></script>
       <!-- end angularjs !-->
        
