@@ -1,4 +1,4 @@
-<body class="size-1140">
+<body class="size-1140" ng-controller="fupController">
       <!-- TOP NAV WITH LOGO -->  
       <header>
          <nav>
