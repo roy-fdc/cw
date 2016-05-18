@@ -1,11 +1,4 @@
-<div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Admin user</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+
 
             <!-- /.row -->
             <div class="row">
@@ -13,7 +6,7 @@
                     <span class="text-success"><?php echo $this->session->flashdata('success');?></span>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            View
+                            All admin user
                         </div>
                         <div class="panel-body">
                             <table class="table table-bordered table-hover">

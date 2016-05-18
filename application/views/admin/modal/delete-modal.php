@@ -1,19 +1,21 @@
 
-
+<!-- script for delete item -->
 <script>
-    function delete_career(id) {
+    function delete_item(id) {
         $('#delete_modal').modal('show');
         $('#ids').val(id);
     }
 </script>
+<!-- script for delete item ends here -->
 
+<!-- modal for delete confirmation -->
 <div class="modal fade" id="delete_modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"></div>
             <?php echo form_open(base_url().'admin/'.$action_delete_link);?>
             <div class="modal-body">
-                Are you sure want to delete this Career ?
+                Are you sure want to delete this <?php echo $item_name;?> ?
                 <input type="hidden" id="ids" name="id"/>
             </div>
             <div class="modal-footer">
@@ -24,3 +26,4 @@
         </div>
     </div>
 </div>
+<!-- modal for delete confirmation ends here -->

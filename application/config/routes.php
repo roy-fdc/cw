@@ -62,6 +62,7 @@ $route['sample'] = 'welcome/sample';
 
 $route['admin'] = 'admin/AdminLoginController';
 $route['admin/admin-login-exec'] = 'admin/AdminLoginController/login_exec';
+$route['admin/admin-logout'] = 'admin/adminlogoutcontroller';
 
 $route['admin/homepage'] = 'admin/AdminHomepageController';
 
@@ -95,6 +96,18 @@ $route['admin/admin-edit-team-exec'] = 'admin/adminteamscontroller/edit_exec';
 $route['admin/admin-status-team'] = 'admin/adminteamscontroller/change_status';
 $route['admin/admin-delete-team'] = 'admin/adminteamscontroller/delete';
 
+$route['admin/admin-company/(:any)'] = 'admin/adminaboutscontroller';
+$route['admin/admin-company-edit/(:num)'] = 'admin/adminaboutscontroller/edit/$1';
+$route['admin/admin-company-edit-exec'] = 'admin/adminaboutscontroller/edit_exec';
+$route['admin/admin-status-about'] = 'admin/adminaboutscontroller/change_status';
+
+$route['admin/admin-add-values'] = 'admin/adminaboutvaluescontroller';
+$route['admin/admin-add-value-exec'] = 'admin/adminaboutvaluescontroller/add_exec';
+$route['admin/admin-view-value'] = 'admin/adminaboutvaluescontroller/view';
+$route['admin/admin-edit-value/(:num)'] = 'admin/adminaboutvaluescontroller/edit/$1';
+$route['admin/admin-edit-value-exec'] = 'admin/adminaboutvaluescontroller/edit_exec';
+$route['admin/admin-status-value'] = 'admin/adminaboutvaluescontroller/change_status';
+$route['admin/admin-delete_value'] = 'admin/adminaboutvaluescontroller/delete';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

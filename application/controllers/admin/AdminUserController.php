@@ -1,23 +1,25 @@
 <?php
 
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class AdminUserController extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
         $this->session_data = $this->session->userdata('logged_in');
+        $this->title = 'Admin-users';
+        $this->pageHeader = 'User';
     }
     
     public function add() {
         if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
-            $data['pagetitle'] = 'Admin-users';
+            $data['pagetitle'] = $this->title;
             $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
+            $data['page_header'] = $this->pageHeader;
             $this->load->view('admin/header/head', $data);
             $this->load->view('admin/header/header-bar');
             $this->load->view('admin/header/menu-bar');
             $this->load->view('admin/contents/add-admin-user');
-            $this->load->view('admin/modal/add-admin-user');
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
@@ -86,7 +88,8 @@ class AdminUserController extends CI_Controller {
         if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
             $this->load->model('AdminUser');
             $data['all_admin'] = $this->AdminUser->get_all();
-            $data['pagetitle'] = 'Admin (all admin users)';
+            $data['pagetitle'] = $this->title;
+            $data['page_header'] = $this->pageHeader;
             $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
             $this->load->view('admin/header/head', $data);
             $this->load->view('admin/header/header-bar');
@@ -98,11 +101,4 @@ class AdminUserController extends CI_Controller {
         }
     }
 
-    public function sample(){
-        $this->load->view('header');
-        $this->load->view('top-nav');
-        $this->load->view('left-nav');
-        $this->load->view('content');
-        $this->load->view('footer');
-    }
 }

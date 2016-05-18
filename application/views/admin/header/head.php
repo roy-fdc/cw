@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title><?php echo (isset($pagetitle)) ? $pagetitle : 'Admin';?></title>
     <link href="<?php echo base_url().'css/admin-style.css';?>" rel="stylesheet">
     <link href="<?php echo base_url().'css/bootstrap.min.css';?>" rel="stylesheet">
     <link href="<?php echo base_url();?>css/sb-admin-2.css" rel="stylesheet">

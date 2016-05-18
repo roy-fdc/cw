@@ -1,10 +1,4 @@
-<div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Admin user</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+
             
             <!-- /.row -->
             <div class="row">
@@ -12,7 +6,7 @@
                     <span class="text-error"><?php echo $this->session->flashdata('error');?></span>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Add
+                            Add admin user
                         </div>
                         <?php echo form_open(base_url().'admin/admin-adduser-exec'); ?>
                         <div class="panel-body">

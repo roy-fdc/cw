@@ -1,5 +1,6 @@
 <?php
 
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Team extends CI_Model {
     
@@ -8,7 +9,7 @@ class Team extends CI_Model {
     }
     
     public function insert($data) {
-        $response['added'] = ($this->db->insert('teams', $data)) ? true : false;
+        $response['created'] = ($this->db->insert('teams', $data)) ? true : false;
         return $response;
     }
     

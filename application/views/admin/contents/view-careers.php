@@ -1,11 +1,4 @@
-<div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Carers List</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+
 
             <!-- /.row -->
             <div class="row">
@@ -33,10 +26,10 @@
                                     <a href="<?php echo base_url().'admin/admin-edit-career/'.$row->id;?>" class="btn btn-primary">Update</a>
                                     <?php $btn_text = ($row->career_status == 0) ? 'Enable' : 'Disable'; ?>
                                     <?php $btn_type = ($row->career_status == 0) ? 'success' : 'warning'; ?>
-                                    <a onclick="disable_career(<?php echo $row->id;?>, <?php echo $row->career_status;?>)"  class="btn btn-<?php echo $btn_type;?>">
+                                    <a onclick="change_status(<?php echo $row->id;?>, <?php echo $row->career_status;?>)"  class="btn btn-<?php echo $btn_type;?>">
                                         <?php echo $btn_text;?>
                                     </a>
-                                    <a onclick="delete_career(<?php echo $row->id;?>)" class="btn btn-danger">Delete</a>
+                                    <a onclick="delete_item(<?php echo $row->id;?>)" class="btn btn-danger">Delete</a>
                                     <br>
                                     <h3><?php echo $row->career_title;?></h3>
                                     <p><?php echo $row->career_description;?></p>

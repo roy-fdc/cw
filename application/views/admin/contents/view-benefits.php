@@ -1,11 +1,4 @@
-<div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Benefits List</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+
 
             <!-- /.row -->
             <div class="row">
@@ -37,14 +30,12 @@
                                         <a href="<?php echo base_url().'admin/admin-edit-benefit/'.$row->id;?>" class="btn btn-primary">Update</a>
                                         <?php $btn_text = ($row->benefit_status == 0) ? 'Enable' : 'Disable'; ?>
                                         <?php $btn_type = ($row->benefit_status == 0) ? 'success' : 'warning'; ?>
-                                        <a onclick="disable_career(<?php echo $row->id;?>, <?php echo $row->benefit_status;?>)"  class="btn btn-<?php echo $btn_type;?>">
+                                        <a onclick="change_status(<?php echo $row->id;?>, <?php echo $row->benefit_status;?>)"  class="btn btn-<?php echo $btn_type;?>">
                                         <?php echo $btn_text;?>
                                         </a>
-                                        <a onclick="delete_career(<?php echo $row->id;?>)" class="btn btn-danger">Delete</a>
+                                        <a onclick="delete_item(<?php echo $row->id;?>)" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
-
-
                                 <?php } ?>
                             </table>
                         </div>
