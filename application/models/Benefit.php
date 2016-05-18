@@ -36,6 +36,13 @@ class Benefit extends CI_Model {
         $query = $this->db->get('benefits');
         return $query->row();
     }
+
+
+    public function single_data() {
+        $sql = "SELECT id, benefit_title, benefit_description, benefit_detail, benefit_image FROM benefits WHERE benefit_status = ? order by created desc limit 1"; 
+        $query = $this->db->query($sql, array(1));
+        return $query->result();
+    }
     
     public function change_status($id, $status){
         $this->db->where('id', $id);

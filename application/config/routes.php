@@ -95,5 +95,6 @@ $route['admin/admin-edit-team-exec'] = 'admin/adminteamscontroller/edit_exec';
 $route['admin/admin-status-team'] = 'admin/adminteamscontroller/change_status';
 $route['admin/admin-delete-team'] = 'admin/adminteamscontroller/delete';
 
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
