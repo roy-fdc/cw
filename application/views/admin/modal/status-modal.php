@@ -1,6 +1,7 @@
 
+<!-- script for change item status -->
 <script>
-    function disable_career(id, status){
+    function change_status(id, status){
         $('#disable').modal('show');
         var text;
         if (status ==  0) {
@@ -13,6 +14,9 @@
         $('#status').val(status);
     }
 </script>
+<!-- script for change item status ends here -->
+
+<!-- modal confirmation for change status -->
 <div class="modal fade" id="disable">
     <div class="modal-dialog">
         <?php echo form_open(base_url().'admin/'.$action_status_link);?>
@@ -32,3 +36,4 @@
         <?php echo form_close();?>
     </div>
 </div>
+<!-- modal confirmation for change status ends here -->

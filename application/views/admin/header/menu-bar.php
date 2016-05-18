@@ -67,6 +67,34 @@
                                 </li>
                             </ul>
                         </li>
+                        
+                        <li>
+                            <a href="#"><i class="glyphicon glyphicon-glyphicon glyphicon-info-sign"></i> About <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url();?>admin/admin-company/about"><i class="glyphicon glyphicon-chevron-right"></i> Company Details </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url();?>admin/admin-company/vision"><i class="glyphicon glyphicon-chevron-right"></i> Vision </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url();?>admin/admin-company/mission"><i class="glyphicon glyphicon-chevron-right"></i> Mission </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <a href="#"><i class="glyphicon glyphicon-glyphicon glyphicon-hand-right"></i> Values <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url();?>admin/admin-add-values"><i class="glyphicon glyphicon-plus"></i> Add values </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url();?>admin/admin-view-value"><i class="glyphicon glyphicon-list"></i> Values List </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
                         <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
@@ -77,3 +105,11 @@
             <!-- /.navbar-static-side -->
         </nav>
 
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header"><?php echo $page_header;?></h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->

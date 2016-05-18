@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class AdminTeamsController extends CI_Controller {
     
     public function __construct() {
@@ -7,18 +9,21 @@ class AdminTeamsController extends CI_Controller {
         $this->session_data = $this->session->userdata('logged_in');
         $this->load->model('Team');
         $this->load->library('alert');
+        $this->title = 'Admin-teams';
+        $this->pageHeader = 'Teams';
     }
     
     public function index() {
         if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
-            $data['pagetitle'] = 'Admin-teams';
-            $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
-            $data['page_header'] = 'Admin Teams';
-            
-            $data['form'] = array(
-                'name' => true,
-                'position' => true,
-                'action' => 'admin-add-team-exec'
+            $data = array(
+                'pagetitle' => $this->title,
+                'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
+                'page_header' => $this->pageHeader,
+                'form' => array(
+                    'name' => true,
+                    'position' => true,
+                    'action' => 'admin-add-team-exec'
+                )
             );
             $this->load->view('admin/header/head', $data);
             $this->load->view('admin/header/header-bar');
@@ -30,59 +35,63 @@ class AdminTeamsController extends CI_Controller {
         }
     }
     
-    public function add_exec() {  
-        $config['upload_path'] = 'image/teams';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $this->load->library('upload', $config);
-        $this->form_validation->set_rules($this->validation());
-        if  ($this->form_validation->run() == false) {
-            $this->index();
-        } else {
-            $to_save = array(
-                'team_name' => $this->input->post('name'),
-                'team_position' => $this->input->post('position'),
-                'team_description' => $this->input->post('description'),
-                'team_image' => $this->input->post('image'),
-                'created' => date('Y-m-d H:i:s'),
-            );
-            $response = $this->Team->insert($to_save);
-            if (!$response['created']) {
-                $this->session->set_flashdata('error', $this->alert->show('Cannot add Team', 0));
+    public function add_exec() { 
+        if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
+            $this->load->library('upload', $this->file_validation());
+            $this->form_validation->set_rules($this->validation());
+            if  ($this->form_validation->run() == false) {
+                $this->index();
             } else {
-                $this->session->set_flashdata('success', $this->alert->show('Add success', 1));
+                $to_save = array(
+                    'team_name' => $this->input->post('name'),
+                    'team_position' => $this->input->post('position'),
+                    'team_description' => $this->input->post('description'),
+                    'team_image' => $this->input->post('image'),
+                    'created' => date('Y-m-d H:i:s'),
+                );
+                $response = $this->Team->insert($to_save);
+                if (!$response['created']) {
+                    $this->session->set_flashdata('error', $this->alert->show('Cannot add Team', 0));
+                } else {
+                    $this->session->set_flashdata('success', $this->alert->show('Add success', 1));
+                }
+                redirect(base_url().'admin/admin-add-team');
+                exit();
             }
-            redirect(base_url().'admin/admin-add-team');
-            exit();
+        } else {
+            redirect(base_url().'admin');
         }
     }
     
     
     public function edit_exec() {
-        $config['upload_path'] = 'image/teams';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $this->load->library('upload', $config);
-        $this->form_validation->set_rules($this->validation());
-        if  ($this->form_validation->run() == false) {
-            $this->edit($_POST['id']);
-        } else {
-            $to_update = array(
-                'team_name' => $this->input->post('name'),
-                'team_position' => $this->input->post('position'),
-                'team_description' => $this->input->post('description'),
-                'modified' => date('Y-m-d H:i:s')
-            );
-            $id = $this->input->post('id');
-            if ($_POST['image'] != ''){
-                $to_update['team_image'] = $_POST['image'];
-            }
-            $response = $this->Team->update($to_update, $id);
-            if (!$response['updated']) {
-                $this->session->set_flashdata('error', $this->alert->show('Cannot update team', 0));
+        if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
+            $this->load->library('upload', $this->file_validation());
+            $this->form_validation->set_rules($this->validation());
+            if  ($this->form_validation->run() == false) {
+                $this->edit($_POST['id']);
             } else {
-                $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
+                $to_update = array(
+                    'team_name' => $this->input->post('name'),
+                    'team_position' => $this->input->post('position'),
+                    'team_description' => $this->input->post('description'),
+                    'modified' => date('Y-m-d H:i:s')
+                );
+                $id = $this->input->post('id');
+                if ($_POST['image'] != ''){
+                    $to_update['team_image'] = $_POST['image'];
+                }
+                $response = $this->Team->update($to_update, $id);
+                if (!$response['updated']) {
+                    $this->session->set_flashdata('error', $this->alert->show('Cannot update team', 0));
+                } else {
+                    $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
+                }
+                redirect(base_url().'admin/admin-edit-team/'.$id);
+                exit();
             }
-            redirect(base_url().'admin/admin-edit-team/'.$id);
-            exit();
+        } else {
+            redirect(base_url().'admin');
         }
         
     }
@@ -113,6 +122,12 @@ class AdminTeamsController extends CI_Controller {
         return $validate;
     }
     
+    private function file_validation(){
+        $config['upload_path'] = 'image/teams';
+        $config['allowed_types'] = 'gif|jpg|png';
+        return $config;
+    }
+    
     
     function handle_upload() {
         if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
@@ -141,11 +156,15 @@ class AdminTeamsController extends CI_Controller {
     
     public function view(){
         if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
-            $data['pagetitle'] = 'Admin-teams';
-            $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
-            $data['all_teams'] = $this->Team->get_all();
-            $data['action_status_link'] = 'admin-status-team';
-            $data['action_delete_link'] = 'admin-delete-team';
+            $data = array(
+                'pagetitle' => $this->title,
+                'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
+                'all_teams' => $this->Team->get_all(),
+                'action_status_link' => 'admin-status-team',
+                'action_delete_link' => 'admin-delete-team',
+                'page_header' => $this->pageHeader,
+                'item_name' => 'team'
+            );
             $this->load->view('admin/header/head', $data);
             $this->load->view('admin/header/header-bar');
             $this->load->view('admin/header/menu-bar');
@@ -160,9 +179,12 @@ class AdminTeamsController extends CI_Controller {
     
     public function edit($id) {
         if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
-            $data['pagetitle'] = 'Admin-teams';
-            $data['username_admin_account']  = $this->session_data['ADMIN_USERNAME'];
-            $data['team'] = $this->Team->single($id);
+            $data = array(
+                'pagetitle' => $this->title,
+                'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
+                'team' => $this->Team->single($id),
+                'page_header' => $this->pageHeader
+            );
             $this->load->view('admin/header/head', $data);
             $this->load->view('admin/header/header-bar');
             $this->load->view('admin/header/menu-bar');
@@ -174,16 +196,20 @@ class AdminTeamsController extends CI_Controller {
     }
     
     public function change_status(){
-        $id = $this->input->post('id');
-        $status = $this->input->post('status');
-        $status = ($status == 0) ? 1 : 0;
-        $response = $this->Team->change_status($id, $status);
-        if (!$response['changed']) {
-            $this->session->set_flashdata('error', $this->alert->show('Cannot change team status', 0));
+        if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
+            $id = $this->input->post('id');
+            $status = $this->input->post('status');
+            $status = ($status == 0) ? 1 : 0;
+            $response = $this->Team->change_status($id, $status);
+            if (!$response['changed']) {
+                $this->session->set_flashdata('error', $this->alert->show('Cannot change team status', 0));
+            } else {
+                $this->session->set_flashdata('success', $this->alert->show('Success change status.', 1));
+            }
+            redirect(base_url().'admin/admin-view-team');
         } else {
-            $this->session->set_flashdata('success', $this->alert->show('Success change status.', 1));
+            redirect(base_url().'admin');
         }
-        redirect(base_url().'admin/admin-view-team');
         exit();
     }
     
