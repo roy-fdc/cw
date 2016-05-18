@@ -12,12 +12,18 @@ class Benefit extends CI_Model {
         return $response;
     }
     
+    public function update($data, $id) {
+        $this->db->where('id', $id);
+        $response['updated'] = ($this->db->update('benefits', $data)) ? true : false;
+        return $response;
+    }
+    
     public function get_all() {
         $select = array(
             'id',
             'benefit_title',
-            'benefit_detail',
             'benefit_image',
+            'benefit_description',
             'benefit_status'
         );
         $this->db->select($select);
@@ -36,5 +42,17 @@ class Benefit extends CI_Model {
         $sql = "SELECT id, benefit_title, benefit_description, benefit_detail, benefit_image FROM benefits WHERE benefit_status = ? order by created desc limit 1"; 
         $query = $this->db->query($sql, array(1));
         return $query->result();
+    }
+    
+    public function change_status($id, $status){
+        $this->db->where('id', $id);
+        $response['changed'] = ($this->db->update('benefits', array('benefit_status' => $status))) ? true : false;
+        return $response;
+    }
+    
+    public function delete($id) {
+        $this->db->where('id', $id);
+        $response['deleted'] = ($this->db->delete('benefits')) ? true : false;
+        return $response;
     }
 }

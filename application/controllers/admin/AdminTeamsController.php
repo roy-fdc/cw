@@ -58,7 +58,6 @@ class AdminTeamsController extends CI_Controller {
     
     
     public function edit_exec() {
-        
         $config['upload_path'] = 'image/teams';
         $config['allowed_types'] = 'gif|jpg|png';
         $this->load->library('upload', $config);

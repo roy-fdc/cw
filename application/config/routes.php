@@ -73,6 +73,7 @@ $route['admin/admin-add-career'] = 'admin/admincareerscontroller';
 $route['admin/admin-add-career-exec'] = 'admin/admincareerscontroller/add_exec';
 $route['admin/admin-view-career'] = 'admin/admincareerscontroller/view';
 $route['admin/admin-edit-career/(:num)'] = 'admin/admincareerscontroller/edit/$1';
+$route['admin/admin-edit-career-exec'] = 'admin/admincareerscontroller/edit_exec';
 $route['admin/admin-status-career'] = 'admin/admincareerscontroller/change_status';
 $route['admin/admin-delete-career'] = 'admin/admincareerscontroller/delete';
 
@@ -81,6 +82,9 @@ $route['admin/admin-add-benefit'] = 'admin/adminbenefitscontroller'; //add benef
 $route['admin/admin-add-benefit-exec'] = 'admin/adminbenefitscontroller/add_exec'; // process -> adding benefits
 $route['admin/admin-view-benefit'] = 'admin/adminbenefitscontroller/view'; // benefits list
 $route['admin/admin-edit-benefit/(:num)'] = 'admin/adminbenefitscontroller/edit/$1';
+$route['admin/admin-edit-benefit-exec'] = 'admin/adminbenefitscontroller/edit_exec';
+$route['admin/admin-status-benefit'] = 'admin/adminbenefitscontroller/change_status';
+$route['admin/admin-delete-benefit'] = 'admin/adminbenefitscontroller/delete';
 
 //teams
 $route['admin/admin-add-team'] = 'admin/adminteamscontroller';

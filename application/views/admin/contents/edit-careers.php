@@ -17,27 +17,27 @@
                     Edit
                 </div>
                 <?php //echo form_open(base_url().'admin/admin-add-career-exec');?>
-                <form name="my_form" method="post" enctype="multipart/form-data" onSubmit="document.my_form.details.value = $('#editor').html()" action="<?php echo base_url();?>admin/admin-add-career-exec">
+                <form name="my_form" method="post" enctype="multipart/form-data" onSubmit="document.my_form.details.value = $('#editor').html()" action="<?php echo base_url();?>admin/admin-edit-career-exec">
                 <div class="panel-body">
                     <input type="hidden" name="id" value="<?php echo $career->id;?>"/>
                     <div class="form-group">
-                        <label for="career_title">Title</label>
-                        <span class="text-error"><?php echo form_error('career_title');?></span>
-                        <input type="text" name="career_title" id="career_title" class="form-control" value="<?php echo $career->career_title;?>"/>
+                        <label for="title">Title</label>
+                        <span class="text-error"><?php echo form_error('title');?></span>
+                        <input type="text" name="title" id="title" class="form-control" value="<?php echo $career->career_title;?>"/>
                     </div>
                     <div class="form-group">
-                        <label for="career_description">Descriptions</label>
-                        <span class="text-error"><?php echo form_error('career_description');?></span>
-                        <textarea name="career_description" id="career_description" class="form-control"><?php echo $career->career_description;?></textarea>
+                        <label for="description">Descriptions</label>
+                        <span class="text-error"><?php echo form_error('description');?></span>
+                        <textarea name="description" id="description" class="form-control"><?php echo $career->career_description;?></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="career_image">Image</label>
-                        <span class="text-error"><?php echo form_error('career_image');?></span>
-                        <input type="file" name="career_image" id="career_image" class="form-control"/>
+                        <label for="image">Image</label>
+                        <span class="text-error"><?php echo form_error('image');?></span>
+                        <input type="file" name="image" id="image" class="form-control"/>
                     </div>
                     
                     <div class="form-group">
-                        <label for="career_detail">Details</label>
+                        <label for="detail">Details</label>
                         <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
 
                             <div class="btn-group">

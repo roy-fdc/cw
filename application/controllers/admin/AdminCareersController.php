@@ -31,32 +31,10 @@ class AdminCareersController extends CI_Controller {
     }
     
     public function add_exec() {  
-        $validate = array(
-            array(
-                'field' => 'title',
-                'label' => 'Title',
-                'rules' => 'required' 
-            ),
-            array(
-                'field' => 'description',
-                'label' => 'Descriptions',
-                'rules' => 'required'
-            ),
-            array(
-                'field' => 'details',
-                'label' => 'Details',
-                'rules' => 'required'
-            ),
-            array(
-                'field' => 'image',
-                'label' => 'Image',
-                'rules' => 'callback_handle_upload'
-            )
-        );
         $config['upload_path'] = 'image/careers';
         $config['allowed_types'] = 'gif|jpg|png';
         $this->load->library('upload', $config);
-        $this->form_validation->set_rules($validate);
+        $this->form_validation->set_rules($this->validation());
         if  ($this->form_validation->run() == false) {
             $this->index();
         } else {
@@ -77,31 +55,7 @@ class AdminCareersController extends CI_Controller {
             exit();
         }
     }
-    
-    public function add_edit($to_save, $action) {
-        if ($action == 'add') {
-            $add = $this->Career->insert($to_save);
-            if (!$add['added']) {
-                $message['message'] = 'Cannot add career.';
-                $message['status'] = 0;
-            } else {
-                $message['message'] = 'Add Success!';
-                $message['status'] = 1;
-            }
-            $message['link'] = 'admin-add-career';
-        } else {
-            $update = $this->Career->update($to_save, $action);
-            if (!$update['updated']) {
-                $message['message'] = 'Cannot update career';
-                $message['status'] = 0;
-            } else {
-                $message['message'] = 'Update Success!';
-                $message['status'] = 1;
-            }
-            $message['link'] = 'admin-edit-career/'.$action;
-        }
-        return $message;
-    }
+   
     
     function handle_upload() {
         if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
@@ -160,6 +114,61 @@ class AdminCareersController extends CI_Controller {
         } else {
             redirect(base_url().'admin');
         }
+    }
+    
+    public function edit_exec(){
+        $config['upload_path'] = 'image/careers';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $this->load->library('upload', $config);
+        $this->form_validation->set_rules($this->validation());
+        if  ($this->form_validation->run() == false) {
+            $this->edit($_POST['id']);
+        } else {
+            $to_update = array(
+                'career_title' => $this->input->post('title'),
+                'career_description' => $this->input->post('description'),
+                'career_detail' => $this->input->post('details'),
+                'career_modified' => date('Y-m-d H:i:s')
+            );
+            $id = $this->input->post('id');
+            if ($_POST['image'] != ''){
+                $to_update['career_image'] = $_POST['image'];
+            }
+            $response = $this->Career->update($to_update, $id);
+            if (!$response['updated']) {
+                $this->session->set_flashdata('error', $this->alert->show('Cannot update team', 0));
+            } else {
+                $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
+            }
+            redirect(base_url().'admin/admin-edit-career/'.$id);
+            exit();
+        }
+    }
+    
+    private function validation() {
+        $validate = array(
+            array(
+                'field' => 'title',
+                'label' => 'Title',
+                'rules' => 'required' 
+            ),
+            array(
+                'field' => 'description',
+                'label' => 'Descriptions',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'details',
+                'label' => 'Details',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'image',
+                'label' => 'Image',
+                'rules' => 'callback_handle_upload'
+            )
+        );
+        return $validate;
     }
     
     public function change_status(){
