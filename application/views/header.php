@@ -16,6 +16,10 @@
     <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
     <script src="<?php echo base_url();?>bower_components/metisMenu/metisMenu.js"></script>
     <script src="<?php echo base_url();?>js/sb-admin-2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.5/angular-route.js"></script>
+
+    
 </head>
 
 <body>
