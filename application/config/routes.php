@@ -109,5 +109,17 @@ $route['admin/admin-edit-value-exec'] = 'admin/adminaboutvaluescontroller/edit_e
 $route['admin/admin-status-value'] = 'admin/adminaboutvaluescontroller/change_status';
 $route['admin/admin-delete_value'] = 'admin/adminaboutvaluescontroller/delete';
 
+$route['admin/admin-image-slide'] = 'admin/adminslideimagescontroller';
+$route['admin/admin-image-add-exec'] = 'admin/adminslideimagescontroller/add_exec';
+$route['admin/admin-image-status'] = 'admin/adminslideimagescontroller/change_status';
+$route['admin/admin-image-delete'] = 'admin/adminslideimagescontroller/delete';
+
+$route['admin/admin-gallery'] = 'admin/admingalleriescontroller';
+$route['admin/admin-album-add-exec'] = 'admin/admingalleryalbumscontroller/add_album_exec';
+$route['admin/admin-add-gallery-exec'] = 'admin/admingalleriescontroller/add_image_exec';
+$route['admin/admin-gallery-status'] = 'admin/admingalleryalbumscontroller/change_status';
+$route['admin/admin-album-update-exec'] = 'admin/admingalleryalbumscontroller/update';
+$route['admin/admin-gallery-image-delete'] = 'admin/admingalleriescontroller/delete';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
