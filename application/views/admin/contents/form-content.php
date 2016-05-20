@@ -18,8 +18,17 @@
                 <?php if (isset($form['title'])) { ?>
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <span class="text-error"><?php echo form_error('title');?></span>
-                    <input type="text" name="title" id="title" class="form-control" value="<?php echo set_value('title');?>"/>
+                    <?php 
+                    echo form_error('title', '<div class="text-error">', '</div>');
+                    $for_title = array(
+                        'type' => 'text',
+                        'name' => 'title',
+                        'id' => 'title',
+                        'class' => 'form-control',
+                        'value' => set_value('title')
+                    );
+                    echo form_input($for_title);
+                    ?>
                 </div>
                 <?php } ?>
                 
@@ -27,8 +36,17 @@
                 <?php if (isset($form['name'])) { ?>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <span class="text-error"><?php echo form_error('name');?></span>
-                    <input type="text" name="name" id="name" class="form-control" value="<?php echo set_value('name');?>"/>
+                    <?php 
+                    echo form_error('name', '<div class="text-error">', '</div>');
+                    $for_name = array(
+                        'type' => 'text',
+                        'name' => 'name',
+                        'id' => 'name',
+                        'class' => 'form-control',
+                        'value' => set_value('name')
+                    );
+                    echo form_input($for_name);
+                    ?>
                 </div>
                 <?php } ?>
                 
@@ -36,23 +54,49 @@
                 <?php if (isset($form['position'])) { ?>
                 <div class="form-group">
                     <label for="position">Position</label>
-                    <span class="text-error"><?php echo form_error('position');?></span>
-                    <input type="text" name="position" id="position" class="form-control" value="<?php echo set_value('position');?>"/>
+                    <?php 
+                    echo form_error('position', '<div class="text-error">', '</div>');
+                    $for_position = array(
+                        'type' => 'text',
+                        'name' => 'position',
+                        'id' => 'position',
+                        'class' => 'form-control',
+                        'value' => set_value('position')
+                    );
+                    echo form_input($for_position);
+                    ?>
                 </div>
                 <?php } ?>
                 
                 <!-- description field -->
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <span class="text-error"><?php echo form_error('description');?></span>
-                    <textarea name="description" id="description" class="form-control"><?php echo set_value('description');?></textarea>
+                    <?php 
+                    echo form_error('description', '<div class="text-error">', '</div>');
+                    $for_description = array(
+                        'name' => 'description',
+                        'id' => 'description',
+                        'class' => 'form-control',
+                        'value' => set_value('description'),
+                        'rows' => 5
+                    );
+                    echo form_textarea($for_description);
+                    ?>
                 </div>
                 
                 <!-- image field -->
                 <div class="form-group">
                     <label for="image">Image</label>
-                    <span class="text-error"><?php echo form_error('image');?></span>
-                    <input type="file" name="image" id="image" class="form-control"/>
+                    <?php 
+                    echo form_error('image', '<div class="text-error">', '</div>');
+                    $for_image = array(
+                        'type' => 'file',
+                        'name' => 'image',
+                        'id' => 'image',
+                        'class' => 'form-control'
+                    );
+                    echo form_input($for_image);
+                    ?>
                 </div>
                 
                 <!-- detail field -->
@@ -115,7 +159,20 @@
                 
             </div>
             <div class="panel-footer">
-                <button class="btn btn-primary" type="submit">Create</button>
+                <?php
+                $submit_btn = array(
+                    'type' => 'submit',
+                    'class' => 'btn btn-primary',
+                    'content' => 'Create'
+                );
+                echo form_button($submit_btn);
+                $reset_btn = array(
+                    'type' => 'reset',
+                    'class' => 'btn btn-default',
+                    'content' => 'Clear'
+                );
+                echo form_button($reset_btn);
+                ?>
             </div>
             <?php echo form_close(); ?>
         </div>

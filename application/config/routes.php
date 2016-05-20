@@ -121,5 +121,9 @@ $route['admin/admin-gallery-status'] = 'admin/admingalleryalbumscontroller/chang
 $route['admin/admin-album-update-exec'] = 'admin/admingalleryalbumscontroller/update';
 $route['admin/admin-gallery-image-delete'] = 'admin/admingalleriescontroller/delete';
 
+$route['admin/admin-introduction'] = 'admin/AdminIntroductionsController';
+$route['admin/admin-introduction-status'] = 'admin/AdminIntroductionsController/change_status';
+$route['admin/admin-intro-update-exec'] = 'admin/AdminIntroductionsController/update_exec';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

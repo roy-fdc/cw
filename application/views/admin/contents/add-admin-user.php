@@ -12,33 +12,90 @@
                         <div class="panel-body">
                                 <div class="form-group">
                                     <label for="admin-firstname">Firstname</label>
-                                    <span class="text-error"><?php echo form_error('firstname'); ?></span>
-                                    <input type="text" name="firstname" id="admin-firstname" value="<?php echo set_value('firstname');?>" class="form-control"/>
+                                    <?php 
+                                    echo form_error('firstname', '<div class="text-error">', '</div>'); 
+                                    $firstname = array(
+                                        'type' => 'text',
+                                        'name' => 'firstname', 
+                                        'id' => 'admin-firstname',
+                                        'value' => set_value('firstname'),
+                                        'class' => 'form-control'
+                                    );
+                                    echo form_input($firstname);
+                                    ?>
                                 </div>
                                 <div class="form-group">
                                     <label for="admin-lastname">Lastname</label>
-                                    <span class="text-error"><?php echo form_error('lastname'); ?></span>
-                                    <input type="text" name="lastname" id="admin-lastname" value="<?php echo set_value('lastname');?>" class="form-control"/>
+                                    <?php 
+                                    echo form_error('lastname', '<div class="text-error">', '</div>'); 
+                                    $lastname = array(
+                                        'type' => 'text',
+                                        'name' => 'lastname', 
+                                        'id' => 'admin-lastname',
+                                        'value' => set_value('lastname'),
+                                        'class' => 'form-control'
+                                    );
+                                    echo form_input($lastname);
+                                    ?>
                                 </div>
                                 <div class="form-group">
                                     <label for="admin-username">Username</label>
-                                    <span class="text-error"><?php echo form_error('username');?></span>
-                                    <input type="text" name="username" id="admin-username" value="<?php echo set_value('username');?>" class="form-control"/>
-                                </div>
+                                    <?php 
+                                    echo form_error('username', '<div class="text-error">', '</div>');
+                                    $username = array(
+                                        'type' => 'text',
+                                        'name' => 'username',
+                                        'id' => 'admin-username',
+                                        'value' => set_value('username'),
+                                        'class' => 'form-control'
+                                    );
+                                    echo form_input($username);
+                                    ?>
+                                 </div>
                                 <div class="form-group">
                                     <label for="admin-password">Password</label>
-                                    <span class="text-error"><?php echo form_error('password');?></span>
-                                    <input type="text" name="password" id="admin-password" value="<?php echo set_value('password');?>" class="form-control"/>
+                                    <?php 
+                                    echo form_error('password', '<div class="text-error">', '</div>');
+                                    $password = array(
+                                        'type' => 'password',
+                                        'name' => 'password',
+                                        'id' => 'admin-password',
+                                        'value' => set_value('password'),
+                                        'class' => 'form-control'
+                                    );
+                                    echo form_input($password);
+                                    ?>
                                 </div>
                                 <div class="form-group">
                                     <label for="admin-password-conf">Password confirm</label>
-                                    <span class="text-error"><?php echo form_error('password_confirm');?></span>
-                                    <input type="text" name="password_confirm" id="admin-password-conf" value="<?php echo set_value('password_confirm');?>" class="form-control"/>
+                                    <?php 
+                                    echo form_error('password_confirm', '<div class="text-error">', '</div>');
+                                    $password_conf = array(
+                                        'type' => 'password',
+                                        'name' => 'password_confirm',
+                                        'id' => 'admin-password-conf',
+                                        'value' => set_value('password_confirm'),
+                                        'class' => 'form-control'
+                                    );
+                                    echo form_input($password_conf);
+                                    ?>
                                 </div>
                         </div>
                         <div class="panel-footer">
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                            <button class="btn btn-default" type="reset">Clear</button>
+                            <?php
+                            $submit = array(
+                                'type' => 'submit',
+                                'class' => 'btn btn-primary',
+                                'content' => 'Submit'
+                            );
+                            echo form_button($submit);
+                            $clear = array(
+                                'type' => 'reset',
+                                'class' => 'btn btn-default',
+                                'content' => 'Clear'
+                            );
+                            echo form_button($clear);
+                            ?>
                         </div>
                         <?php echo form_close(); ?>
                     </div>

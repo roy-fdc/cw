@@ -116,11 +116,12 @@ class AdminBenefitsController extends CI_Controller {
     
     public function view(){
         if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
+            $benefits = $this->Benefit->get_all();
             $data = array(
                 'pagetitle' => $this->title,
                 'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
                 'page_header' => $this->pageHeader,
-                'all_benefits' => $this->Benefit->get_all(),
+                'all_benefits' => $this->benefit_table($benefits),
                 'action_status_link' => 'admin-status-benefit',
                 'action_delete_link' => 'admin-delete-benefit',
                 'item_name' => 'benefit'
@@ -135,6 +136,33 @@ class AdminBenefitsController extends CI_Controller {
         } else {
             redirect(base_url().'admin');
         }
+    }
+    
+    public function benefit_table($benefits) {
+        $this->load->library('table');
+        $template = array(
+            'table_open' => '<table class="table table-bordered">'
+        );
+        $this->table->set_template($template);
+        $this->table->set_heading('NO', 'Image', 'Title', 'Description', 'Status', 'Action');
+        $counter = 1;
+        foreach ($benefits as $row) {
+            $btn_text = ($row->benefit_status == 0) ? 'Enable' : 'Disable';
+            $btn_type = ($row->benefit_status == 0) ? 'success' : 'warning';
+            $update_btn = '<a href="'.base_url().'admin/admin-edit-benefit/'.$row->id.'" class="btn btn-primary">Update</a>';
+            $change_status_btn = '<a onclick="change_status('.$row->id.', '.$row->benefit_status.')"  class="btn btn-'.$btn_type.'">'.$btn_text.'</a>';
+            $delete_btn = '<a onclick="delete_item('.$row->id.')" class="btn btn-danger">Delete</a>';
+            $to_row = array(
+                $counter++,
+                '<img src="'.base_url().'image/benefits/'.$row->benefit_image.'" width="50" height="50"/>',
+                $row->benefit_title,
+                $row->benefit_description,
+                ($row->benefit_status == 1) ? 'Active' : '........',
+                $update_btn.' '.$change_status_btn.' '.$delete_btn
+            );
+            $this->table->add_row($to_row);
+        }
+        return $this->table->generate();
     }
     
     public function edit($id) {

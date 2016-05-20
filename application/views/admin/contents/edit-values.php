@@ -8,28 +8,66 @@
                 <div class="panel-heading">
                     Edit
                 </div>
-                <?php //echo form_open(base_url().'admin/admin-add-career-exec');?>
-                <form name="my_form" method="post" enctype="multipart/form-data" onSubmit="document.my_form.details.value = $('#editor').html()" action="<?php echo base_url();?>admin/admin-edit-value-exec">
+                <?php echo form_open_multipart(base_url().'admin/admin-edit-value-exec');?>
                 <div class="panel-body">
-                    <input type="hidden" name="id" value="<?php echo $value->id;?>"/>
+                    <?php
+                    $for_id = array(
+                        'type' => 'hidden',
+                        'name' => 'id',
+                        'value' => $value->id
+                    );
+                    echo form_input($for_id);
+                    ?>
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <span class="text-error"><?php echo form_error('title');?></span>
-                        <input type="text" name="title" id="title" class="form-control" value="<?php echo $value->value_title;?>"/>
+                        <?php 
+                        echo form_error('title', '<div class="text-error">', '</div>');
+                        $for_title = array(
+                            'type' => 'text',
+                            'name' => 'title',
+                            'id' => 'title',
+                            'class' => 'form-control',
+                            'value' => $value->value_title
+                        );
+                        echo form_input($for_title);
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <span class="text-error"><?php echo form_error('description');?></span>
-                        <textarea name="description" id="description" class="form-control"><?php echo $value->value_description;?></textarea>
+                        <?php 
+                        echo form_error('description', '<div class="text-error">', '</div>');
+                        $for_description = array(
+                            'name' => 'description',
+                            'id' => 'description',
+                            'class' => 'form-control',
+                            'value' => $value->value_description
+                        );
+                        echo form_textarea($for_description);
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="image">Image</label>
-                        <span class="text-error"><?php echo form_error('image');?></span>
-                        <input type="file" name="image" id="image" class="form-control"/>
+                        <?php 
+                        echo form_error('image', '<div class="text-error">', '</div>');
+                        $for_image = array(
+                            'type' => 'file',
+                            'name' => 'image',
+                            'id' => 'image',
+                            'class' => 'form-control'
+                        );
+                        echo form_input($for_image);
+                        ?>
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <button class="btn btn-primary" type="submit">Update</button>
+                    <?php
+                    $submit_btn = array(
+                        'type' => 'submit',
+                        'class' => 'btn btn-primary',
+                        'content' => 'Update'
+                    );
+                    echo form_button($submit_btn);
+                    ?>
                 </div>
                 <?php echo form_close(); ?>
             </div>
