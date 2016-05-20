@@ -3,7 +3,7 @@
 <script>
     function delete_item(id) {
         $('#delete_modal').modal('show');
-        $('#ids').val(id);
+        $('#id').val(id);
     }
 </script>
 <!-- script for delete item ends here -->
@@ -16,11 +16,30 @@
             <?php echo form_open(base_url().'admin/'.$action_delete_link);?>
             <div class="modal-body">
                 Are you sure want to delete this <?php echo $item_name;?> ?
-                <input type="hidden" id="ids" name="id"/>
+                <?php
+                $field = array(
+                    'type' => 'hidden',
+                    'id' => 'id',
+                    'name' => 'id'
+                );
+                echo form_input($field);
+                ?>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <?php
+                $delete = array(
+                    'type' => 'submit',
+                    'class' => 'btn btn-primary',
+                    'content' => '<span class="glyphicon glyphicon-trash"></span> Delete'
+                );
+                echo form_button($delete);
+                $cancel = array(
+                    'class' => 'btn btn-default',
+                    'data-dismiss' => 'modal',
+                    'content' => 'Cancel'
+                );
+                echo form_button($cancel);
+                ?>
             </div>
             <?php echo form_close(); ?>
         </div>
