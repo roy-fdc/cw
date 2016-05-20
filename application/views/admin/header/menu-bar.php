@@ -96,6 +96,15 @@
                         </li>
                         
                         <li>
+                            <a href="<?php echo base_url();?>admin/admin-image-slide"><i class="glyphicon glyphicon-glyphicon glyphicon-film"></i> Slide Images</a>
+                        </li>
+                        
+                        <li>
+                            <a href="<?php echo base_url();?>admin/admin-gallery"><i class="glyphicon glyphicon-glyphicon glyphicon-hand-right"></i> Gallery </a>
+                            
+                        </li>
+                        
+                        <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                     </ul>
