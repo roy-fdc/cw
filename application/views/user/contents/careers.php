@@ -6,26 +6,31 @@
                <h1><?php echo $page_header_title;?></h1>
             </div>
          </div>
-         <div id="content">
+         <div id="content" >
             <div class="line">
                <div class="margin">
-                  <div class="s-12 m-6 l-4" ng-repeat="career in career_res">
+                  <div class="s-12 m-6 l-4" ng-repeat="career in careers">
                      <div class="margin-bottom">
-                         <a href="#career_desc">
-                            <img src="<?php echo base_url();?>image/teams/{{career_res.career_image}}" class="image-circle"/>
+                         <a href="#career_desc" ng-click="careerDetails(career.id)">
+                            <img src="<?php echo base_url();?>image/careers/{{career.career_image}}" class="image-circle"/>
                          </a>
-                        <h3 style="font-weight: bold">test{{career_res.career_title}}</h3>
-                        <p>
-                            Can read and write Japanese language, speak Japanese and translate to English.
-                        </p>
+                        <h3 style="font-weight: bold">{{career.career_title}}</h3>
+                        <p>{{career.career_description}}</p>
                      </div>
                   </div>
-                  
                </div>
             </div>
          </div>
+
+         <div id="career_desc">
+            <div class="line">
+            {{careerVDetails}}
+            </div>
+         </div>
+
+         
          <!-- GALLERY -->	
-         <div id="third-block">
+         <div id="third-block" style="display: none">
             <div class="line">
                <h2 id="contacts">Responsive gallery</h2>
                <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
