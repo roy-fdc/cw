@@ -1,4 +1,4 @@
-
+<script type="text/javascript" src="<?php echo base_url();?>js/api/career.js"></script>
    
       <section>
          <div id="head">
@@ -6,46 +6,31 @@
                <h1><?php echo $page_header_title;?></h1>
             </div>
          </div>
-         <div id="content">
+         <div id="content" >
             <div class="line">
                <div class="margin">
-                  <div class="s-12 m-6 l-4">
+                  <div class="s-12 m-6 l-4" ng-repeat="career in careers">
                      <div class="margin-bottom">
-<!--                        <i class="icon-paperplane_ico icon2x"></i>-->
-                         <a href="#career_desc">
-                            <img src="<?php echo base_url();?>image/site/teams/translator.jpg" class="image-circle"/>
+                         <a href="#career_desc" ng-click="careerDetails(career.id)">
+                            <img src="<?php echo base_url();?>image/careers/{{career.career_image}}" class="image-circle"/>
                          </a>
-                        <h3 style="font-weight: bold">Web Translator</h3>
-                        <p>
-                            Can read and write Japanese language, speak Japanese and translate to English.
-                        </p>
-                     </div>
-                  </div>
-                  <div class="s-12 m-6 l-4">
-                     <div class="margin-bottom">
-<!--                        <i class="icon-display_screen icon2x"></i>-->
-                         <img src="<?php echo base_url();?>image/site/teams/web-programmer.jpg" class="image-circle"/>
-                        <h3 style="font-weight: bold">Web Programmers</h3>
-                        <p>
-                            We are searching for outstanding Web Programmers to perform research and develop new technologies for web development.
-                        </p>
-                     </div>
-                  </div>
-                  <div class="s-12 m-6 l-4">
-                     <div class="margin-bottom">
-<!--                        <i class="icon-heart icon2x"></i>-->
-                         <img src="<?php echo base_url();?>image/site/teams/qa.jpg" class="image-circle"/>
-                        <h3 style="font-weight: bold">Web Application Tester</h3>
-                        <p>
-                            Perform manual or even in automated testing of all aspects of Web Applications Development
-                        </p>
+                        <h3 style="font-weight: bold">{{career.career_title}}</h3>
+                        <p>{{career.career_description}}</p>
                      </div>
                   </div>
                </div>
             </div>
          </div>
+
+         <div id="career_desc">
+            <div class="line">
+            {{careerVDetails}}
+            </div>
+         </div>
+
+         
          <!-- GALLERY -->	
-         <div id="third-block">
+         <div id="third-block" style="display: none">
             <div class="line">
                <h2 id="contacts">Responsive gallery</h2>
                <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
