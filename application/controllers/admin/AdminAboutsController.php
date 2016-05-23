@@ -38,6 +38,7 @@ class AdminAboutsController extends CI_Controller {
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -57,6 +58,7 @@ class AdminAboutsController extends CI_Controller {
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -86,6 +88,7 @@ class AdminAboutsController extends CI_Controller {
             }
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -104,9 +107,10 @@ class AdminAboutsController extends CI_Controller {
             if ($id == 2) $uri = 'mission';
             if ($id == 3) $uri = 'vision';
             redirect(base_url().'admin/admin-company/'.$uri);
+            exit();
         } else {
             redirect(base_url().'admin');
+            exit();
         }
-        exit();
     }
 }
