@@ -26,6 +26,7 @@ class AdminUserController extends CI_Controller {
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -82,6 +83,7 @@ class AdminUserController extends CI_Controller {
             }
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -103,6 +105,7 @@ class AdminUserController extends CI_Controller {
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     

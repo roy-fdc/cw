@@ -28,6 +28,7 @@ class AdminIntroductionsController extends CI_Controller {
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -72,10 +73,11 @@ class AdminIntroductionsController extends CI_Controller {
                 $this->session->set_flashdata('success', $this->alert->show('Introduction update success!', 1));
             }
             redirect(base_url().'admin/admin-introduction');
+            exit();
         } else {
             redirect(base_url().'admin');
+            exit();
         }
-        exit();
     }
     
     public function change_status() {
@@ -90,10 +92,11 @@ class AdminIntroductionsController extends CI_Controller {
                 $this->session->set_flashdata('success', $this->alert->show('Status change success!', 1));
             }
             redirect(base_url().'admin/admin-introduction');
+            exit();
         } else {
             redirect(base_url().'admin');
+            exit();
         }
-        exit();
     }
     
 }

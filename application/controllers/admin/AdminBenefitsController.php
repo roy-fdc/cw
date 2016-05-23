@@ -31,6 +31,7 @@ class AdminBenefitsController extends CI_Controller {
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -58,6 +59,7 @@ class AdminBenefitsController extends CI_Controller {
             }
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -135,6 +137,7 @@ class AdminBenefitsController extends CI_Controller {
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -180,6 +183,7 @@ class AdminBenefitsController extends CI_Controller {
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -210,6 +214,7 @@ class AdminBenefitsController extends CI_Controller {
             }
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -226,10 +231,11 @@ class AdminBenefitsController extends CI_Controller {
                 $this->session->set_flashdata('success', $this->alert->show('Success change status.', 1));
             }
             redirect(base_url().'admin/admin-view-benefit');
+            exit();
         } else {
             redirect(base_url().'admin');
+            exit();
         }
-        exit();
     }
     
     public function delete() {
@@ -242,10 +248,11 @@ class AdminBenefitsController extends CI_Controller {
                 $this->session->set_flashdata('success', $this->alert->show('Succecss delete!', 1));
             }
             redirect(base_url().'admin/admin-view-benefit');
+            exit();
         } else {
             redirect(base_url().'admin');
+            exit();
         }
-        exit();
     }
     
 }

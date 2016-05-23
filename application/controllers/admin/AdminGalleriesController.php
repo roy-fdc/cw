@@ -34,6 +34,7 @@ class AdminGalleriesController extends CI_Controller {
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -72,10 +73,11 @@ class AdminGalleriesController extends CI_Controller {
                 $this->session->set_flashdata('success', $this->alert->show('Image delete success!', 1));
             }
             redirect(base_url().'admin/admin-gallery');
+            exit();
         } else {
             redirect(base_url().'admin');
+            exit();
         }
-        exit();
     }
     
     public function add_image_exec() {
@@ -92,6 +94,7 @@ class AdminGalleriesController extends CI_Controller {
             if ($this->form_validation->run() == false) {
                 $this->session->set_flashdata('error', $this->alert->show(form_error('image'), 0));
                 redirect(base_url().'admin/admin-gallery');
+                exit();
             } else {
                 $album_id = $this->input->post('album_id');
                 $image = $this->input->post('image');
@@ -107,11 +110,12 @@ class AdminGalleriesController extends CI_Controller {
                     $this->session->set_flashdata('success', $this->alert->show('Image add success!', 1));
                 } 
                 redirect(base_url().'admin/admin-gallery');
+                exit();
             }
         } else {
             redirect(base_url().'admin');
+            exit();
         }
-        exit();
     }
     
     private function file_validation() {

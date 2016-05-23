@@ -32,6 +32,7 @@ class AdminSlideImagesController extends CI_Controller {
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -99,6 +100,7 @@ class AdminSlideImagesController extends CI_Controller {
             
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -138,10 +140,11 @@ class AdminSlideImagesController extends CI_Controller {
                 $this->session->set_flashdata('success', $this->alert->show('Image change status success!', 1));
             }
             redirect(base_url().'admin/admin-image-slide');
+            exit();
         } else {
             redirect(base_url().'admin');
+            exit();
         }
-        exit();
     }
     
     public function delete() {
@@ -154,10 +157,11 @@ class AdminSlideImagesController extends CI_Controller {
                 $this->session->set_flashdata('success', $this->alert->show('Image delete success!', 1));
             }
             redirect(base_url().'admin/admin-image-slide');
+            exit();
         } else {
             redirect(base_url().'admin');
+            exit();
         }
-        exit();
     }
     
     
