@@ -6,6 +6,14 @@ class Team extends CI_Model {
     
     public function __construct() {
         parent::__construct();
+
+        $this->field = array(
+            'id',
+            'team_name',
+            'team_position',
+            'team_description',
+            'team_image'
+        );
     }
     
     public function insert($data) {
@@ -20,15 +28,8 @@ class Team extends CI_Model {
     }
     
     public function get_all() {
-        $select = array(
-            'id',
-            'team_name',
-            'team_position',
-            'team_description',
-            'team_image',
-            'team_status'
-        );
-        $this->db->select($select);
+        $this->field['team_status'];
+        $this->db->select($this->field);
         $query = $this->db->get('teams');
         return $query->result();
     }
@@ -50,24 +51,9 @@ class Team extends CI_Model {
         $response['deleted'] = ($this->db->delete('teams')) ? true : false;
         return $response;
     }
-
-    public function single_data() {
-        $sql = "SELECT id, team_name, team_position, team_description, team_image FROM teams WHERE team_status = ? order by created desc limit 1"; 
-        $query = $this->db->query($sql, array(1));
-        return $query->result();
-    }
-
     public function api_get_all() {
-        $select = array(
-            'id',
-            'team_name',
-            'team_position',
-            'team_description',
-            'team_image',
-            'team_status'
-        );
         $this->db->where('team_status', 1);
-        $this->db->select($select);
+        $this->db->select($this->field);
         $query = $this->db->get('teams');
         return $query->result();
     }

@@ -7,6 +7,7 @@ class Career extends CI_Model {
     public function __construct() {
         parent::__construct();
         $this->field = array(
+            'id',
             'career_title',
             'career_description',
             'career_detail',
@@ -26,15 +27,8 @@ class Career extends CI_Model {
     }
     
     public function get_all() {
-        $select = array(
-            'id',
-            'career_title',
-            'career_description',
-            'career_detail',
-            'career_image',
-            'career_status'
-        );
-        $this->db->select($select);
+        $this->field['career_status'];
+        $this->db->select($this->field);
         $query = $this->db->get('careers');
         return $query->result();
     }
@@ -57,35 +51,12 @@ class Career extends CI_Model {
         return $response;
     }
 
-    
-    // for all career list API
-    public function api_get_career($id) {
-        if ($id != 0) {
+    public function api_get_career($id = null) {
+        if (!empty($id)) {
             $this->db->where('id', $id);
         }
         $this->db->where('career_status', 1);
         $this->db->select($this->field);
-        $result = $this->db->get('careers');
-        return $result->result();
-    }
-     
-    public function single_data() {
-        $sql = "SELECT id, career_title, career_description, career_detail, career_image FROM careers WHERE career_status = ? order by career_created desc limit 1"; 
-        $query = $this->db->query($sql, array(1));
-        return $query->result();
-    }
-
-    public function api_get_all() {
-        $select = array(
-            'id',
-            'career_title',
-            'career_description',
-            'career_detail',
-            'career_image',
-            'career_status'
-        );
-        $this->db->where('career_status', 1);
-        $this->db->select($select);
         $query = $this->db->get('careers');
         return $query->result();
     }

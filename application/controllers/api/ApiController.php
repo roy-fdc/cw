@@ -8,21 +8,10 @@ class ApiController extends CI_Controller {
         $this->load->model('Team');
         $this->load->model('SlideImage');
         $this->load->model('GalleryAlbum');
+        $this->load->model('Introduction');
+        $this->load->model('About');
+        //$this->load->model('AboutValues');
     }
-    // single data query
-    public function api_benefit(){
-    	echo json_encode($this->Benefit->single_data());
-    }
-
-    public function api_career(){
-    	echo json_encode($this->Career->single_data());
-    }
-
-    public function api_team(){
-    	echo json_encode($this->Team->single_data());
-    }
-    //end single data query
-
 
     //get all data
     public function api_allBenefit(){
@@ -44,6 +33,18 @@ class ApiController extends CI_Controller {
     public function api_galleries(){
         echo json_encode($this->GalleryAlbum->api_get_all());
     }
+
+    public function api_introduction(){
+        echo json_encode($this->Introduction->api_get_all());
+    }
+
+    public function api_about(){
+        echo json_encode($this->About->api_get_all());
+    }
+
+    /*public function api_aboutValues(){
+        echo json_encode($this->AboutValues->api_get_all());
+    }*/
     //end get all data
 
 

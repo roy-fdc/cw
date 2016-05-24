@@ -25,6 +25,13 @@ class About extends CI_Model {
         $response['changed'] = ($this->db->update('abouts', array('status' => $status))) ? true : false;
         return $response;
     }
+
+    public function api_get_all(){
+        $this->db->where('status', 1);
+        $query = $this->db->get('abouts');
+        return $query->result();
+
+    }
     
     public function api_get_about($state) {
         $field = array(
