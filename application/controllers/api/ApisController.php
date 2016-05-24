@@ -11,7 +11,7 @@ class ApisController extends CI_Controller {
     }
     
     public function all_career() {
-        $careers = $this->Career->api_get_career(0);
+        $careers = $this->Career->api_get_career();
         echo json_encode($careers);
     }
     
