@@ -1,33 +1,22 @@
-var base_url = "http://comweb.dev/api/ApiController/";
-var myApp = angular.module('fupApp', ['angularUtils.directives.dirPagination']);
+var base_url = "http://comweb.dev/api/ApisController/";
+var myApp = angular.module('fupApp', []);
 
 myApp.controller('fupController', function ($scope, $http) {
-
-    //display data
-    //api_slider($scope, $http);
-    api_galleries($scope, $http);
-    api_introduction($scope, $http);
-
+    all_album($scope, $http);
+    page_introduction($scope, $http);
 });
 
-function api_slider($scope = null, $http = null) {
-    $http({method:'GET', url:base_url+'api_imageSlider'}).success(function(response){
-        $scope.slider = response;
-    }).error(function (error) {
-        alert(error);
-    });
-}
-
-function api_galleries($scope = null, $http = null) {
-    $http({method:'GET', url:base_url+'api_galleries'}).success(function(response){
+function all_album($scope = null, $http = null) {
+    $http({method:'GET', url:base_url+'all_album'}).success(function(response){
         $scope.galleries = response;
+        alert(JSON.stringify($scope.galleries));
     }).error(function (error) {
         alert(error);
     });
 }
 
-function api_introduction($scope = null, $http = null) {
-    $http({method:'GET', url:base_url+'api_introduction'}).success(function(response){
+function page_introduction($scope = null, $http = null) {
+    $http({method:'GET', url:base_url+'page_introduction'}).success(function(response){
         $scope.intro = response;
     }).error(function (error) {
         alert(error);

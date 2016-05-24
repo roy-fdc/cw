@@ -88,6 +88,7 @@
                </p>
                <div class="margin">
                   <div class="s-12 m-6 l-3" ng-repeat="gallery in galleries">
+                  {{gallery.image_name}}
                      <img src="<?php echo base_url();?>image/galleries/{{gallery.image_name}}" alt="alternative text">      
                      <p class="subtitile">{{gallery.album_name}}</p>
                   </div>
