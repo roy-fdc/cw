@@ -46,7 +46,7 @@ class ApisController extends CI_Controller {
     }
     
     public function company_mission() {
-        $mission = $this->About->api_git_about(2);
+        $mission = $this->About->api_get_about(2);
         echo json_encode($mission);
     }
     

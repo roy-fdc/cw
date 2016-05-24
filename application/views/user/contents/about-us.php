@@ -1,3 +1,4 @@
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/api/about.js"></script>
       
       <section>
@@ -9,10 +10,16 @@
          <!-- FIRST BLOCK --> 	
          <div id="first-block">
             <div class="line">
+                
                
-               <h2>Some awesome blocks</h2>
-               <p class="subtitile">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+                
+               <div ng-bind-html="deliberatelyTrustDangerousSnippet"></div>
                
+               <h2>VISION</h2>
+               <p class="subtitile">{{ company_vision[0].description }}</p>
+               
+               <h2>MISSION</h2>
+               <p class="subtitile">{{ company_mission[0].description }}</p>
 
             </div>
          </div>
