@@ -28,6 +28,13 @@ class GalleryAlbum extends CI_Model {
         return $result;
     }
 
+    
+    public function api_get_album() {
+        $this->db->where('album_status', 1);
+        $this->db->select(array('id', 'album_name'));
+        $albums = $this->db->get('gallery_albums');
+        return $albums->result();
+    }
 
     public function api_get_all() {
         $sql = "select ga.id, album_name, image_name

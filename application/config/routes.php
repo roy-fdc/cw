@@ -125,5 +125,30 @@ $route['admin/admin-introduction'] = 'admin/AdminIntroductionsController';
 $route['admin/admin-introduction-status'] = 'admin/AdminIntroductionsController/change_status';
 $route['admin/admin-intro-update-exec'] = 'admin/AdminIntroductionsController/update_exec';
 
+
+// API routing starts here
+$route['api/all-career'] = 'api/apiscontroller/all_career';
+$route['api/single-career/(:num)'] = 'api/apiscontroller/single_career/$1';
+
+$route['api/all-team'] = 'api/apiscontroller/all_team';
+$route['api/single-team/(:num)'] = 'api/apiscontroller/single_team/$1';
+
+$route['api/all-benefit'] = 'api/apiscontroller/all_benefit';
+$route['api/single-benefit/(:num)'] = 'api/apiscontroller/single_benefit/$1';
+
+$route['api/company-detail'] = 'api/apiscontroller/company_detail';
+$route['api/company-vision'] = 'api/apiscontroller/company_vision';
+$route['api/company-mision'] = 'api/apiscontroller/company_mission';
+
+$route['api/all-value'] = 'api/apiscontroller/all_value';
+$route['api/single-value'] = 'api/apiscontroller/single_value';
+
+$route['api/all-slide-image'] = 'api/apiscontroller/slide_images';
+
+$route['api/all-album'] = 'api/apiscontroller/all_album';
+$route['api/single-album/(:num)'] = 'api/apiscontroller/single_album/$1';
+
+$route['api/page-introduction'] = 'api/apiscontroller/page_introduction';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
