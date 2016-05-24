@@ -6,8 +6,7 @@ class Team extends CI_Model {
     
     public function __construct() {
         parent::__construct();
-
-        $this->field = array(
+        $this->fields = array(
             'id',
             'team_name',
             'team_position',
@@ -28,8 +27,8 @@ class Team extends CI_Model {
     }
     
     public function get_all() {
-        $this->field['team_status'];
-        $this->db->select($this->field);
+        $this->fields['team_status'];
+        $this->db->select($this->fields);
         $query = $this->db->get('teams');
         return $query->result();
     }
@@ -51,6 +50,7 @@ class Team extends CI_Model {
         $response['deleted'] = ($this->db->delete('teams')) ? true : false;
         return $response;
     }
+    
     public function api_get_all() {
         $this->db->where('team_status', 1);
         $this->db->select($this->field);
@@ -59,18 +59,11 @@ class Team extends CI_Model {
     }
     
     public function api_get_team($id) {
-        $field = array(
-            'id',
-            'team_name',
-            'team_position',
-            'team_description',
-            'team_image'
-        );
         if ($id != 0) {
             $this->db->where('id', $id);
         }
         $this->db->where('team_status', 1);
-        $this->db->select($field);
+        $this->db->select($this->fields);
         $teams = $this->db->get('teams');
         return $teams->result();
     }

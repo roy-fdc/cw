@@ -6,7 +6,7 @@ class Career extends CI_Model {
     
     public function __construct() {
         parent::__construct();
-        $this->field = array(
+        $this->fields = array(
             'id',
             'career_title',
             'career_description',
@@ -27,8 +27,8 @@ class Career extends CI_Model {
     }
     
     public function get_all() {
-        $this->field['career_status'];
-        $this->db->select($this->field);
+        $this->fields['career_status'];
+        $this->db->select($this->fields);
         $query = $this->db->get('careers');
         return $query->result();
     }
@@ -56,7 +56,7 @@ class Career extends CI_Model {
             $this->db->where('id', $id);
         }
         $this->db->where('career_status', 1);
-        $this->db->select($this->field);
+        $this->db->select($this->fields);
         $query = $this->db->get('careers');
         return $query->result();
     }
