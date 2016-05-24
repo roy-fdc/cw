@@ -14,7 +14,7 @@ myApp.controller('fupController', function ($scope, $http) {
 
 function api_career($scope = null, $http = null) {
     
-    $http({method:'GET', url:'http://comweb.dev/api/ApiController/api_allCareer'}).success(function(response){
+    $http({method:'GET', url:base_url+'api_allCareer'}).success(function(response){
         $scope.careers = response;
     }).error(function (error) {
         alert(error);

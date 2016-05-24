@@ -56,5 +56,20 @@ class Team extends CI_Model {
         $query = $this->db->query($sql, array(1));
         return $query->result();
     }
+
+    public function api_get_all() {
+        $select = array(
+            'id',
+            'team_name',
+            'team_position',
+            'team_description',
+            'team_image',
+            'team_status'
+        );
+        $this->db->where('team_status', 1);
+        $this->db->select($select);
+        $query = $this->db->get('teams');
+        return $query->result();
+    }
     
 }
