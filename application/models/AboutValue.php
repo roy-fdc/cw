@@ -6,6 +6,13 @@ class AboutValue extends CI_Model {
     
     public function __construct() {
         parent::__construct();
+        $this->fields = array(
+            'id',
+            'value_title',
+            'value_image',
+            'value_description',
+            'value_status'
+        );
     }
     
     public function insert($data) {
@@ -20,13 +27,7 @@ class AboutValue extends CI_Model {
     }
     
     public function get_all() {
-        $select = array(
-            'id',
-            'value_title',
-            'value_image',
-            'value_description',
-            'value_status'
-        );
+        $this->fields['value_status'];
         $this->db->select($select);
         $query = $this->db->get('about_values');
         return $query->result();
@@ -58,16 +59,11 @@ class AboutValue extends CI_Model {
     }
     
     public function api_get_value($id) {
-        $fields = array(
-            'id',
-            'value_title',
-            'value_image'
-        );
         if ($id != 0) {
             $this->db->where('id', $id);
         }
         $this->db->where('value_status', 1);
-        $this->db->select($fields);
+        $this->db->select($this->fields);
         $values = $this->db->get('about_values');
         return $values->return();
     }

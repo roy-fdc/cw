@@ -6,7 +6,7 @@ class Benefit extends CI_Model {
     
     public function __construct() {
         parent::__construct();
-        $this->field = array(
+        $this->fields = array(
             'id',
             'benefit_title',
             'benefit_image',
@@ -26,8 +26,8 @@ class Benefit extends CI_Model {
     }
     
     public function get_all() {
-        $this->field['benefit_status'];
-        $this->db->select($this->field);
+        $this->fields['benefit_status'];
+        $this->db->select($this->fields);
         $query = $this->db->get('benefits');
         return $query->result();
     }
@@ -59,17 +59,11 @@ class Benefit extends CI_Model {
 
     
     public function api_get_benefit($id) {
-        $field = array(
-            'id',
-            'benefit_title',
-            'benefit_description',
-            'benefit_image'
-        );
         if ($id != 0) {
             $this->db->where('id', $id);
         }
         $this->db->where('benefit_status', 1);
-        $this->db->select($field);
+        $this->db->select($this->fields);
         $benefits = $this->db->get('benefits');
         return $benefits->result();
     }

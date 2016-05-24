@@ -25,7 +25,7 @@ class Introduction extends CI_Model {
     
     public function api_get_introduction() {
         $this->db->where('status', 1);
-        $this->db->select(array('name', 'description'));
+        $this->db->select(array('id', 'name', 'description'));
         $intro = $this->db->get('introductions');
         return $intro->result();
     }

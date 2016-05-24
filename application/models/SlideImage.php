@@ -31,7 +31,7 @@ class SlideImage extends CI_Model {
     
     public function api_get_slide() {
         $this->db->where('slide_image_status', 1);
-        $this->db->select(array('slide_image_name'));
+        $this->db->select(array('id', 'slide_image_name'));
         $slides = $this->db->get('slide_images');
         return $slides->result();
     }
