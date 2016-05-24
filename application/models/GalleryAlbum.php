@@ -27,5 +27,12 @@ class GalleryAlbum extends CI_Model {
         $result['updated'] = ($this->db->update('gallery_albums', array('album_name' => $name))) ? true : false;
         return $result;
     }
+    
+    public function api_get_album() {
+        $this->db->where('album_status', 1);
+        $this->db->select(array('id', 'album_name'));
+        $albums = $this->db->get('gallery_albums');
+        return $albums->result();
+    }
 }
 

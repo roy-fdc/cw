@@ -56,4 +56,19 @@ class AboutValue extends CI_Model {
         $response['deleted'] = ($this->db->delete('about_values')) ? true : false;
         return $response;
     }
+    
+    public function api_get_value($id) {
+        $fields = array(
+            'id',
+            'value_title',
+            'value_image'
+        );
+        if ($id != 0) {
+            $this->db->where('id', $id);
+        }
+        $this->db->where('value_status', 1);
+        $this->db->select($fields);
+        $values = $this->db->get('about_values');
+        return $values->return();
+    }
 }

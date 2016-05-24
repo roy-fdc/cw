@@ -56,4 +56,21 @@ class Benefit extends CI_Model {
         $response['deleted'] = ($this->db->delete('benefits')) ? true : false;
         return $response;
     }
+    
+    public function api_get_benefit($id) {
+        $field = array(
+            'id',
+            'benefit_title',
+            'benefit_description',
+            'benefit_image'
+        );
+        if ($id != 0) {
+            $this->db->where('id', $id);
+        }
+        $this->db->where('benefit_status', 1);
+        $this->db->select($field);
+        $benefits = $this->db->get('benefits');
+        return $benefits->result();
+    }
+    
 }
