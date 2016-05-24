@@ -26,4 +26,15 @@ class About extends CI_Model {
         return $response;
     }
     
+    public function api_get_about($state) {
+        $field = array(
+            'id',
+            'description'
+        );
+        $this->db->where('state', 1);
+        $this->db->where('status', 1);
+        $this->db->select($field);
+        $about = $this->db->get('abouts');
+        return $about->result();
+    }
 }
