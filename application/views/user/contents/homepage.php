@@ -116,26 +116,11 @@
                <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                </p>
                <div class="margin">
-                  <div class="s-12 m-6 l-3">
-                     <img src="<?php echo base_url();?>image/user/first-small.jpg" alt="alternative text">      
-                     <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                     </p>
+                  <div class="s-12 m-6 l-3" ng-repeat="gallery in galleries">
+                     <img src="<?php echo base_url();?>image/galleries/{{gallery.image_name}}" alt="alternative text">      
+                     <p class="subtitile">{{gallery.album_name}}</p>
                   </div>
-                  <div class="s-12 m-6 l-3">
-                     <img src="<?php echo base_url();?>image/user/second-small.jpg" alt="alternative text">      
-                     <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                     </p>
-                  </div>
-                  <div class="s-12 m-6 l-3">
-                     <img src="<?php echo base_url();?>image/user/third-small.jpg" alt="alternative text">      
-                     <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                     </p>
-                  </div>
-                  <div class="s-12 m-6 l-3">
-                     <img src="<?php echo base_url();?>image/user/fourth-small.jpg" alt="alternative text">      
-                     <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                     </p>
-                  </div>
+                  
                </div>
             </div>
          </div>

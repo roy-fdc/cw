@@ -40,7 +40,7 @@ class Benefit extends CI_Model {
 
 
     public function single_data() {
-        $sql = "SELECT id, benefit_title, benefit_description, benefit_detail, benefit_image FROM benefits WHERE benefit_status = ? order by created desc limit 1"; 
+        $sql = "SELECT id, benefit_title, benefit_description, benefit_image FROM benefits WHERE benefit_status = ? order by created desc limit 1"; 
         $query = $this->db->query($sql, array(1));
         return $query->result();
     }
@@ -56,6 +56,7 @@ class Benefit extends CI_Model {
         $response['deleted'] = ($this->db->delete('benefits')) ? true : false;
         return $response;
     }
+
     
     public function api_get_benefit($id) {
         $field = array(
@@ -73,4 +74,19 @@ class Benefit extends CI_Model {
         return $benefits->result();
     }
     
+
+    public function api_get_all() {
+        $select = array(
+            'id',
+            'benefit_title',
+            'benefit_image',
+            'benefit_description',
+            'benefit_status'
+        );
+        $this->db->where('benefit_status', 1);
+        $this->db->select($select);
+        $query = $this->db->get('benefits');
+        return $query->result();
+    }
+
 }

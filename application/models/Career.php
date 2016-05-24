@@ -74,5 +74,20 @@ class Career extends CI_Model {
         $query = $this->db->query($sql, array(1));
         return $query->result();
     }
+
+    public function api_get_all() {
+        $select = array(
+            'id',
+            'career_title',
+            'career_description',
+            'career_detail',
+            'career_image',
+            'career_status'
+        );
+        $this->db->where('career_status', 1);
+        $this->db->select($select);
+        $query = $this->db->get('careers');
+        return $query->result();
+    }
     
 }
