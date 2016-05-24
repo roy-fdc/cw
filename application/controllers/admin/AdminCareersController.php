@@ -170,7 +170,8 @@ class AdminCareersController extends CI_Controller {
     
     private function file_validation(){
         $config['upload_path'] = 'image/careers';
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        return $config;
     }
     
     private function validation() {

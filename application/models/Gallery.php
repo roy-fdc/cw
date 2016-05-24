@@ -22,4 +22,13 @@ class Gallery extends CI_Model {
         $result['deleted'] = ($this->db->delete('galleries')) ? true : false;
         return $result;
     }
+    
+    public function api_get_gallery($album_id) {
+        $this->db->where('album_id', $album_id);
+        $this->db->where('image_status', 1);
+        $this->db->select(array('id', 'image_name'));
+        $images = $this->db->get('galleries');
+        return $images->result();
+    }
+    
 }

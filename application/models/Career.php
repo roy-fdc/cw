@@ -6,7 +6,6 @@ class Career extends CI_Model {
     
     public function __construct() {
         parent::__construct();
-
         $this->field = array(
             'id',
             'career_title',
@@ -52,7 +51,10 @@ class Career extends CI_Model {
         return $response;
     }
 
-    public function api_get_all() {
+    public function api_get_career($id = null) {
+        if (!empty($id)) {
+            $this->db->where('id', $id);
+        }
         $this->db->where('career_status', 1);
         $this->db->select($this->field);
         $query = $this->db->get('careers');
