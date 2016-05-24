@@ -12,14 +12,13 @@
                      <h2>Vision Design - graphic zoo</h2>
                      <address>
                         <p><i class="icon-home icon"></i> Unit1503-1503,15th Floor, Park Centrale, Asia Town I.T Park, Salinas Drive Lahug Cebu City, 6000 Philippines</p>
-                        <p><i class="icon-globe_black icon"></i> Slovakia - Europe</p>
+                        <p><i class="icon-globe_black icon"></i> (032) 260-2595</p>
                         <p><i class="icon-mail icon"></i> fdcincph@gmail.com</p>
                      </address>
                      <br />
-                     <h2>Social</h2>
-                     <p><i class="icon-facebook icon"></i> <a href="https://www.facebook.com/pages/Vision-Design-graphic-ZOO/154664684553091">Vision Design - graphic zoo</a></p>
-                     <p><i class="icon-facebook icon"></i> <a href="https://www.facebook.com/myresponsee">Responsee</a></p>
-                     <p class="margin-bottom"><i class="icon-twitter icon"></i> <a href="https://twitter.com/MyResponsee">Responsee</a></p>
+                     <div id="map-block">     
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1962.5814646875833!2d123.90562445802519!3d10.328842936901827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99922157b8c91%3A0x529b9bacb2aff9!2sPark+Centrale%2C+Jose+Maria+del+Mar+St%2C+Cebu+City%2C+6000+Cebu!5e0!3m2!1sen!2sph!4v1459911359760" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                     </div>
                   </div>
                     <div class="s-12 l-6">
                         <h2>Contact Form</h2>
@@ -71,8 +70,8 @@
             </div>
          </div>
          <!-- MAP -->	
-         <div id="map-block">  	  
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d682251.1123056135!2d17.063451638281247!3d48.09010461740988!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476c8cbf758ecb9f%3A0xddeb1d26bce5eccf!2sGallayova+2150%2F19%2C+841+02+D%C3%BAbravka%2C+Slovensk%C3%A1+republika!5e0!3m2!1ssk!2s!4v1412519122400" width="100%" height="450" frameborder="0" style="border:0"></iframe>
+         <div id="map-block" style="display: none">  	  
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1962.5814646875833!2d123.90562445802519!3d10.328842936901827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99922157b8c91%3A0x529b9bacb2aff9!2sPark+Centrale%2C+Jose+Maria+del+Mar+St%2C+Cebu+City%2C+6000+Cebu!5e0!3m2!1sen!2sph!4v1459911359760" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen=""></iframe>
          </div>
          <div id="fourth-block">
             <div class="line">

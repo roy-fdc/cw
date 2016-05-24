@@ -6,6 +6,14 @@ class Career extends CI_Model {
     
     public function __construct() {
         parent::__construct();
+
+        $this->field = array(
+            'id',
+            'career_title',
+            'career_description',
+            'career_detail',
+            'career_image'
+        );
     }
     
     public function insert($data) {
@@ -20,15 +28,8 @@ class Career extends CI_Model {
     }
     
     public function get_all() {
-        $select = array(
-            'id',
-            'career_title',
-            'career_description',
-            'career_detail',
-            'career_image',
-            'career_status'
-        );
-        $this->db->select($select);
+        $this->field['career_status'];
+        $this->db->select($this->field);
         $query = $this->db->get('careers');
         return $query->result();
     }
@@ -51,23 +52,9 @@ class Career extends CI_Model {
         return $response;
     }
 
-    public function single_data() {
-        $sql = "SELECT id, career_title, career_description, career_detail, career_image FROM careers WHERE career_status = ? order by career_created desc limit 1"; 
-        $query = $this->db->query($sql, array(1));
-        return $query->result();
-    }
-
     public function api_get_all() {
-        $select = array(
-            'id',
-            'career_title',
-            'career_description',
-            'career_detail',
-            'career_image',
-            'career_status'
-        );
         $this->db->where('career_status', 1);
-        $this->db->select($select);
+        $this->db->select($this->field);
         $query = $this->db->get('careers');
         return $query->result();
     }

@@ -6,6 +6,7 @@ myApp.controller('fupController', function ($scope, $http) {
     //display data
     //api_slider($scope, $http);
     api_galleries($scope, $http);
+    api_introduction($scope, $http);
 
 });
 
@@ -20,6 +21,14 @@ function api_slider($scope = null, $http = null) {
 function api_galleries($scope = null, $http = null) {
     $http({method:'GET', url:base_url+'api_galleries'}).success(function(response){
         $scope.galleries = response;
+    }).error(function (error) {
+        alert(error);
+    });
+}
+
+function api_introduction($scope = null, $http = null) {
+    $http({method:'GET', url:base_url+'api_introduction'}).success(function(response){
+        $scope.intro = response;
     }).error(function (error) {
         alert(error);
     });

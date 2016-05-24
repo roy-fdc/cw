@@ -55,42 +55,13 @@
                <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                </p>
                <div class="margin">
-                  <div class="s-12 m-6 l-4 margin-bottom">
+                  <div class="s-12 m-6 l-4 margin-bottom" ng-repeat="data in intro">
                      <i class="icon-paperplane_ico icon2x"></i>
-                     <h3>Careers</h3>
-                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                     <h3>{{data.name}}</h3>
+                     <p>{{data.description}}
                      </p>
                   </div>
-                  <div class="s-12 m-6 l-4 margin-bottom">
-                     <i class="icon-star icon2x"></i>
-                     <h3>About Us</h3>
-                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                     </p>
-                  </div>
-                  <div class="s-12 m-6 l-4 margin-bottom">
-                     <i class="icon-message icon2x"></i>
-                     <h3>Our Team</h3>
-                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                     </p>
-                  </div>
-                  <div class="s-12 m-6 l-4 margin-bottom">
-                     <i class="icon-mail icon2x"></i>
-                     <h3>Galleries</h3>
-                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                     </p>
-                  </div>
-                   <div class="s-12 m-6 l-4 margin-bottom">
-                     <i class="icon-mail icon2x"></i>
-                     <h3>Benefits</h3>
-                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                     </p>
-                  </div>
-                   <div class="s-12 m-6 l-4 margin-bottom">
-                     <i class="icon-mail icon2x"></i>
-                     <h3>Contact Us</h3>
-                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                     </p>
-                  </div>
+                  
                </div>
             </div>
          </div>

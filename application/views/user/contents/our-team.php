@@ -15,9 +15,7 @@
                         <h5>{{team.team_name}}</h5>
                         <p>{{team.team_description}}</p>
                      </div>
-                  </div>
-
-                                   
+                  </div>                
                </div>
             </div>
          </div>

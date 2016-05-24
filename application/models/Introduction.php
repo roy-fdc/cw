@@ -22,5 +22,15 @@ class Introduction extends CI_Model {
         $result['updated'] = ($this->db->update('introductions', $data)) ? true : false;
         return $result;
     }
+
+    public function api_get_all() {
+        $select = array(
+                'id','name','description', 'image'
+            );
+        $this->db->select($select);
+        $this->db->where('status', 1);
+        $query = $this->db->get('introductions');
+        return $query->result();
+    }
     
 }

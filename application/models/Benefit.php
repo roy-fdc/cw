@@ -6,6 +6,12 @@ class Benefit extends CI_Model {
     
     public function __construct() {
         parent::__construct();
+        $this->field = array(
+            'id',
+            'benefit_title',
+            'benefit_image',
+            'benefit_description'
+        );
     }
     
     public function insert($data) {
@@ -20,14 +26,8 @@ class Benefit extends CI_Model {
     }
     
     public function get_all() {
-        $select = array(
-            'id',
-            'benefit_title',
-            'benefit_image',
-            'benefit_description',
-            'benefit_status'
-        );
-        $this->db->select($select);
+        $this->field['benefit_status'];
+        $this->db->select($this->field);
         $query = $this->db->get('benefits');
         return $query->result();
     }
@@ -58,15 +58,8 @@ class Benefit extends CI_Model {
     }
 
     public function api_get_all() {
-        $select = array(
-            'id',
-            'benefit_title',
-            'benefit_image',
-            'benefit_description',
-            'benefit_status'
-        );
         $this->db->where('benefit_status', 1);
-        $this->db->select($select);
+        $this->db->select($this->field);
         $query = $this->db->get('benefits');
         return $query->result();
     }
