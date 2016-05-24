@@ -73,13 +73,5 @@ class Benefit extends CI_Model {
         $benefits = $this->db->get('benefits');
         return $benefits->result();
     }
-    
-
-    public function api_get_all() {
-        $this->db->where('benefit_status', 1);
-        $this->db->select($this->field);
-        $query = $this->db->get('benefits');
-        return $query->result();
-    }
 
 }
