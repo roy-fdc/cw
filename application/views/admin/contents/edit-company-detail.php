@@ -12,8 +12,14 @@
                 <?php //echo form_open(base_url().'admin/admin-add-career-exec');?>
                 <form name="my_form" method="post" enctype="multipart/form-data" onSubmit="document.my_form.details.value = $('#editor').html()" action="<?php echo base_url();?>admin/admin-company-edit-exec">
                 <div class="panel-body">
-                    <input type="hidden" name="id" value="<?php echo $about->id;?>"/>
-                    
+                    <?php 
+                    $forId = array(
+                        'type' => 'hidden',
+                        'name' => 'id',
+                        'value' => $about->id
+                    );
+                    echo form_input($forId);
+                    ?>
                    
                     <div class="form-group">
                         <label for="detail">Details</label>
@@ -72,7 +78,14 @@
                     
                 </div>
                 <div class="panel-footer">
-                    <button class="btn btn-primary" type="submit">Update</button>
+                    <?php 
+                    $update_btn = array(
+                        'type' => 'submit',
+                        'class' => 'btn btn-primary',
+                        'content' => 'Udpate'
+                    );
+                    echo form_button($update_btn);
+                    ?>
                 </div>
                 <?php echo form_close(); ?>
             </div>

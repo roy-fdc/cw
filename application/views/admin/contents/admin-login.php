@@ -1,6 +1,4 @@
 
-
-
 <div class="container">
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4" style="margin-top: 150px">
@@ -11,15 +9,39 @@
                     <?php echo form_open(base_url().'admin/admin-login-exec'); ?>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <span class="text-error"><?php echo form_error('username');?></span>
-                        <input type="text" name="username" id="username" value="<?php echo set_value('username');?>" class="form-control"/>
+                        <?php 
+                        echo form_error('username', '<div class="text-error">', '</div>');
+                        $username = array(
+                            'type' => 'text',
+                            'name' => 'username',
+                            'id' => 'username',
+                            'value' => set_value('username'),
+                            'class' => 'form-control'
+                        );
+                        echo form_input($username);
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <span class="text-error"><?php echo form_error('password');?></span>
-                        <input type="text" name="password" id="password" class="form-control"/>
+                        <?php 
+                        echo form_error('password', '<div class="text-error">', '</div>');
+                        $password = array(
+                            'type' => 'password',
+                            'name' => 'password',
+                            'id' => 'password',
+                            'class' => 'form-control'
+                        );
+                        echo form_input($password);
+                        ?>
                     </div>
-                    <button class="btn btn-success" type="submit">Login</button>
+                    <?php 
+                    $submit = array(
+                        'type' => 'submit',
+                        'class' => 'btn btn-success',
+                        'content' => 'Login'
+                    );
+                    echo form_button($submit);
+                    ?>
                     <?php echo form_close(); ?>
                 </div>
                 <div class="panel-footer"></div>

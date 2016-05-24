@@ -8,33 +8,80 @@
                 <div class="panel-heading">
                     Edit
                 </div>
-                <?php //echo form_open(base_url().'admin/admin-add-career-exec');?>
-                <form name="my_form" method="post" enctype="multipart/form-data" onSubmit="document.my_form.details.value = $('#editor').html()" action="<?php echo base_url();?>admin/admin-edit-team-exec">
+                <?php echo form_open_multipart(base_url().'admin/admin-edit-team-exec');?>
                 <div class="panel-body">
-                    <input type="hidden" name="id" value="<?php echo $team->id;?>"/>
+                    <?php
+                    $for_id = array(
+                        'type' => 'hidden',
+                        'name' => 'id',
+                        'value' => $team->id
+                    );
+                    echo form_input($for_id);
+                    ?>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <span class="text-error"><?php echo form_error('name');?></span>
-                        <input type="text" name="name" id="name" class="form-control" value="<?php echo $team->team_name;?>"/>
+                        <?php 
+                        echo form_error('name', '<div class="text-error">', '</div>');
+                        $for_name = array(
+                            'type' => 'text',
+                            'name' => 'name',
+                            'id' => 'name',
+                            'class' => 'form-control',
+                            'value' => $team->team_name
+                        );
+                        echo form_input($for_name);
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="position">Position</label>
-                        <span class="text-error"><?php echo form_error('position');?></span>
-                        <textarea name="position" id="position" class="form-control"><?php echo $team->team_position;?></textarea>
+                        <?php 
+                        echo form_error('position', '<div class="text-error">', '</div>');
+                        $for_position = array(
+                            'type' => 'text',
+                            'name' => 'position',
+                            'id' => 'position',
+                            'class' => 'form-control',
+                            'value' => $team->team_position
+                        );
+                        echo form_input($for_position);
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <span class="text-error"><?php echo form_error('description');?></span>
-                        <textarea name="description" id="description" class="form-control"><?php echo $team->team_description;?></textarea>
+                        <?php 
+                        echo form_error('description', '<div class="text-error">', '</div>');
+                        $for_description = array(
+                            'name' => 'description',
+                            'id' => 'description',
+                            'class' => 'form-control',
+                            'value' => $team->team_description
+                        );
+                        echo form_textarea($for_description);
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="image">Image</label>
-                        <span class="text-error"><?php echo form_error('image');?></span>
-                        <input type="file" name="image" id="image" class="form-control"/>
+                        <?php 
+                        echo form_error('image', '<div class="text-error">', '</div>');
+                        $for_image = array(
+                            'type' => 'file',
+                            'name' => 'image',
+                            'id' => 'image',
+                            'class' => 'form-control'
+                        );
+                        echo form_input($for_image);
+                        ?>
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <button class="btn btn-primary" type="submit">Create</button>
+                    <?php 
+                    $submit_btn = array(
+                        'type' => 'submit',
+                        'class' => 'btn btn-primary',
+                        'content' => 'Create'
+                    );
+                    echo form_button($submit_btn);
+                    ?>
                 </div>
                 <?php echo form_close(); ?>
             </div>

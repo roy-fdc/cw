@@ -38,6 +38,7 @@ class AdminGalleryAlbumsController extends CI_Controller {
             }
         } else {
             redirect(base_url().'admin');
+            exit();
         }
     }
     
@@ -53,10 +54,11 @@ class AdminGalleryAlbumsController extends CI_Controller {
                 $this->session->set_flashdata('success', $this->alert->show('Change status success!', 1));
             }
             redirect(base_url().'admin/admin-gallery');
+            exit();
         } else {
             redirect(base_url().'admin');
+            exit();
         }
-        exit();
     }
     
     public function update() {
@@ -70,10 +72,11 @@ class AdminGalleryAlbumsController extends CI_Controller {
                 $this->session->set_flashdata('success', $this->alert->show('Album update success!', 1));
             }
             redirect(base_url().'admin/admin-gallery');
+            exit();
         } else {
             redirect(base_url().'admin');
+            exit();
         }
-        exit();
     }
     
 }

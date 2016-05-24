@@ -15,18 +15,44 @@
                     <input type="hidden" name="id" value="<?php echo $career->id;?>"/>
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <span class="text-error"><?php echo form_error('title');?></span>
-                        <input type="text" name="title" id="title" class="form-control" value="<?php echo $career->career_title;?>"/>
+                        <?php 
+                        echo form_error('title', '<div class="text-error">', '</div>');
+                        $title = array(
+                            'type' => 'text',
+                            'name' => 'title',
+                            'id' => 'title',
+                            'class' => 'form-control',
+                            'value' => $career->career_title
+                        );
+                        echo form_input($title);
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="description">Descriptions</label>
-                        <span class="text-error"><?php echo form_error('description');?></span>
-                        <textarea name="description" id="description" class="form-control"><?php echo $career->career_description;?></textarea>
+                        <?php 
+                        echo form_error('description', '<div class="text-error">', '</div>');
+                        $description = array(
+                            'name' => 'description',
+                            'id' => 'description',
+                            'class' => 'form-control',
+                            'value' => $career->career_description,
+                            'rows' => 5
+                        );
+                        echo form_textarea($description);
+                        ?>
                     </div>
                     <div class="form-group">
                         <label for="image">Image</label>
-                        <span class="text-error"><?php echo form_error('image');?></span>
-                        <input type="file" name="image" id="image" class="form-control"/>
+                        <?php 
+                        echo form_error('image', '<div class="text-error">', '</div>');
+                        $image = array(
+                            'type' => 'file',
+                            'name' => 'image',
+                            'id' => 'image', 
+                            'class' => 'form-control'
+                        );
+                        echo form_input($image);
+                        ?>
                     </div>
                     
                     <div class="form-group">
@@ -86,7 +112,14 @@
                     
                 </div>
                 <div class="panel-footer">
-                    <button class="btn btn-primary" type="submit">Create</button>
+                    <?php
+                    $submit = array(
+                        'type' => 'submit',
+                        'class' => 'btn btn-primary',
+                        'content' => 'Create'
+                    );
+                    echo form_button($submit);
+                    ?>
                 </div>
                 <?php echo form_close(); ?>
             </div>
