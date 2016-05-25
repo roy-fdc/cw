@@ -27,7 +27,7 @@ class Career extends CI_Model {
     }
     
     public function get_all() {
-        $this->fields['career_status'];
+        array_push($this->fields, 'career_status');
         $this->db->select($this->fields);
         $query = $this->db->get('careers');
         return $query->result();

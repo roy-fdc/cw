@@ -27,7 +27,7 @@ class Team extends CI_Model {
     }
     
     public function get_all() {
-        $this->fields['team_status'];
+        array_push($this->fields, 'team_status');
         $this->db->select($this->fields);
         $query = $this->db->get('teams');
         return $query->result();
