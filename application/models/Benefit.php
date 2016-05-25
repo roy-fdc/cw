@@ -26,7 +26,7 @@ class Benefit extends CI_Model {
     }
     
     public function get_all() {
-        $this->fields['benefit_status'];
+        array_push($this->fields, 'benefit_status');
         $this->db->select($this->fields);
         $query = $this->db->get('benefits');
         return $query->result();

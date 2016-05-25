@@ -31,7 +31,7 @@ class About extends CI_Model {
             'id',
             'description'
         );
-        $this->db->where('state', 1);
+        $this->db->where('state', $state);
         $this->db->where('status', 1);
         $this->db->select($field);
         $about = $this->db->get('abouts');

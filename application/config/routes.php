@@ -138,7 +138,7 @@ $route['api/single-benefit/(:num)'] = 'api/apiscontroller/single_benefit/$1';
 
 $route['api/company-detail'] = 'api/apiscontroller/company_detail';
 $route['api/company-vision'] = 'api/apiscontroller/company_vision';
-$route['api/company-mision'] = 'api/apiscontroller/company_mission';
+$route['api/company-mission'] = 'api/apiscontroller/company_mission';
 
 $route['api/all-value'] = 'api/apiscontroller/all_value';
 $route['api/single-value'] = 'api/apiscontroller/single_value';

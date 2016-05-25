@@ -27,8 +27,8 @@ class AboutValue extends CI_Model {
     }
     
     public function get_all() {
-        $this->fields['value_status'];
-        $this->db->select($select);
+        array_push($this->fields, 'value_status');
+        $this->db->select($this->fields);
         $query = $this->db->get('about_values');
         return $query->result();
     }
