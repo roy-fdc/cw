@@ -17,6 +17,7 @@
 							<li><a href="#about">About</a></li>
 							<li><a href="#gallery">Gallery</a></li>
 							<li><a href="#benefits">Benefits</a></li>
+							<li><a href="#career">Career</a></li>
 							<li class="last"><a href="#contact">Contact</a></li>
 							<!--li><a href="#features">Features</a></li-->
 						</ul>

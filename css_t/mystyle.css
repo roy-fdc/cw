@@ -4,3 +4,7 @@
 .imgCenter{
 	margin: 0 auto;
 }
+.circleImg img{
+    border-radius: 150px !important;
+    border: 5px solid #1fcdff;
+}
