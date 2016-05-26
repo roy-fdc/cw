@@ -15,16 +15,17 @@
       <!-- CUSTOM STYLE -->  
       <link rel="stylesheet" href="<?php echo base_url();?>css/user/template-style.css">
       <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+
       <script type="text/javascript" src="<?php echo base_url();?>js/user/jquery-1.8.3.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url();?>js/user/jquery-ui.min.js"></script>    
       <script type="text/javascript" src="<?php echo base_url();?>js/user/modernizr.js"></script>
       <script type="text/javascript" src="<?php echo base_url();?>js/user/responsee.js"></script> 
 
       <!-- angularjs !-->
-      <script type="text/javascript" src="<?php echo base_url();?>js/angular-route.js"></script>
       <script type="text/javascript" src="<?php echo base_url();?>js/api/app.js"></script>
-      <script type="text/javascript" src="<?php echo base_url();?>js/dirPagination.js"></script>
       <!-- end angularjs !-->
        
       <!--[if lt IE 9]>

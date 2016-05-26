@@ -7,6 +7,7 @@ myApp.controller('fupController', function ($scope, $http) {
 function api_galleries($scope = null, $http = null) {
     $http({method:'GET', url:base_url+'/all-album'}).success(function(response){
         $scope.galleries = response;
+        console.log(JSON.stringify($scope.galleries));
     }).error(function (error) {
         alert(error);
     });

@@ -9,7 +9,7 @@
             <div class="line">
                <div class="margin">
                    <div class="s-12 m-6 l-4" ng-repeat="gallery in galleries">
-                       <img src="<?php echo base_url();?>image/galleries/{{gallery.image_name}}">      
+                       <img src="<?php echo base_url();?>image/galleries/{{gallery.images[0].image_name}}">      
                       <p class="subtitile">{{gallery.album_name}}</p>
                    </div>
                </div>

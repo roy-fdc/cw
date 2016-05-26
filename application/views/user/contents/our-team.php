@@ -11,23 +11,17 @@
                   <div class="s-12 m-6 l-4" ng-repeat="team in teams">
                      <div class="margin-bottom">
                         <img src="<?php echo base_url();?>image/teams/{{team.team_image}}" class="image-circle"/>
-                        <h3 style="font-weight: bold">{{team.team_position}}</h3>
-                        <h5>{{team.team_name}}</h5>
-                        <p>{{team.team_description}}</p>
+                        <div style="display: none">
+                           <h3 style="font-weight: bold">{{team.team_position}}</h3>
+                           <h5>{{team.team_name}}</h5>
+                           <p>{{team.team_description}}</p>
+                        </div>
                      </div>
                   </div>                
                </div>
             </div>
          </div>
-         <!-- GALLERY -->	
-         <div id="third-block">
-            <div class="line">
-               <h2>Responsive gallery</h2>
-               <p class="subtitile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-               </p>
-               
-            </div>
-         </div>
+         
          <div id="fourth-block">
             <div class="line">
                <div id="owl-demo2" class="owl-carousel owl-theme">

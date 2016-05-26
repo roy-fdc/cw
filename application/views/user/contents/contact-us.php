@@ -9,11 +9,11 @@
             <div class="line">
                <div class="margin">
                   <div class="s-12 l-6">
-                     <h2>Vision Design - graphic zoo</h2>
+                     <h2>Forty Degrees Celsius Inc.</h2>
                      <address>
                         <p><i class="icon-home icon"></i> Unit1503-1503,15th Floor, Park Centrale, Asia Town I.T Park, Salinas Drive Lahug Cebu City, 6000 Philippines</p>
                         <p><i class="icon-globe_black icon"></i> (032) 260-2595</p>
-                        <p><i class="icon-mail icon"></i> fdcincph@gmail.com</p>
+                        <p><i class="icon-mail icon"></i><a href="mailto:fdcincph@gmail.com?Subject=Inquiry" target="_top">fdcincph@gmail.com</a></p>
                      </address>
                      <br />
                      <div id="map-block">     
@@ -22,7 +22,7 @@
                   </div>
                     <div class="s-12 l-6">
                         <h2>Contact Form</h2>
-                        <form name="userForm" ng-submit="submitForm()" novalidate class="customform">
+                        <form name="userForm" ng-submit="submitForm()" novalidate class="customform" method="post" action="<?php echo base_url().'contact-us/processMail'; ?>">
 
                             <!-- NAME -->
                             <div class="s-12 l-7" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine}">
@@ -43,11 +43,11 @@
                             </div>
                              
                             <div class="s-12 l-7">
-                                <select>
-                                    <option value="1">Inquiry</option>
-                                    <option value="2">Web Translator</option>
-                                    <option value="3">Web Programmer</option>
-                                    <option value="4">Web Application Tester</option>
+                                <select name="subject">
+                                    <option value="Inquiry">Inquiry</option>
+                                    <option value="Web Translator">Web Translator</option>
+                                    <option value="Web Programmer">Web Programmer</option>
+                                    <option value="Web Application Tester">Web Application Tester</option>
                                 </select>
                             </div>
                              
@@ -69,10 +69,7 @@
                </div>
             </div>
          </div>
-         <!-- MAP -->	
-         <div id="map-block" style="display: none">  	  
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1962.5814646875833!2d123.90562445802519!3d10.328842936901827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99922157b8c91%3A0x529b9bacb2aff9!2sPark+Centrale%2C+Jose+Maria+del+Mar+St%2C+Cebu+City%2C+6000+Cebu!5e0!3m2!1sen!2sph!4v1459911359760" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen=""></iframe>
-         </div>
+
          <div id="fourth-block">
             <div class="line">
                <div id="owl-demo2" class="owl-carousel owl-theme">
