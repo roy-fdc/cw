@@ -150,5 +150,7 @@ $route['api/single-album/(:num)'] = 'api/apiscontroller/single_album/$1';
 
 $route['api/page-introduction'] = 'api/apiscontroller/page_introduction';
 
+$route['contact-us/processMail'] = 'contactuscontroller/processMail';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

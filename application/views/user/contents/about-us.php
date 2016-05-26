@@ -1,4 +1,3 @@
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/api/about.js"></script>
       
       <section>

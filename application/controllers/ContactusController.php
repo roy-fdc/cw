@@ -16,5 +16,21 @@ class ContactusController extends CI_Controller {
         $this->load->view('user/contents/contact-us');
         $this->load->view('user/footer/footer');
     }
+
+    public function processMail(){
+        var_dump($_POST);
+
+        $this->load->library('email');
+
+        $this->email->from($_POST['email'], $_POST['name']);
+        $this->email->to('fdcgrace@gmail.com');  
+
+        $this->email->subject($_POST['subject']);
+        $this->email->message($_POST['message']);  
+
+        $this->email->send();
+
+        echo $this->email->print_debugger();
+    }
     
 }
