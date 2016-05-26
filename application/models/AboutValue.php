@@ -65,6 +65,6 @@ class AboutValue extends CI_Model {
         $this->db->where('value_status', 1);
         $this->db->select($this->fields);
         $values = $this->db->get('about_values');
-        return $values->return();
+        return $values->result();
     }
 }
