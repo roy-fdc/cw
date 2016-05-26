@@ -57,7 +57,7 @@ class ApisController extends CI_Controller {
     
     public function all_value() {
         $values = $this->AboutValue->api_get_value(0);
-        echo json_encode($values);
+        echo json_encode($values); 
     }
     
     public function single_value($id) {

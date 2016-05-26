@@ -23,7 +23,14 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome_message');
 	}
         
-        public function sample() {
-            echo "hello world";
-        }
+    public function sample() {
+        $this->load->view('user/header/head');
+        $this->load->view('user/header/menu-bar');
+        $this->load->view('user/content/home');
+        $this->load->view('sample');
+        $this->load->view('user/content/benefits');
+        $this->load->view('user/content/contact');
+        //$this->load->view('user/content/about');
+      	$this->load->view('user/footer/footer1');
+    }
 }
