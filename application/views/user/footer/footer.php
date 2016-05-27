@@ -47,6 +47,13 @@
   <script src="js/jquery.slicknav.js"></script>
   <script>
       $(document).ready(function(){
+
+        $('.numeric').keypress(function(e) {
+            if(e.charCode < 48 || e.charCode > 57) return false;
+        });
+        $(".alpha").keypress(function(e){
+          if((e.charCode < 97 || e.charCode > 122) && (e.charCode < 65 || e.charCode > 90) && (e.charCode != 45) && (e.charCode != 32)) return false;
+        });
         
         $('#menu').slicknav();
 

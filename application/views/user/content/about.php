@@ -32,13 +32,5 @@
 			</div>
 		</div>
 	</div>	
-	
-	<div class="container">
-		<div class="row aboutUs">
-			<div class="col-md-12 ">
-				<h3>What Our Customers Say About Us?</h3>
-			</div>
-		</div>
-	</div>
 </div>
 <!-- end about us !-->

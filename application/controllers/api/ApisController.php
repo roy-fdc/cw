@@ -4,7 +4,7 @@ class ApisController extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $models = array('About', 'AboutValue', 'Benefit', 'Career', 'Gallery', 'GalleryAlbum', 'Introduction', 'SlideImage', 'Team');
+        $models = array('About', 'AboutValue', 'Benefit', 'Career', 'Gallery', 'GalleryAlbum', 'Introduction', 'Team');
         foreach ($models as $model) {
             $this->load->model($model);
         }
@@ -63,11 +63,6 @@ class ApisController extends CI_Controller {
     public function single_value($id) {
         $value = $this->AboutValue->api_get_value($id);
         echo json_encode($value);
-    }
-    
-    public function slide_images() {
-        $slides = $this->SlideImage->api_get_slide();
-        echo json_encode($slides);
     }
     
     public function all_album() {
