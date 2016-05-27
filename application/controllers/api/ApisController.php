@@ -65,11 +65,6 @@ class ApisController extends CI_Controller {
         echo json_encode($value);
     }
     
-    public function slide_images() {
-        $slides = $this->SlideImage->api_get_slide();
-        echo json_encode($slides);
-    }
-    
     public function all_album() {
         $albums = $this->GalleryAlbum->api_get_album();
         $ctr = 0;

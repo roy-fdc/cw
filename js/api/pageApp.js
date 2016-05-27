@@ -1,6 +1,6 @@
 
 var base_url = "http://comweb.dev/api";
-var myApp = angular.module('fupApp',['ngSanitize', 'jkuri.gallery']);
+var myApp = angular.module('fupApp',['jkuri.gallery']); //ngSanitize
 
 myApp.controller('fupController', function ($scope, $http) {
     

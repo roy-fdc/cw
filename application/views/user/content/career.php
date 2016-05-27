@@ -12,7 +12,7 @@
 	</div>
 	<div class="container" >
 		<div class="row news circleImg">
-			<div class="col-md-4  text-left" ng-repeat="career in careers">
+			<div class="col-md-4  text-left" ng-repeat="career in careers" ng-animate=" 'animate' ">
 				<img class="img-responsive picsGall imgCenter" src="<?php echo base_url();?>images/careers/{{career.career_image}}"/>
 				<h3>{{career.career_title}}</h3>
 				

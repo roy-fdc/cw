@@ -12,16 +12,33 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-9 col-xs-12 forma">
-				<form>
-					<input type="text" class="col-md-6 col-xs-12 name" name='name' placeholder='Name *'/>
-					<input type="text" class="col-md-6 col-xs-12 Email" name='email' placeholder='Email *'/>
-					<input type="text" class="col-md-12 col-xs-12 Subject" name='subject' placeholder='Subject'/>
-					<textarea type="text" class="col-md-12 col-xs-12 Message" name='message' placeholder='Message *'></textarea>
-					<div class="cBtn col-xs-12" style="margin-top: 10px">
-						<button type="reset" value="Reset" class="btn btn-default">Reset</button>
-						<button type="reset" value="Reset" class="btn btn-primary">Submit</button>
-					</div>
-				</form>
+				<form name="contact-form" id="contact-form" method="post" action="contact-us/processMail">
+				  <fieldset class="form-group">
+				    <input type="text" class="form-control alpha" id="name" name="name" placeholder="Name *" required/>
+				  </fieldset>
+				  <fieldset class="form-group">
+				    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address *" required>
+				  </fieldset>
+				  <fieldset class="form-group">
+				    <input type="text" class="form-control numeric" id="phone" name="phone" placeholder="Phone number *" required>
+				  </fieldset>
+				  <fieldset class="form-group">
+				    <select name="subject" id="subject" class="form-control">
+				    	<option value="Inquiry">Inquiry</option>
+				    	<option value="Web Programmer">Web Programer</option>
+				    	<option value="Web Application Tester">Web Application Tester</option>
+				    	<option value="Web Translator">Web Translator</option>
+				    </select>
+				  </fieldset>
+				  <fieldset class="form-group">
+				    <textarea style="width: 100%" name="message" id="message" required></textarea>
+				  </fieldset>
+				  <fieldset class="form-group">
+				    <input type="file" class="form-control" id="file" name="file">
+				  </fieldset>
+				    <button type="reset" class="btn btn-default">Reset</button>
+					<input type="submit" class="btn btn-primary"/>
+				</form> 
 			</div>
 			<div class="col-md-3 col-xs-12 cont">
 				<ul>
