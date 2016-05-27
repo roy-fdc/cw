@@ -157,121 +157,26 @@
 		
 		
 		
-			<div class="portfolio_block columns3   pretty" data-animated="fadeIn">	
-					<div class="element col-sm-4   gall branding">
-						<a class="plS" href="images/prettyPhotoImages/pic1.jpg" rel="prettyPhoto[gallery2]">
-							<img class="img-responsive picsGall" src="images/prettyPhotoImages/thumb_pic1.jpg" alt="pic1 Gallery"/>
-						</a>
-						<div class="view project_descr ">
-							<h3><a href="#">Recycled Paper - Business Card Mock Up</a></h3>
-							<ul>
-								<li><i class="fa fa-eye"></i>215</li>
-								<li><a class="heart" href="#"><i class="fa-heart-o"></i>14</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="element col-sm-4  gall branding">
-						<a class="plS" href="images/prettyPhotoImages/pic2.jpg" rel="prettyPhoto[gallery2]">
-							<img class="img-responsive picsGall" src="images/prettyPhotoImages/thumb_pic2.jpg" alt="pic2 Gallery"/>
-						</a>
-						<div class="view project_descr center">
-							<h3><a href="#">Environment Logos Set</a></h3>
-							<ul>
-								<li><i class="fa fa-eye"></i>369</li>
-								<li><a  class="heart" href="#"><i class="fa-heart-o"></i>86</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="element col-sm-4  gall web">
-						<a class="plS" href="images/prettyPhotoImages/pic3.jpg" rel="prettyPhoto[gallery2]">
-							<img class="img-responsive picsGall" src="images/prettyPhotoImages/thumb_pic3.jpg" alt="pic3 Gallery"/>
-						</a>
-						<div class="view project_descr ">
-							<h3><a href="#">Beag Simple WEB UI</a></h3>
-							<ul>
-								<li><i class="fa fa-eye"></i>400</li>
-								<li><a  class="heart" href="#"><i class="fa-heart-o"></i>124</a></li>
-							</ul>
-						</div>
-					</div>
-		
-		
-					
-					<div class="element col-sm-4  gall  text_styles">
-						<a class="plS" href="images/prettyPhotoImages/pic4.jpg" rel="prettyPhoto[gallery2]">
-							<img class="img-responsive picsGall" src="images/prettyPhotoImages/thumb_pic4.jpg" alt="pic1 Gallery"/>
-						</a>
-						<div class="view project_descr ">
-							<h3><a href="#">Pop Candy Text Effect</a></h3>
-							<ul>
-								<li><i class="fa fa-eye"></i>480</li>
-								<li><a  class="heart" href="#"><i class="fa-heart-o"></i>95</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="element col-sm-4  gall  web">
-						<a class="plS" href="images/prettyPhotoImages/pic5.jpg" rel="prettyPhoto[gallery2]">
-							<img class="img-responsive picsGall" src="images/prettyPhotoImages/thumb_pic5.jpg" alt="pic1 Gallery"/>
-						</a>
-						<div class="view project_descr center">
-							<h3><a href="#">User Interface Elements</a></h3>
-							<ul>
-								<li><i class="fa fa-eye"></i>215</li>
-								<li><a  class="heart" href="#"><i class="fa-heart-o"></i>14</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="element col-sm-4  gall  polygraphy">
-						<a class="plS" href="images/prettyPhotoImages/pic6.jpg" rel="prettyPhoto[gallery2]">
-							<img class="img-responsive picsGall" src="images/prettyPhotoImages/thumb_pic6.jpg" alt="pic1 Gallery"/>
-						</a>
-						<div class="view project_descr ">
-							<h3><a href="#">Stationery Branding Mock Up</a></h3>
-							<ul>
-								<li><i class="fa fa-eye"></i>375</li>
-								<li><a  class="heart" href="#"><i class="fa-heart-o"></i>102</a></li>
-							</ul>
-						</div>
-					</div>		
-					<div class="element col-sm-4   gall branding">
-						<a class="plS" href="images/prettyPhotoImages/pic7.jpg" rel="prettyPhoto[gallery2]">
-							<img class="img-responsive picsGall" src="images/prettyPhotoImages/thumb_pic7.jpg" alt="pic1 Gallery"/>
-						</a>
-						<div class="view project_descr ">
-							<h3><a href="#">Darko - Business Card Mock Up</a></h3>
-							<ul>
-								<li><i class="fa fa-eye"></i>440</li>
-								<li><a  class="heart" href="#"><i class="fa-heart-o"></i>35</a></li>
-							</ul>
-						</div>
-					</div>
-					
-					<div class="element col-sm-4  gall text_styles">
-						<a class="plS" href="images/prettyPhotoImages/pic8.jpg" rel="prettyPhoto[gallery2]">
-							<img class="img-responsive picsGall" src="images/prettyPhotoImages/thumb_pic8.jpg" alt="pic1 Gallery"/>
-						</a>
-						<div class="view project_descr ">
-							<h3><a href="#">Foil Mini Badges</a></h3>
-							<ul>
-								<li><i class="fa fa-eye"></i>512</li>
-								<li><a  class="heart" href="#"><i class="fa-heart-o"></i>36</a></li>
-							</ul>
-						</div>
-					</div>
-					
-					<div class="element col-sm-4  gall polygraphy">
-						<a class="plS" href="images/prettyPhotoImages/pic9.jpg" rel="prettyPhoto[gallery2]">
-							<img class="img-responsive picsGall" src="images/prettyPhotoImages/thumb_pic9.jpg" alt="pic1 Gallery"/>
-						</a>
-						<div class="view project_descr ">
-							<h3><a href="#">Woody Poster Text Effect</a></h3>
-							<ul>
-								<li><i class="fa fa-eye"></i>693</li>
-								<li><a  class="heart" href="#"><i class="fa-heart-o"></i>204</a></li>
-							</ul>
-						</div>
-					</div>			
+                             
+			<div class="portfolio_block columns3   pretty" data-animated="fadeIn" ng-show="albumContainer">	
+                            <div class="element col-sm-4   gall branding" ng-repeat="album in albums">
+                                <a class="plS" ng-click="viewByAlbum(album.album_id)">
+                                    <img class="img-responsive picsGall" src="image/galleries/{{ album.images[0].image_name}}" alt="pic1 Gallery" />
+                                </a>
+                                <div class="view project_descr ">
+                                    <h3><a href="#">{{ album.album_name }}</a></h3><br><br>
+                                </div>
+                            </div>
 			</div>
+                              
+                        <!-- this is album images -->
+                        <div ng-show="IsVisible">
+                            <button class="btn btn-primary" ng-click="closeImages()">Close album</button>
+                            <h3>{{ albumName }}</h3>
+                            <div class="center-block">
+                                <ng-gallery images="ctrl.images" thumbs-num="10" ></ng-gallery>
+                            </div>
+                        </div>
 			
 			
 				
@@ -293,30 +198,30 @@
 		</div>
 			
 			<script type="text/javascript">
-				jQuery(window).load(function(){
-					items_set = [
-					
-						{category : 'branding', lika_count : '77', view_count : '234', src : 'images/prettyPhotoImages/pic9.jpg', title : 'Foil Mini Badges', content : '' },
-						
-						{category : 'polygraphy', lika_count : '45', view_count : '100', src : 'images/prettyPhotoImages/pic7.jpg', title : 'Darko – Business Card Mock Up', content : '' },
-						
-						{category : 'text_styles', lika_count : '22', view_count : '140', src : 'images/prettyPhotoImages/pic8.jpg', title : 'Woody Poster Text Effect', content : '' }
-						
-
-					];
-					jQuery('.portfolio_block').portfolio_addon({
-						type : 1, // 2-4 columns simple portfolio
-						load_count : 3,
-						
-						items : items_set
-					});
-					$('#container').isotope({
-					  animationOptions: {
-						 duration: 900,
-						 queue: false
-					   }
-					});
-				});
+//				jQuery(window).load(function(){
+//					items_set = [
+//					
+//						{category : 'branding', lika_count : '77', view_count : '234', src : 'images/prettyPhotoImages/pic9.jpg', title : 'Foil Mini Badges', content : '' },
+//						
+//						{category : 'polygraphy', lika_count : '45', view_count : '100', src : 'images/prettyPhotoImages/pic7.jpg', title : 'Darko – Business Card Mock Up', content : '' },
+//						
+//						{category : 'text_styles', lika_count : '22', view_count : '140', src : 'images/prettyPhotoImages/pic8.jpg', title : 'Woody Poster Text Effect', content : '' }
+//						
+//
+//					];
+//					jQuery('.portfolio_block').portfolio_addon({
+//						type : 1, // 2-4 columns simple portfolio
+//						load_count : 3,
+//						
+//						items : items_set
+//					});
+//					$('#container').isotope({
+//					  animationOptions: {
+//						 duration: 900,
+//						 queue: false
+//					   }
+//					});
+//				});
 			</script>
 		</div>
     </div>    
