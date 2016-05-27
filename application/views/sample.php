@@ -5,27 +5,29 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 cBusiness">
-					<h3>The Best Way to Create Business Site &ndash; Attractive One Page</h3>
-					<h4>Discover elegant solution for your online business fast, reliable, affordable.</h4>
+					<h3>ABOUT US</h3>
 				</div>
 			</div>
+
 		</div>
+
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12 centPic">
-					<img class="img-responsive"  src="images/bizPic.png"/>
-				</div>
-			</div>
+			<div ng-bind-html="detail"></div>
+			<h3>MISSION</h3>
+			<p class="subtitile">{{ company_mission[0].description }}</p>
+			<h3>VISION</h3>
+			<p class="subtitile">{{ company_vision[0].description }}</p>
 		</div>   
     </div>
 
     <div class="container">
 			<div class="row">
-				<div class="col-md-12 hr1">
-					<hr/>
+				<div class="col-md-12 cBusiness">
+					<h3>VALUES</h3>
 				</div>
 			</div>
-		</div>	
+
+		</div>
 
     <div style="position: relative;">
 			<div class="container">
