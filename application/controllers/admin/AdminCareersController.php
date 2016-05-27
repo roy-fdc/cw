@@ -158,7 +158,7 @@ class AdminCareersController extends CI_Controller {
                     $this->session->set_flashdata('error', $this->alert->show('Cannot update team', 0));
                 } else {
                     if ($response['old_image_filename']) {
-                        unlink('image/careers/'.$response['old_image_filename']);
+                        unlink('images/careers/'.$response['old_image_filename']);
                     }
                     $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
                 }
@@ -172,7 +172,7 @@ class AdminCareersController extends CI_Controller {
     }
     
     private function file_validation(){
-        $config['upload_path'] = 'image/careers';
+        $config['upload_path'] = 'images/careers';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         return $config;
     }
@@ -230,7 +230,7 @@ class AdminCareersController extends CI_Controller {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot delete career', 0));
             } else {
                 if ($response['old_image_filename']) {
-                    unlink('image/careers/'.$response['old_image_filename']);
+                    unlink('images/careers/'.$response['old_image_filename']);
                 }
                 $this->session->set_flashdata('success', $this->alert->show('Succecss delete!', 1));
             }

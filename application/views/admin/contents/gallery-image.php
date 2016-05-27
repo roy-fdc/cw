@@ -68,7 +68,7 @@
                                     <div class="col-sm-1">
                                         <div class="alert alert-info">
                                         <a onclick="delete_item(<?php echo $img['image_id']; ?>)" id="close"></a>
-                                        <img src="<?php echo base_url().'image/galleries/'.$img['image_name'];?>" class="img-responsive"/>
+                                        <img src="<?php echo base_url().'images/galleries/'.$img['image_name'];?>" class="img-responsive"/>
                                         </div>
                                     </div>
                                     <?php } ?>

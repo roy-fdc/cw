@@ -38,6 +38,13 @@ class Gallery extends CI_Model {
         return $filename;
     }
     
+    public function get_images_by_album($album_id) {
+        $this->db->where('album_id', $album_id);
+        $this->db->select(array('image_name'));
+        $images = $this->db->get('galleries');
+        return $images->result();
+    }
+    
     public function api_get_gallery($album_id) {
         $this->db->where('album_id', $album_id);
         $this->db->where('image_status', 1);

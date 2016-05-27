@@ -88,10 +88,6 @@
                             <a href="<?php echo base_url();?>admin/admin-gallery"><i class="glyphicon glyphicon-glyphicon glyphicon-hand-right"></i> Gallery </a>
                         </li>
                         
-                        <li>
-                            <a href="<?php echo base_url();?>admin/admin-introduction"><i class="glyphicon glyphicon-glyphicon glyphicon-film"></i> Page Introduction</a>
-                        </li>
-                        
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

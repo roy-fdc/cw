@@ -64,7 +64,7 @@ class AdminBenefitsController extends CI_Controller {
     }
     
     private function file_validation() {
-        $config['upload_path'] = 'image/benefits';
+        $config['upload_path'] = 'images/benefits';
         $config['allowed_types'] = 'gif|jpg|png';
         return $config;
     }
@@ -157,7 +157,7 @@ class AdminBenefitsController extends CI_Controller {
             $delete_btn = '<a onclick="delete_item('.$row->id.')" class="btn btn-danger">Delete</a>';
             $to_row = array(
                 $counter++,
-                '<img src="'.base_url().'image/benefits/'.$row->benefit_image.'" width="50" height="50"/>',
+                '<img src="'.base_url().'images/benefits/'.$row->benefit_image.'" width="50" height="50"/>',
                 $row->benefit_title,
                 $row->benefit_description,
                 ($row->benefit_status == 1) ? 'Active' : '........',
@@ -208,7 +208,7 @@ class AdminBenefitsController extends CI_Controller {
                     $this->session->set_flashdata('error', $this->alert->show('Cannot update benefit', 0));
                 } else {
                     if ($response['old_image_filename']) {
-                        unlink('image/benefits/'.$response['old_image_filename']);
+                        unlink('images/benefits/'.$response['old_image_filename']);
                     }
                     $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
                 }
@@ -249,7 +249,7 @@ class AdminBenefitsController extends CI_Controller {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot delete benefit', 0));
             } else {
                 if ($response['old_image_filename']) {
-                    unlink('image/benefits/'.$response['old_image_filename']);
+                    unlink('images/benefits/'.$response['old_image_filename']);
                 }
                 $this->session->set_flashdata('success', $this->alert->show('Succecss delete!', 1));
             }
