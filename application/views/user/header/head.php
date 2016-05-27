@@ -35,6 +35,9 @@
       
       <!--script type="text/javascript" src="js_t/jquery.nav.js"></script-->
 
+          <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>src/css/screen.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>src/css/ngGallery.css">
+    
       
       <script>
       $(document).ready(function(){
@@ -53,4 +56,4 @@
       </script>
       
    </head>
-   <body ng-controller="fupController">
+   <body ng-controller="fupController as ctrl">

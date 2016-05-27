@@ -42,7 +42,7 @@
     </div>
     </div>    
     
-    
+    <script type="text/javascript" src="src/js/ngGallery.js"></script>
   <script src="js_t/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
   <script src="js_t/bootstrap.min.js"></script>
   <script src="js_t/jquery.slicknav.js"></script>
