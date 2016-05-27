@@ -63,7 +63,7 @@ class AdminAboutValuesController extends CI_Controller {
     }
     
     private function file_validation() {
-        $config['upload_path'] = 'image/values';
+        $config['upload_path'] = 'images/values';
         $config['allowed_types'] = 'gif|jpg|png';
         return $config;
     }
@@ -178,7 +178,7 @@ class AdminAboutValuesController extends CI_Controller {
                     $this->session->set_flashdata('error', $this->alert->show('Cannot update benefit', 0));
                 } else {
                     if ($response['old_image_filename']) {
-                        unlink('image/values/'.$response['old_image_filename']);
+                        unlink('images/values/'.$response['old_image_filename']);
                     }
                     $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
                 }
@@ -219,7 +219,7 @@ class AdminAboutValuesController extends CI_Controller {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot delete benefit', 0));
             } else {
                 if ($response['old_image_filename']) {
-                    unlink('image/values/'.$response['old_image_filename']);
+                    unlink('images/values/'.$response['old_image_filename']);
                 }
                 $this->session->set_flashdata('success', $this->alert->show('Succecss delete!', 1));
             }

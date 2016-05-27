@@ -10,9 +10,14 @@ class AdminLoginController extends CI_Controller {
     }
     
     public function index() {
-        $this->load->view('admin/header/head');
-        $this->load->view('admin/contents/admin-login');
-        $this->load->view('admin/footer/login-footer');
+        if ( !$this->session->has_userdata('logged_in') && !$this->session->userdata('logged_in')) {
+            $this->load->view('admin/header/head');
+            $this->load->view('admin/contents/admin-login');
+            $this->load->view('admin/footer/login-footer');
+        } else {
+            redirect(base_url().'admin/homepage');
+            exit();
+        }
     }
     
     public function login_exec() {

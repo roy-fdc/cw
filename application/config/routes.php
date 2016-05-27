@@ -101,6 +101,7 @@ $route['admin/admin-add-gallery-exec'] = 'admin/admingalleriescontroller/add_ima
 $route['admin/admin-gallery-status'] = 'admin/admingalleryalbumscontroller/change_status';
 $route['admin/admin-album-update-exec'] = 'admin/admingalleryalbumscontroller/update';
 $route['admin/admin-gallery-image-delete'] = 'admin/admingalleriescontroller/delete';
+$route['admin/admin-album-delete'] = 'admin/admingalleryalbumscontroller/delete';
 
 
 // API routing starts here

@@ -6,6 +6,7 @@ class AdminGalleryAlbumsController extends CI_Controller {
         parent::__construct();
         $this->session_data = $this->session->userdata('logged_in');
         $this->load->model('GalleryAlbum');
+        $this->load->model('Gallery');
         $this->load->library('Alert');
     }
     
@@ -73,6 +74,30 @@ class AdminGalleryAlbumsController extends CI_Controller {
             }
             redirect(base_url().'admin/admin-gallery');
             exit();
+        } else {
+            redirect(base_url().'admin');
+            exit();
+        }
+    }
+    
+    public function delete() {
+        if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
+            $id = $this->input->post('id');
+            $response = $this->GalleryAlbum->delete($id);
+            if (!$response['deleted']) {
+                $this->session->set_flashdata('error', $this->alert->show('Cannot delete album1', 0));
+                redirect(base_url().'admin/admin-gallery');
+                exit();
+            } else {
+                $images = $this->Gallery->get_images_by_album($id);
+                print_r($images);
+                foreach($images as $row) {
+                    unlink('images/galleries/'.$row->image_name);
+                }
+                $this->session->set_flashdata('success', $this->alert->show('Album delete success!', 1));
+                redirect(base_url().'admin/admin-gallery');
+                exit();
+            }
         } else {
             redirect(base_url().'admin');
             exit();

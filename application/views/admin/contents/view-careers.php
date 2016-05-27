@@ -22,7 +22,7 @@
                                 <?php foreach ($all_careers as $row) { ?>
                                 <div id="<?php echo $row->id;?>" class="tab-pane fade in <?php echo ($row->id == 1) ? 'active' :'';?>">
                                     <br>
-                                    <img src="<?php echo base_url().'image/careers/'.$row->career_image;?>" class="image-circle"/> <br><br>
+                                    <img src="<?php echo base_url().'images/careers/'.$row->career_image;?>" class="image-circle"/> <br><br>
                                     <a href="<?php echo base_url().'admin/admin-edit-career/'.$row->id;?>" class="btn btn-primary">Update</a>
                                     <?php $btn_text = ($row->career_status == 0) ? 'Enable' : 'Disable'; ?>
                                     <?php $btn_type = ($row->career_status == 0) ? 'success' : 'warning'; ?>

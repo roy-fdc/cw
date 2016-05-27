@@ -4,7 +4,7 @@ class ApisController extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $models = array('About', 'AboutValue', 'Benefit', 'Career', 'Gallery', 'GalleryAlbum', 'Introduction', 'Team');
+        $models = array('About', 'AboutValue', 'Benefit', 'Career', 'Gallery', 'GalleryAlbum','Team');
         foreach ($models as $model) {
             $this->load->model($model);
         }
