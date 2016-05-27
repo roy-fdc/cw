@@ -52,13 +52,16 @@
                                 <div class="panel-body">
                                     <a onclick="add_image(<?php echo $row['album_id'];?>)" class="btn btn-small btn-success">Add image</a>
                                     
+                                    <a onclick="update_album(<?php echo $row['album_id'];?>, '<?php echo $row['album_name'];?>')" class="btn btn-primary">Update</a>
+                                    
                                     <?php $btn_text = ($row['album_status'] == 0) ? 'Enable' : 'Disable'; ?>
-                                    <?php $btn_type = ($row['album_status'] == 0) ? 'warning' : 'danger'; ?>
+                                    <?php $btn_type = ($row['album_status'] == 0) ? 'default' : 'warning'; ?>
                                     <a onclick="change_status(<?php echo $row['album_id'];?>, <?php echo $row['album_status'];?>)"  class="btn btn-<?php echo $btn_type;?>">
                                     <?php echo $btn_text;?>
                                     </a>
                                     
-                                    <a onclick="update_album(<?php echo $row['album_id'];?>, '<?php echo $row['album_name'];?>')" class="btn btn-primary">Update</a>
+                                    <a onclick="delete_album(<?php echo $row['album_id'];?>)" class="btn btn-danger">Delete</a>
+                                    
                                     <hr>
                                     <?php if (isset($row['images'])) { ?>
                                     <?php foreach($row['images'] as $img) { ?>

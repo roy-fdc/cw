@@ -31,6 +31,7 @@ class AdminGalleriesController extends CI_Controller {
             $this->load->view('admin/modal/status-modal');
             $this->load->view('admin/modal/update-album-modal');
             $this->load->view('admin/modal/delete-modal');
+            $this->load->view('admin/modal/delete-album-modal');
             $this->load->view('admin/footer/footer');
         } else {
             redirect(base_url().'admin');
@@ -70,6 +71,9 @@ class AdminGalleriesController extends CI_Controller {
             if (!$response['deleted']) {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot delete image!', 0));
             } else {
+                if ($response['old_image_filename']) {
+                    unlink('image/galleries/'.$response['old_image_filename']);
+                }
                 $this->session->set_flashdata('success', $this->alert->show('Image delete success!', 1));
             }
             redirect(base_url().'admin/admin-gallery');

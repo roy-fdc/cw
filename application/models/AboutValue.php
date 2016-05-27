@@ -21,9 +21,24 @@ class AboutValue extends CI_Model {
     }
     
     public function update($data, $id) {
+        $filename = $this->get_image_filename($id);
+        $response['old_image_filename'] = ($filename) ? $filename : false;
         $this->db->where('id', $id);
         $response['updated'] = ($this->db->update('about_values', $data)) ? true : false;
         return $response;
+    }
+    
+    private function get_image_filename($id) {
+        $this->db->where('id', $id);
+        $this->db->select(array('value_image'));
+        $result = $this->db->get('about_values');
+        if ($result->num_rows() > 0) {
+            $row = $result->row();
+            $filename = $row->value_image;
+        } else {
+            $filename = false;
+        }
+        return $filename;
     }
     
     public function get_all() {
@@ -53,6 +68,8 @@ class AboutValue extends CI_Model {
     }
     
     public function delete($id) {
+        $filename = $this->get_image_filename($id);
+        $response['old_image_filename'] = ($filename) ? $filename : false;
         $this->db->where('id', $id);
         $response['deleted'] = ($this->db->delete('about_values')) ? true : false;
         return $response;

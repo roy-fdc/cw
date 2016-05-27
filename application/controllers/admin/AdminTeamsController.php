@@ -87,6 +87,9 @@ class AdminTeamsController extends CI_Controller {
                 if (!$response['updated']) {
                     $this->session->set_flashdata('error', $this->alert->show('Cannot update team', 0));
                 } else {
+                    if ($response['old_image_filename']) {
+                        unlink('image/teams/'.$response['old_image_filename']);
+                    }
                     $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
                 }
                 redirect(base_url().'admin/admin-edit-team/'.$id);
@@ -96,7 +99,6 @@ class AdminTeamsController extends CI_Controller {
             redirect(base_url().'admin');
             exit();
         }
-        
     }
     
     private function validation() {
@@ -255,7 +257,10 @@ class AdminTeamsController extends CI_Controller {
             if (!$response['deleted']) {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot delete team', 0));
             } else {
-                $this->session->set_flashdata('success', $this->alert->show('Succecss delete!', 1));
+                if ($response['old_image_filename']) {
+                    unlink('image/teams/'.$response['old_image_filename']);
+                }
+                $this->session->set_flashdata('success', $this->alert->show('Success delete!', 1));
             }
             redirect(base_url().'admin/admin-view-team');
             exit();
