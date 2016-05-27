@@ -11,6 +11,12 @@ class GalleryAlbum extends CI_Model {
         return $result;
     }
     
+    public function delete($id) {
+        $this->db->where('id', $id);
+        $result['deleted'] = ($this->db->delete('gallery_albums')) ? true : false;
+        return $result;
+    }
+    
     public function getAll(){
         $query = $this->db->get('gallery_albums');
         return $query->result();

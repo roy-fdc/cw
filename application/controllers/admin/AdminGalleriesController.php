@@ -64,6 +64,7 @@ class AdminGalleriesController extends CI_Controller {
         return $data;
     }
     
+    
     public function delete(){
         if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
             $id = $this->input->post('id');
@@ -72,7 +73,7 @@ class AdminGalleriesController extends CI_Controller {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot delete image!', 0));
             } else {
                 if ($response['old_image_filename']) {
-                    unlink('image/galleries/'.$response['old_image_filename']);
+                    unlink('images/galleries/'.$response['old_image_filename']);
                 }
                 $this->session->set_flashdata('success', $this->alert->show('Image delete success!', 1));
             }
@@ -123,7 +124,7 @@ class AdminGalleriesController extends CI_Controller {
     }
     
     private function file_validation() {
-        $config['upload_path'] = 'image/galleries';
+        $config['upload_path'] = 'images/galleries';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         return $config;
     }

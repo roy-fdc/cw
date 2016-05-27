@@ -88,7 +88,7 @@ class AdminTeamsController extends CI_Controller {
                     $this->session->set_flashdata('error', $this->alert->show('Cannot update team', 0));
                 } else {
                     if ($response['old_image_filename']) {
-                        unlink('image/teams/'.$response['old_image_filename']);
+                        unlink('images/teams/'.$response['old_image_filename']);
                     }
                     $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
                 }
@@ -128,7 +128,7 @@ class AdminTeamsController extends CI_Controller {
     }
     
     private function file_validation(){
-        $config['upload_path'] = 'image/teams';
+        $config['upload_path'] = 'images/teams';
         $config['allowed_types'] = 'gif|jpg|png';
         return $config;
     }
@@ -200,7 +200,7 @@ class AdminTeamsController extends CI_Controller {
             $delete_btn = '<a onclick="delete_item('.$row->id.')" class="btn btn-danger">Delete</a>';
             $to_row = array(
                 $counter++,
-                '<img src="'.base_url().'image/teams/'.$row->team_image.'" width="50" height="50"/>',
+                '<img src="'.base_url().'images/teams/'.$row->team_image.'" width="50" height="50"/>',
                 $row->team_name,
                 $row->team_position,
                 $row->team_description,
@@ -258,7 +258,7 @@ class AdminTeamsController extends CI_Controller {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot delete team', 0));
             } else {
                 if ($response['old_image_filename']) {
-                    unlink('image/teams/'.$response['old_image_filename']);
+                    unlink('images/teams/'.$response['old_image_filename']);
                 }
                 $this->session->set_flashdata('success', $this->alert->show('Success delete!', 1));
             }
