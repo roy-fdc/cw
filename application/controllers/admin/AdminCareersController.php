@@ -150,13 +150,16 @@ class AdminCareersController extends CI_Controller {
                     'career_modified' => date('Y-m-d H:i:s')
                 );
                 $id = $this->input->post('id');
-                if ($_POST['image'] != ''){
+                if (!empty($_POST['image'])){
                     $to_update['career_image'] = $_POST['image'];
                 }
                 $response = $this->Career->update($to_update, $id);
                 if (!$response['updated']) {
                     $this->session->set_flashdata('error', $this->alert->show('Cannot update team', 0));
                 } else {
+                    if ($response['old_image_filename']) {
+                        unlink('image/careers/'.$response['old_image_filename']);
+                    }
                     $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
                 }
                 redirect(base_url().'admin/admin-edit-career/'.$id);
@@ -226,6 +229,9 @@ class AdminCareersController extends CI_Controller {
             if (!$response['deleted']) {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot delete career', 0));
             } else {
+                if ($response['old_image_filename']) {
+                    unlink('image/careers/'.$response['old_image_filename']);
+                }
                 $this->session->set_flashdata('success', $this->alert->show('Succecss delete!', 1));
             }
             redirect(base_url().'admin/admin-view-career');

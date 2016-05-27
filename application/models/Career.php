@@ -21,9 +21,24 @@ class Career extends CI_Model {
     }
     
     public function update($data, $id) {
+        $file_name = $this->get_image_filename($id);
+        $response['old_image_filename'] = ($file_name) ? $file_name : false;
         $this->db->where('id', $id);
         $response['updated'] = ($this->db->update('careers', $data)) ? true : false;
         return $response;
+    }
+    
+    private function get_image_filename($id) {
+        $this->db->where('id', $id);
+        $this->db->select(array('career_image'));
+        $result = $this->db->get('careers');
+        if ($result->num_rows() > 0) {
+            $row = $result->row();
+            $filename = $row->career_image;
+        } else {
+            $filename = false;
+        } 
+        return $filename;
     }
     
     public function get_all() {
@@ -46,6 +61,8 @@ class Career extends CI_Model {
     }
     
     public function delete($id) {
+        $file_name = $this->get_image_filename($id);
+        $response['old_image_filename'] = ($file_name) ? $file_name : false;
         $this->db->where('id', $id);
         $response['deleted'] = ($this->db->delete('careers')) ? true : false;
         return $response;

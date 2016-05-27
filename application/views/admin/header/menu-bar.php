@@ -85,10 +85,6 @@
                         </li>
                         
                         <li>
-                            <a href="<?php echo base_url();?>admin/admin-image-slide"><i class="glyphicon glyphicon-glyphicon glyphicon-film"></i> Slide Images</a>
-                        </li>
-                        
-                        <li>
                             <a href="<?php echo base_url();?>admin/admin-gallery"><i class="glyphicon glyphicon-glyphicon glyphicon-hand-right"></i> Gallery </a>
                         </li>
                         

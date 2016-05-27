@@ -177,6 +177,9 @@ class AdminAboutValuesController extends CI_Controller {
                 if (!$response['updated']) {
                     $this->session->set_flashdata('error', $this->alert->show('Cannot update benefit', 0));
                 } else {
+                    if ($response['old_image_filename']) {
+                        unlink('image/values/'.$response['old_image_filename']);
+                    }
                     $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
                 }
                 redirect(base_url().'admin/admin-edit-value/'.$id);
@@ -215,6 +218,9 @@ class AdminAboutValuesController extends CI_Controller {
             if (!$response['deleted']) {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot delete benefit', 0));
             } else {
+                if ($response['old_image_filename']) {
+                    unlink('image/values/'.$response['old_image_filename']);
+                }
                 $this->session->set_flashdata('success', $this->alert->show('Succecss delete!', 1));
             }
             redirect(base_url().'admin/admin-view-value');

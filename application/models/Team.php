@@ -21,9 +21,24 @@ class Team extends CI_Model {
     }
     
     public function update($data, $id) {
+        $old_filename = $this->get_image_filename($id);
+        $response['old_image_filename'] = ($old_filename) ? $old_filename : false; 
         $this->db->where('id', $id);
         $response['updated'] = ($this->db->update('teams', $data)) ? true : false;
         return $response;
+    }
+    
+    private function get_image_filename($id) {
+        $this->db->where('id', $id);
+        $this->db->select(array('team_image'));
+        $result = $this->db->get('teams');
+        if ($result->num_rows() > 0) {
+            $row = $result->row();
+            $filename = $row->team_image;
+        } else {
+            $filename = false;
+        }
+        return $filename;
     }
     
     public function get_all() {
@@ -46,6 +61,8 @@ class Team extends CI_Model {
     }
     
     public function delete($id) {
+        $old_filename = $this->get_image_filename($id);
+        $response['old_image_filename'] = ($old_filename) ? $old_filename : false; 
         $this->db->where('id', $id);
         $response['deleted'] = ($this->db->delete('teams')) ? true : false;
         return $response;

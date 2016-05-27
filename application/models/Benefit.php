@@ -20,9 +20,24 @@ class Benefit extends CI_Model {
     }
     
     public function update($data, $id) {
+        $filename = $this->get_image_filename($id);
+        $response['old_image_filename'] = ($filename) ? $filename : false;
         $this->db->where('id', $id);
         $response['updated'] = ($this->db->update('benefits', $data)) ? true : false;
         return $response;
+    }
+    
+    private function get_image_filename($id) {
+        $this->db->where('id', $id);
+        $this->db->select(array('benefit_image'));
+        $result = $this->db->get('benefits');
+        if ($result->num_rows() > 0) {
+            $row = $result->row();
+            $filename = $row->benefit_image;
+        } else {
+            $filename = false;
+        }
+        return $filename;
     }
     
     public function get_all() {
@@ -52,6 +67,8 @@ class Benefit extends CI_Model {
     }
     
     public function delete($id) {
+        $filename = $this->get_image_filename($id);
+        $response['old_image_filename'] = ($filename) ? $filename : false;
         $this->db->where('id', $id);
         $response['deleted'] = ($this->db->delete('benefits')) ? true : false;
         return $response;
