@@ -12,7 +12,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-9 col-xs-12 forma">
-				<form name="contact-form" id="contact-form" method="post" action="contact-us/processMail">
+				<!-- <form name="contact-form" id="contact-form" method="post" action="contact-us/processMail"> -->
+				<?php echo form_open_multipart(base_url().'contact-us/processMail');?>
 				  <fieldset class="form-group">
 				    <input type="text" class="form-control alpha" id="name" name="name" placeholder="Name *" required/>
 				  </fieldset>
@@ -34,11 +35,12 @@
 				    <textarea style="width: 100%" name="message" id="message" required></textarea>
 				  </fieldset>
 				  <fieldset class="form-group">
-				    <input type="file" class="form-control" id="file" name="file">
+				    <input type="file" class="form-control" id="file" name="attachment">
 				  </fieldset>
 				    <button type="reset" class="btn btn-default">Reset</button>
 					<input type="submit" class="btn btn-primary"/>
-				</form> 
+				<!-- </form>  -->
+				<?php echo form_close(); ?>
 			</div>
 			<div class="col-md-3 col-xs-12 cont">
 				<ul>

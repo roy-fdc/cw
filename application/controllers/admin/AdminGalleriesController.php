@@ -87,6 +87,7 @@ class AdminGalleriesController extends CI_Controller {
     
     public function add_image_exec() {
         if ( $this->session->has_userdata('logged_in') && $this->session->userdata('logged_in')) {
+            var_dump($_FILES); DIE();
             $validate = array(
                 array(
                     'field' => 'image',
