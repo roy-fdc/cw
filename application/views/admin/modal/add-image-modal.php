@@ -23,9 +23,10 @@
                 echo form_input($album);
                 $image = array(
                     'type' => 'file',
-                    'name' => 'image',
+                    'name' => 'image[]',
                     'class' => 'form-control',
-                    'placeholder' => 'Browse image'
+                    'placeholder' => 'Browse image',
+                    'multiple' => ''
                 );
                 echo form_input($image);
                 ?>
