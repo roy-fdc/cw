@@ -53,6 +53,7 @@ class AdminGalleriesController extends CI_Controller {
      */
     private function gallery_by_album($album) {
         $counter = 0;
+        $data = array();
         foreach($album as $row) {
             $data[$counter] = array(
                 'album_id' => $row->id,
@@ -92,6 +93,7 @@ class AdminGalleriesController extends CI_Controller {
             // delete image in server
             if ($response['old_image_filename']) {
                 unlink('images/galleries/'.$response['old_image_filename']);
+                unlink('images/galleries/thumb/'.$response['old_image_filename']);
             }
             $this->session->set_flashdata('success', $this->alert->show('Image delete success!', 1));
         }
@@ -147,11 +149,11 @@ class AdminGalleriesController extends CI_Controller {
 
                         list($width, $height) = getimagesize($uploadedfile);
 
-                        $newwidth = 100;
+                        $newwidth = 250;
                         $newheight = ($height / $width) * $newwidth;
                         $tmp = imagecreatetruecolor($newwidth, $newheight);
 
-                        $newwidth1 = 25;
+                        $newwidth1 = 150;
                         $newheight1 = ($height / $width) * $newwidth1;
                         $tmp1 = imagecreatetruecolor($newwidth1, $newheight1);
 
