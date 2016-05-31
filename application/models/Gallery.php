@@ -1,22 +1,43 @@
 <?php
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/*
+ * Gallery class (model)
+ * table used : galleries
+ */
 class Gallery extends CI_Model {
     
     public function __construct() {
         parent::__construct();
     }
     
+    /*
+     * insert
+     * @params : $data (array)
+     * @return : $result (array)
+     */
     public function insert($data) {
         $result['created'] = ($this->db->insert('galleries', $data)) ? true : false;
         return $result;
     }
     
+    /*
+     * get image
+     * @params : $album_id (int)
+     * @return : object
+     */
     public function getImage($album_id) {
         $this->db->where('album_id', $album_id);
         $query = $this->db->get('galleries');
         return $query->result();
     }
     
+    /*
+     * delete
+     * @params : $id (int)
+     * @return : $result (array)
+     */
     public function delete($id) {
         $filename = $this->get_image_filename($id);
         $result['old_image_filename'] = ($filename) ? $filename : false;
@@ -25,6 +46,11 @@ class Gallery extends CI_Model {
         return $result;
     }
     
+    /*
+     * get image filename
+     * @params : $id (int)
+     * @return : $filename (object, boolean)
+     */
     private function get_image_filename($id) {
         $this->db->where('id', $id);
         $this->db->select(array('image_name'));
@@ -38,6 +64,11 @@ class Gallery extends CI_Model {
         return $filename;
     }
     
+    /*
+     * get image by album
+     * @params : $album_id (int)
+     * @return : object
+     */
     public function get_images_by_album($album_id) {
         $this->db->where('album_id', $album_id);
         $this->db->select(array('image_name'));
@@ -45,6 +76,11 @@ class Gallery extends CI_Model {
         return $images->result();
     }
     
+    /*
+     * API for galleries
+     * @params : $album_id,
+     * @return : object
+     */
     public function api_get_gallery($album_id) {
         $this->db->where('album_id', $album_id);
         $this->db->where('image_status', 1);

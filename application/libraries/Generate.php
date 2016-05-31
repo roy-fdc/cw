@@ -1,7 +1,16 @@
 <?php
 
+/*
+ * Generate class (library)
+ * Used to get generated string particularly subject to generate a token
+ */
 class Generate {
     
+    /*
+     * getString (describes root of string generator)
+     * @params : $length (int) - the lenght of string want to generate
+     * @return : $randomString (String)
+     */
     public function getString($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

@@ -30,7 +30,7 @@ myApp.controller('fupController', function ($scope, $http) {
                 for(var x in album.images) {
                     arr.push({
                        thumb: 'images/galleries/'+album.images[x].image_name,
-                       img: 'images/galleries/'+album.images[x].image_name
+                       img: 'images/galleries/thumb/'+album.images[x].image_name
                     });
                 } 
                 self.images = arr;

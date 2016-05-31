@@ -2,14 +2,27 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/*
+ * AdminUser class
+ * table used : admin_users
+ */
  class AdminUser extends CI_Model {
      
-     
+    /*
+     * Register
+     * @params : $data (array)
+     * @return : $response (array)
+     */
     public function register($data) {
         $response['added'] = ($this->db->insert('admin_users', $data)) ? true : false;
         return $response;
     }
     
+    /*
+     * get all admin user
+     * @params
+     * @return : object
+     */
     public function get_all() {
         $select = array(
             'admin_firstname',
@@ -23,6 +36,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return $query->result();
     }
     
+    /*
+     * Login
+     * @params : $username (String)
+     * @return : $response (array)
+     */
     public function login($username) {
         //$query = $this->db->get_where('admin_users', array('admin_username' => $username));
         $query = $this->db->query('SELECT id, admin_username, admin_password FROM admin_users WHERE admin_username="'.$username.'"');
@@ -42,6 +60,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return $response;
     }
     
+    /*
+     * save login / logout logs
+     * @params : $id (int), $data (array)
+     * @return : $response (array)
+     */
     public function save_login_logout($id, $data) {
         $this->db->where('id', $id);
         $update = $this->db->update('admin_users', $data);
