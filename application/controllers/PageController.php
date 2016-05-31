@@ -2,8 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class PageController extends CI_Controller {
-	public function index()
-	{
+	public function index(){
 	$this->load->view('user/header/header.php');
         $this->load->view('user/contents/menu_bar.php');
         $this->load->view('user/contents/main_slider.php');

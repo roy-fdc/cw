@@ -12,7 +12,6 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <span class="text-success"><?php echo $this->session->flashdata('success');?></span>
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
                             <?php echo form_open(base_url().'admin/admin-album-add-exec'); ?>
@@ -42,6 +41,7 @@
                             <?php echo form_close();?>
                         </div>
                         <div class="panel-body">
+                            <?php echo $this->session->flashdata('success');?>
                             <?php echo $this->session->flashdata('error'); ?>
                             <?php foreach($image_by_album as $row) { ?>
                             <div class="panel panel-primary">
