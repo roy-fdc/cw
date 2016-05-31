@@ -89,7 +89,7 @@ function company_vision($scope, $http) {
     });
 }
 
-function all_career($scope = null, $http = null) {
+function all_career($scope, $http) {
     $http({method:'GET', url:base_url+'/all-career'}).success(function(response){
         $scope.careers = response;
     }).error(function (error) {

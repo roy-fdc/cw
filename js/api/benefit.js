@@ -4,7 +4,7 @@ myApp.controller('fupController', function ($scope, $http) {
 
 });
 
-function all_benefit($scope = null, $http = null) {
+function all_benefit($scope, $http) {
     
     $http({method:'GET', url:base_url+'/all-benefit'}).success(function(response){
         $scope.benefits = response;

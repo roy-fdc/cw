@@ -3,7 +3,7 @@ myApp.controller('fupController', function ($scope, $http) {
     all_team($scope, $http);
 });
 
-function all_team($scope = null, $http = null) {
+function all_team($scope, $http) {
     
     $http({method:'GET', url:base_url+'/all-team'}).success(function(response){
         $scope.teams = response;
