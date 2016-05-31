@@ -33,6 +33,11 @@ class Gallery extends CI_Model {
         return $query->result();
     }
     
+    public function delete_by_album($id) {
+        $this->db->where('album_id', $id);
+        $this->db->delete('galleries');
+    }
+    
     /*
      * delete
      * @params : $id (int)

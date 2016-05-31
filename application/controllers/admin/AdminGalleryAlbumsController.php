@@ -109,6 +109,7 @@ class AdminGalleryAlbumsController extends CI_Controller {
         } else {
             // get image name
             $images = $this->Gallery->get_images_by_album($id);
+            $this->Gallery->delete_by_album($id);
             foreach($images as $row) {
                 // delete image
                 if (file_exists('images/galleries/'.$row->image_name)) {
