@@ -105,6 +105,7 @@ class AdminGalleriesController extends CI_Controller {
      * @return : void
      */
     public function add_image_exec() {
+
         $album_id = $this->input->post('album_id');
         $counter = 0;
         define ("MAX_SIZE","400");
@@ -120,11 +121,10 @@ class AdminGalleriesController extends CI_Controller {
             if (!isset($extension) || empty($extension)) {
                 $not_upload[] = array(
                     'image_name' => $image,
-                    'error' => 'Invalid file!'
+                    'error' => 'Invalid file extension!'
                 );
             } else {
                 if (!in_array($extension, $validExtensions)) {
-
                     $not_upload[] = array(
                         'image_name' => $image,
                         'error' => 'Invalid file extension!'

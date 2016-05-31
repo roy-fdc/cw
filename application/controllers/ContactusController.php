@@ -2,6 +2,9 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+ini_set("display_errors",1);
+error_reporting(E_ALL);
+
 class ContactusController extends CI_Controller {
     
     public function __construct() {
@@ -18,19 +21,37 @@ class ContactusController extends CI_Controller {
     }
 
     public function processMail(){
-        var_dump($_POST);
-
+        var_dump($_FILES);
+        if (!empty($_FILES['attachment']['name'])) {
+            $this->load->library('upload');
+            $config['upload_path'] = 'images/attachment/';
+            //$config['allowed_types'] = 'doc|docx|pdf|odt|rt';
+            $config['allowed_types'] = '*';
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if (!$this->upload->do_upload('attachment')) {
+                 $error = array('error' => $this->upload->display_errors());
+                 var_dump($error);
+            } 
+            $data = array('upload_data' => $this->upload->data());
+        }    
+        //send Email
+        $to = 'fdcgrace@gmail.com';
         $this->load->library('email');
-
         $this->email->from($_POST['email'], $_POST['name']);
-        $this->email->to('fdcgrace@gmail.com');  
+        $this->email->to('fdcgrace@gmail.com');
 
         $this->email->subject($_POST['subject']);
-        $this->email->message($_POST['message']);  
-
-        $this->email->send();
-
-        echo $this->email->print_debugger();
+        if(isset($data)){
+            $this->email->attach($data['upload_data']['full_path']);    
+        }
+        $this->email->message($_POST['message']);
+        if($this->email->send()){
+            if(isset($data)){
+                unlink($data['upload_data']['full_path']);
+            }
+        } 
+        redirect(base_url().'#contact');
     }
     
 }
