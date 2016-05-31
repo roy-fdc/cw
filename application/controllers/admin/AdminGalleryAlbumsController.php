@@ -111,7 +111,12 @@ class AdminGalleryAlbumsController extends CI_Controller {
             $images = $this->Gallery->get_images_by_album($id);
             foreach($images as $row) {
                 // delete image
-                unlink('images/galleries/'.$row->image_name);
+                if (file_exists('images/galleries/'.$row->image_name)) {
+                    unlink('images/galleries/'.$row->image_name);
+                } 
+                if  (file_exists('images/galleries/thumb/'.$row->image_name)) {
+                    unlink('images/galleries/thumb/'.$row->image_name);
+                }
             }
             $this->session->set_flashdata('success', $this->alert->show('Album delete success!', 1));
             redirect(base_url().'admin/admin-gallery');

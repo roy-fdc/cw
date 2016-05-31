@@ -43,6 +43,7 @@
                         <div class="panel-body">
                             <?php echo $this->session->flashdata('success');?>
                             <?php echo $this->session->flashdata('error'); ?>
+                            <?php if (!empty($image_by_album)) { ?>
                             <?php foreach($image_by_album as $row) { ?>
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
@@ -76,6 +77,7 @@
                                 </div>
                                 <div class="panel-footer"></div>
                             </div>
+                            <?php } ?>
                             <?php } ?>
                         </div>
                         <div class="panel-footer"></div>
