@@ -1,6 +1,7 @@
 
 var base_url = "http://comweb.dev/api";
 var myApp = angular.module('fupApp',['ngSanitize','jkuri.gallery']);
+//var myApp = angular.module('fupApp',[]);
 
 myApp.controller('fupController', function ($scope, $http) {
     
@@ -25,6 +26,7 @@ myApp.controller('fupController', function ($scope, $http) {
         $scope.IsVisible = true;
         angular.forEach($scope.albums, function(album) {
             if (album.album_id == id) {
+
                 $scope.albumName = album.album_name;
                 var arr = [];
                 for(var x in album.images) {
