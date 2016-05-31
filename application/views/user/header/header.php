@@ -35,8 +35,8 @@
   <script src="assets/js/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
   <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script> 
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular-sanitize.js"></script> 
   <script type="text/javascript" src="js/gallery/ngGallery.js"></script>
   <script src="js/api/pageApp.js" type="text/javascript"></script>
 
