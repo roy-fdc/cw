@@ -12,8 +12,30 @@
 	
 	margin-right: 20px;
 }
-
-
+.benefits{
+    height: 515px !important;
+}
+.albums{
+    width: 33%;
+    float: left;
+}
+.white{
+    color: #fff !important;
+}
+.center{
+    text-align: center !important;
+}
+.oneLetter{
+    font-size: 1.875em;
+    text-transform: capitalize;
+    font-weight: 300;
+}
+.marTop10{
+    margin-top: 10px;
+}
+.padd{
+    padding: 85px 0px 0px 0px;
+}
 
 /*animation*/
 .animate-enter, 
