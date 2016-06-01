@@ -56,6 +56,9 @@ myApp.controller('fupController', function ($scope, $http) {
     }
     // for career single show details
     $scope.showCareerDetail = function(id) {
+        var y = $(window).scrollTop();  //your current y position on the page
+        $(window).scrollTop(y+450);
+
         $scope.careerVisibleContainer = true;
         angular.forEach($scope.careers, function(career) {
             if (career.id == id) {
