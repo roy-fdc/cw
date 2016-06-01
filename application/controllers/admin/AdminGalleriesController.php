@@ -114,11 +114,9 @@ class AdminGalleriesController extends CI_Controller {
 
         $album_id = $this->input->post('album_id');
         $counter = 0;
-        define ("MAX_SIZE","400");
+        define ("MAX_SIZE","1012");
         $validExtensions = array('jpg', 'jpeg', 'gif', 'png');
-        echo '<pre>';
-        print_r($_FILES);
-        die();
+
         
         foreach($_FILES['image']['name'] as $image) {
             //get image extension
@@ -157,7 +155,7 @@ class AdminGalleriesController extends CI_Controller {
 
                         list($width, $height) = getimagesize($uploadedfile);
 
-                        $newwidth = 250;
+                        $newwidth = 400;
                         $newheight = ($height / $width) * $newwidth;
                         $tmp = imagecreatetruecolor($newwidth, $newheight);
 
