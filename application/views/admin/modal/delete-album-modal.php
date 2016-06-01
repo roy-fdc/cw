@@ -13,7 +13,7 @@
             <div class="modal-header"></div>
             <?php echo form_open(base_url().'admin/admin-album-delete'); ?>
             <div class="modal-body">
-                Delete this gallery album ?
+                Are you sure you want to delete this album ?
                 <?php 
                 $for_album_id = array(
                     'type' => 'hidden',
@@ -28,14 +28,15 @@
                 $submit_button = array(
                     'type' => 'submit',
                     'class' => 'btn btn-primary',
-                    'content' => '<span class="glyphicon glyphicon-trash"></span> Delete'
+                    'content' => 'Yes'
                 );
                 echo form_button($submit_button);
                 $cancel_button = array(
                     'data-dismiss' => 'modal',
                     'class' => 'btn btn-default',
-                    'content' => 'Cancel'
-                )
+                    'content' => 'No'
+                );
+                echo form_button($cancel_button);
                 ?>
             </div>
             <?php echo form_close(); ?>

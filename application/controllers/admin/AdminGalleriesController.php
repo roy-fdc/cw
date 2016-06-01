@@ -31,7 +31,7 @@ class AdminGalleriesController extends CI_Controller {
             'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'action_status_link' => 'admin-gallery-status',
             'action_delete_link' => 'admin-gallery-image-delete',
-            'item_name' => 'gallery image',
+            'item_name' => 'image',
             'image_by_album' => $this->gallery_by_album($album)
         );
         $this->load->view('admin/header/head', $data);

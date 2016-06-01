@@ -43,15 +43,21 @@
                         <div class="panel-body">
                             <?php echo $this->session->flashdata('success');?>
                             <?php echo $this->session->flashdata('error'); ?>
-                            <?php if (!empty($image_by_album)) { ?>
-                            <?php foreach($image_by_album as $row) { ?>
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <?php echo $row['album_name']; ?>
-                                    <span class="badge" style="color:white; background-color: black"><?php echo (isset($row['images'])) ? count($row['images']) : 0;?></span>
-                                </div>
-                                <div class="panel-body">
-                                    <a onclick="add_image(<?php echo $row['album_id'];?>)" class="btn btn-small btn-success">Add image</a>
+                            
+                            <div class="panel-group">
+                                <?php foreach($image_by_album as $row) { ?>
+                                <div class="panel panel-default" style="background: #428bca; ">
+                                    <a data-toggle="collapse" href="#collapse<?php echo $row['album_id']; ?>">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title" style="color: #FFF">
+                                                <?php echo $row['album_name']; ?>
+                                                <span class="badge" style="color:white; background-color: black"><?php echo (isset($row['images'])) ? count($row['images']) : 0;?></span>
+                                            </h4>
+                                        </div>
+                                    </a>
+                                  <div id="collapse<?php echo $row['album_id']; ?>" class="panel-collapse collapse">
+                                    <div class="panel-body" style="background: #FFF">
+                                        <a onclick="add_image(<?php echo $row['album_id'];?>)" class="btn btn-small btn-success">Add image</a>
                                     
                                     <a onclick="update_album(<?php echo $row['album_id'];?>, '<?php echo $row['album_name'];?>')" class="btn btn-primary">Update</a>
                                     
@@ -78,11 +84,14 @@
                                     </div>
                                     <?php } ?>
                                     <?php } ?>
+                                    </div>
+                                    <div class="panel-footer">Panel Footer</div>
+                                  </div>
                                 </div>
-                                <div class="panel-footer"></div>
-                            </div>
-                            <?php } ?>
-                            <?php } ?>
+                                <?php } ?>
+                             </div>
+                            
+                            
                         </div>
                         <div class="panel-footer"></div>
                     </div>
