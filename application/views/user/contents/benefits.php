@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="section-top wow animated fadeInUp" data-wow-delay=".5s">
-            <h2 class="section-title"><span>Employee</span> Benefits</h2>
+            <h2 class="section-title bold"><span>EMPLOYEE</span> BENEFITS</h2>
             <p class="section-description">
               Forty Degrees Celsius Inc.(FDCI) provides benefits to employees in addition to their salaries to meet their diverse needs. Our comprehensive benefits include: free meal allowances, monthly company dinner, medical insurance coverage and the company team building.
             </p><!-- /.section-description -->

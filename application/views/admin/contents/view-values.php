@@ -21,7 +21,7 @@
                                 <?php foreach($all_values as $row) { ?>
                                 <tr>
                                     <td>
-                                        <img src="<?php echo base_url().'image/values/'.$row->value_image;?>" width="50" height="50"/>
+                                        <img src="<?php echo base_url().'images/values/'.$row->value_image;?>" width="50" height="50"/>
                                     </td> 
                                     <td><?php echo $row->value_title;?></td>
                                     <td><?php echo $row->value_description;?></td>

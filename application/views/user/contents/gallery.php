@@ -3,9 +3,9 @@
   <section id="gallery" class="portfolio text-center">
     <div class="portfolio-bottom">
       <div class="section-padding">
-        <div class="section-top wow animated fadeInUp" data-wow-delay=".5s">
-          <h2 class="section-title">GALLERIES</h2><!-- /.section-title -->
-          <p class="section-description">
+        <div class="section-top wow animated fadeInUp gallery" data-wow-delay=".5s">
+          <h2 class="section-title bold">GALLERIES</h2><!-- /.section-title -->
+          <p class="section-title" style="color:#e74c3c">
             Right here we've got something you gonna love
           </p><!-- /.section-description -->
         </div><!-- /.section-top -->
