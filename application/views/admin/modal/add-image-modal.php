@@ -10,7 +10,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                Add Image
+                Add Images
             </div>
             <?php echo form_open_multipart(base_url().'admin/admin-add-gallery-exec');?>
             <div class="modal-body">
@@ -26,6 +26,7 @@
                     'name' => 'image[]',
                     'class' => 'form-control',
                     'placeholder' => 'Browse image',
+                    'required' => '',
                     'multiple' => ''
                 );
                 echo form_input($image);
@@ -33,12 +34,19 @@
             </div>
             <div class="modal-footer">
                 <?php
-                $button = array(
+                $submit_button = array(
                     'type' => 'submit',
                     'class' => 'btn btn-primary',
                     'content' => 'Add'
                 );
-                echo form_button($button);
+                echo form_button($submit_button);
+                
+                $cancel_button = array(
+                    'class' => 'btn btn-default',
+                    'data-dismiss' => 'modal',
+                    'content' => 'Cancel'
+                );
+                echo form_button($cancel_button);
                 ?>
             </div>
             <?php echo form_close(); ?>
