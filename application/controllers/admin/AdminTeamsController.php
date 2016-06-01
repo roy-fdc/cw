@@ -104,9 +104,11 @@ class AdminTeamsController extends CI_Controller {
             if (!$response['updated']) {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot update team', 0));
             } else {
-                if ($response['old_image_filename']) {
+                if ($response['old_image_filename'] && !empty($_POST['image'])) {
                     // delete old image in server
-                    unlink('images/teams/'.$response['old_image_filename']);
+                    if (file_exists('images/teams/'.$response['old_image_filename'])) {
+                        unlink('images/teams/'.$response['old_image_filename']);
+                    }
                 }
                 $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
             }
@@ -163,7 +165,7 @@ class AdminTeamsController extends CI_Controller {
      * @params :
      * @return : boolean
      */
-    private function handle_upload() {
+    function handle_upload() {
         if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
             if ($this->upload->do_upload('image')) {
                 // set a $_POST value for 'image' that we can use later
@@ -305,7 +307,9 @@ class AdminTeamsController extends CI_Controller {
         } else {
             if ($response['old_image_filename']) {
                 // delete old image in server
-                unlink('images/teams/'.$response['old_image_filename']);
+                if (file_exists('images/teams/'.$response['old_image_filename'])) {
+                    unlink('images/teams/'.$response['old_image_filename']);
+                }
             }
             $this->session->set_flashdata('success', $this->alert->show('Success delete!', 1));
         }

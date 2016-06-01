@@ -271,7 +271,9 @@ class AdminCareersController extends CI_Controller {
         } else {
             // delete old image in server
             if ($response['old_image_filename']) {
-                unlink('images/careers/'.$response['old_image_filename']);
+                if (file_exists('images/careers/'.$response['old_image_filename'])) {
+                    unlink('images/careers/'.$response['old_image_filename']);
+                }
             }
             $this->session->set_flashdata('success', $this->alert->show('Succecss delete!', 1));
         }
