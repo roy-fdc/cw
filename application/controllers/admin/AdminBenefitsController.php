@@ -86,7 +86,7 @@ class AdminBenefitsController extends CI_Controller {
      * @params :
      * @return : $validate (array)
      */
-    private function validation() {
+    public function validation() {
         // construct input validation in array form
         $validate = array(
             array(
@@ -113,7 +113,7 @@ class AdminBenefitsController extends CI_Controller {
      * @params :
      * @return : boolean
      */
-    private function handle_upload() {
+    function handle_upload() {
         if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
             if ($this->upload->do_upload('image')) {
                 // set a $_POST value for 'image' that we can use later
@@ -248,8 +248,10 @@ class AdminBenefitsController extends CI_Controller {
             if (!$response['updated']) {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot update benefit', 0));
             } else {
-                if ($response['old_image_filename']) {
-                    unlink('images/benefits/'.$response['old_image_filename']);
+                if ($response['old_image_filename'] && !empty($_POST['image'])) {
+                    if (file_exists('images/benefits/'.$response['old_image_filename'])) {
+                        unlink('images/benefits/'.$response['old_image_filename']);
+                    }
                 }
                 $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
             }
@@ -294,7 +296,9 @@ class AdminBenefitsController extends CI_Controller {
         } else {
             // delete image file in server
             if ($response['old_image_filename']) {
-                unlink('images/benefits/'.$response['old_image_filename']);
+                if (file_exists('images/benefits/'.$response['old_image_filename'])) {
+                    unlink('images/benefits/'.$response['old_image_filename']);
+                }
             }
             $this->session->set_flashdata('success', $this->alert->show('Succecss delete!', 1));
         }

@@ -92,8 +92,12 @@ class AdminGalleriesController extends CI_Controller {
         } else {
             // delete image in server
             if ($response['old_image_filename']) {
-                unlink('images/galleries/'.$response['old_image_filename']);
-                unlink('images/galleries/thumb/'.$response['old_image_filename']);
+                if (file_exists('images/galleries/'.$response['old_image_filename'])) {
+                    unlink('images/galleries/'.$response['old_image_filename']);
+                }
+                if (file_exists('images/galleries/thumb/'.$response['old_image_filename'])) {
+                    unlink('images/galleries/thumb/'.$response['old_image_filename']);
+                }
             }
             $this->session->set_flashdata('success', $this->alert->show('Image delete success!', 1));
         }
@@ -112,6 +116,10 @@ class AdminGalleriesController extends CI_Controller {
         $counter = 0;
         define ("MAX_SIZE","400");
         $validExtensions = array('jpg', 'jpeg', 'gif', 'png');
+        echo '<pre>';
+        print_r($_FILES);
+        die();
+        
         foreach($_FILES['image']['name'] as $image) {
             //get image extension
             $extension = $this->imagevalidator->getExtension($image);

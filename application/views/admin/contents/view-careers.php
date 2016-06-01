@@ -11,16 +11,19 @@
                         </div>
                         <div class="panel-body">
                             <ul class="nav nav-tabs">
+                                <?php $tabsC = 0 ; ?>
                                 <?php foreach ($all_careers as $row) { ?>
-                                <li class="<?php echo ($row->id == 1) ? 'active' :'';?>">
+                                <li class="<?php echo ($tabsC == 0) ? 'active' :'';?>">
                                     <a data-toggle="tab" href="#<?php echo $row->id;?>"><?php echo $row->career_title;?></a>
                                 </li>
+                                <?php $tabsC++; ?>
                                 <?php } ?>
                             </ul>
 
                             <div class="tab-content">
+                                <?php $controls = 0; ?>
                                 <?php foreach ($all_careers as $row) { ?>
-                                <div id="<?php echo $row->id;?>" class="tab-pane fade in <?php echo ($row->id == 1) ? 'active' :'';?>">
+                                <div id="<?php echo $row->id;?>" class="tab-pane fade in <?php echo ($controls == 0) ? 'active' :'';?>">
                                     <br>
                                     <img src="<?php echo base_url().'images/careers/'.$row->career_image;?>" class="image-circle"/> <br><br>
                                     <a href="<?php echo base_url().'admin/admin-edit-career/'.$row->id;?>" class="btn btn-primary">Update</a>
@@ -35,6 +38,7 @@
                                     <p><?php echo $row->career_description;?></p>
                                     <?php echo $row->career_detail;?>
                                 </div>
+                                <?php $controls++;?>
                                 <?php } ?>
                             </div>
                             
