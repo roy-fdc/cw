@@ -13,7 +13,71 @@ class AdminUserController extends CI_Controller {
         $this->title = 'Admin-users';
         $this->pageHeader = 'User';
         $this->load->model('AdminUser');
+        $this->load->library('Alert');
     }
+    
+    public function settings() {
+        $response = $this->AdminUser->get_my_info($this->session_data['ADMIN_LOGIN_ID']);
+        $data = array(
+            'pagetitle' => $this->title,
+            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
+            'page_header' => $this->pageHeader,
+            'admin_info' => $response['account_info']
+        );
+        $this->load->view('admin/header/head', $data);
+        $this->load->view('admin/header/header-bar');
+        $this->load->view('admin/header/menu-bar');
+        $this->load->view('admin/contents/settings-admin-user');
+        $this->load->view('admin/footer/footer');
+    }
+    
+    public function setting_exec() {
+        $validate = array(
+            array(
+                'field' => 'firstname',
+                'label' => 'Firstname',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'lastname',
+                'label' => 'Lastname',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'username',
+                'label' => 'Username',
+                'rules' => 'required|min_length[5]|max_length[25]'
+            )
+        );
+        $this->form_validation->set_rules($validate);
+        if ($this->form_validation->run() == false) {
+            $this->settings();
+        } else {
+            $firstname = trim($this->input->post('firstname'));
+            $lastname = trim($this->input->post('lastname'));
+            $username = $this->input->post('username');
+            $id = $this->session_data['ADMIN_LOGIN_ID'];
+            $token = $this->session_data['ADMIN_LOGIN_TOKEN'];
+            $check_username = $this->AdminUser->check_username($id, $username);
+            if ($check_username['exist']) {
+                $this->session->set_flashdata('error', $this->alert->show('Username is already exist', 0));
+            } else {
+                $prepare_data = array(
+                    'admin_firstname' => $firstname,
+                    'admin_lastname' => $lastname,
+                    'admin_username' => $username
+                );
+                $response = $this->AdminUser->update($id, $token, $prepare_data);
+                if (!$response['updated']) {
+                    $this->session->set_flashdata('error', $this->alert->show('Cannot update your account!', 0));
+                } else {
+                    $this->session->set_flashdata('success', $this->alert->show('Account update success!', 1));
+                }
+            }
+            redirect(base_url().'admin/admin-settings');
+            exit();
+        }
+    } 
     
     public function add() {
         $data = array(

@@ -19,6 +19,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
     
     /*
+     * check existing username
+     * @params : $id (int), $token (String), $username (String)
+     * @return : $result (array)
+     */
+    public function check_username($id, $username) {
+        $query = $this->db->query('SELECT admin_username FROM admin_users WHERE id <>'.$id.' AND admin_username = "'.$username.'"');
+        $result['exist'] = ($query->num_rows() > 0) ? true : false;
+        return $result;
+    }
+    
+    /*
+     * Update admin account
+     * @params : $id (int), $token (String), $data (array)
+     * @return  : $result (array)
+     */
+    public function update($id, $token, $data) {
+        $this->db->where('id', $id);
+        $this->db->where('admin_token', $token);
+        $result['updated'] = ($this->db->update('admin_users', $data)) ? true : false;
+        return $result;
+    }
+    
+    /*
+     * get account information
+     * @params $id admin Id
+     * @return (object, boolean)
+     */
+    public function get_my_info($id) {
+        $fields = array(
+            'admin_firstname',
+            'admin_lastname',
+            'admin_username'
+        );
+        $this->db->where('id' , $id);
+        $this->db->select($fields);
+        $query = $this->db->get('admin_users');
+        if  ($query->num_rows() > 0) {
+            $result['account_info'] = $query->row();
+        } else {
+            $result['account_info'] = false;
+        }
+        return $result;
+    }
+    
+    /*
      * get all admin user
      * @params
      * @return : object
