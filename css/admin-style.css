@@ -10,3 +10,18 @@
   margin-right: 0px !important;
   margin-top: 30px;
 }
+
+.adminImg{
+    max-height: 100px;
+}
+
+.delete {
+    float: right;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    background-color: #428bca;
+    color: #fff;
+    padding: 2px 5px;
+    font-weight: bold;
+}

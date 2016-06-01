@@ -5,9 +5,9 @@
       <div class="section-padding">
         <div class="container">
           <div class="wow animated fadeInUp" data-wow-delay=".5s">
-            <h2 class="section-title">Career</h2><!-- /.section-title -->
-            <p class="section-description">
-              To get Polmo WordPress version subscribe now. Polmo theme is ablolutely free for your business or personal use.
+            <h2 class="section-title bold">Why Work Here?</h2><!-- /.section-title -->
+            <p class="career_desc">
+              We are dependable, innovative, adaptable, and easy to do business with. 
             </p><!-- /.section-description -->
 
             
