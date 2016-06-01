@@ -30,13 +30,13 @@
                 $delete = array(
                     'type' => 'submit',
                     'class' => 'btn btn-primary',
-                    'content' => '<span class="glyphicon glyphicon-trash"></span> Delete'
+                    'content' => 'Yes'
                 );
                 echo form_button($delete);
                 $cancel = array(
                     'class' => 'btn btn-default',
                     'data-dismiss' => 'modal',
-                    'content' => 'Cancel'
+                    'content' => 'No'
                 );
                 echo form_button($cancel);
                 ?>

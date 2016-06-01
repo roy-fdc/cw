@@ -39,6 +39,7 @@ class GalleryAlbum extends CI_Model {
      * @return : object
      */
     public function getAll(){
+        $this->db->order_by('created', 'desc');
         $query = $this->db->get('gallery_albums');
         return $query->result();
     }

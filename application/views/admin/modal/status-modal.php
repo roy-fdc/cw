@@ -4,11 +4,9 @@
     function change_status(id, status){
         $('#disable').modal('show');
         var text;
-        if (status ==  0) {
-            text = 'Enable';
-        } else {
-            text = 'Disable';
-        }
+        var mess = 'hide';
+        mess = (status ==  0) ? 'display' : mess;
+        text = "Are you sure you want to "+ mess +" this content";
         $('.title_ac').html(text);
         $('#ids').val(id);
         $('#status').val(status);
@@ -45,13 +43,13 @@
                 $submit = array(
                     'type' => 'submit',
                     'class' => 'btn btn-primary',
-                    'content' => 'Change'
+                    'content' => 'Yes'
                 );
                 echo form_button($submit);
                 $cancel = array(
                     'class' => 'btn btn-default',
                     'data-dismiss' => 'modal',
-                    'content' => 'Cancel'
+                    'content' => 'No'
                 );
                 echo form_button($cancel); 
                 ?>
