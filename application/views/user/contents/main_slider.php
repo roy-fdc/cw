@@ -5,7 +5,7 @@
       <ul class="bxslider">
         <li>
           <div class="head-overlay">
-            <img src="images/slider/1.jpg"/>
+            <img src="images/slider/svg.svg"/>
           </div><!-- /.head-overlay -->
           <div class="slider-text">
             <div class="slide-inner">
