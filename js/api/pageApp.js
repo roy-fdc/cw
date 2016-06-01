@@ -74,24 +74,18 @@ function all_benefit($scope, $http) {
 
     $http({method:'GET', url:base_url+'/all-benefit'}).success(function(response){
         $scope.benefits = response;
-    }).error(function (error) {
-        alert(error);
     });
 }
 
 function all_team($scope, $http) {
     $http({method:'GET', url:base_url+'/all-team'}).success(function(response){
         $scope.teams = response;
-    }).error(function (error) {
-        alert(error);
     });
 }
 
 function all_value($scope, $http) {  
     $http({method:'GET', url:base_url+'/all-value'}).success(function(response){
         $scope.values = response;
-    }).error(function (error) {
-        alert(error);
     });
 }
 
@@ -116,8 +110,6 @@ function company_vision($scope, $http) {
 function all_career($scope, $http) {
     $http({method:'GET', url:base_url+'/all-career'}).success(function(response){
         $scope.careers = response;
-    }).error(function (error) {
-        alert(error);
     });
 }
 
