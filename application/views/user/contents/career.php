@@ -20,14 +20,14 @@
 
 
   <section id="" class="blog text-center">
-    <div class="section-padding">
+      <div class="section-padding">
       <div class="container">
         <div class="row">
           <div class="section-details">
             <div class="post-area">
 
               <div class="col-md-4" ng-repeat="career in careers">
-                <article class="type-post post wow animated fadeInUp" data-wow-delay=".35s">
+                  <article class="type-post post wow animated fadeInUp" data-wow-delay=".35s" ng-click="showCareerDetail(career.id)">
                   <div class="post-thumbnail">
                     <img class="img-responsive picsGall imgCenter" src="<?php echo base_url();?>images/careers/{{career.career_image}}"/>
                   </div><!-- /.post-thumbnail -->
@@ -46,4 +46,18 @@
       </div><!-- /.container -->
     </div><!-- /.section-padding -->
   </section><!-- /#blog -->
+  
+    <section ng-show="careerVisibleContainer">
+        <div class="row">
+            <div class="col-sm-12 jumbotron">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <button class="btn btn-primary pull-right" ng-click="removeCareerDescription()"><span class="glyphicon glyphicon-remove"></span></button>
+                        <div ng-bind-html="careerDetailContainer"></div>
+                        <a href="#contact" ng-click="quickApply(careerClickId)">Click here to apply</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 

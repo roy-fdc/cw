@@ -79,7 +79,7 @@ class AdminCareersController extends CI_Controller {
      * @params :
      * @return : boolean
      */
-    private function handle_upload() {
+    function handle_upload() {
         if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
             if ($this->upload->do_upload('image')) {
                 // set a $_POST value for 'image' that we can use later
@@ -170,6 +170,7 @@ class AdminCareersController extends CI_Controller {
             );
             // sanitize Id 
             $id = $this->input->post('id');
+            echo $_POST['image'];
             if (!empty($_POST['image'])){
                 $to_update['career_image'] = $_POST['image'];
             }
@@ -179,8 +180,10 @@ class AdminCareersController extends CI_Controller {
                 $this->session->set_flashdata('error', $this->alert->show('Cannot update team', 0));
             } else {
                 // delete old image in server
-                if ($response['old_image_filename']) {
-                    unlink('images/careers/'.$response['old_image_filename']);
+                if ($response['old_image_filename'] && !empty($_POST['image'])) {
+                    if (file_exists('images/careers/'.$response['old_image_filename'])) {
+                        unlink('images/careers/'.$response['old_image_filename']);
+                    }
                 }
                 $this->session->set_flashdata('success', $this->alert->show('Update success', 1));
             }
@@ -194,7 +197,7 @@ class AdminCareersController extends CI_Controller {
      * @params :
      * @returns : $config (array)
      */
-    private function file_validation(){
+    public function file_validation(){
         $config['upload_path'] = 'images/careers';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         return $config;
@@ -205,7 +208,7 @@ class AdminCareersController extends CI_Controller {
      * @params :
      * @return : $validate (array)
      */
-    private function validation() {
+    public function validation() {
         // construct input validation in array form
         $validate = array(
             array(

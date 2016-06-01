@@ -15,10 +15,9 @@
           <input id="email" class="form-control pull-right" name="email" type="email" placeholder="Email *" value="" required>
           <input type="text" class="form-control numeric" id="phone" name="phone" placeholder="Phone number *" required>
           <select name="subject" id="subject" class="form-control" style="margin-bottom: 10px">
-            <option value="Inquiry">Inquiry</option>
-            <option value="Web Programmer">Web Programer</option>
-            <option value="Web Application Tester">Web Application Tester</option>
-            <option value="Web Translator">Web Translator</option>
+              <option value="careerClickName" ng-if="careerClickName !==''" selected>{{careerClickName}}</option>
+              <option value="Inquiry">Inquiry</option>
+              <option ng-repeat="carOp in careers" value="carOp.career_title" ng-if="carOp.career_title !== careerClickName">{{carOp.career_title}}</option>
           </select>
           <textarea id="message" class="form-control" name="message" placeholder="Your Message *" rows="3" required></textarea>
           <input type="file" class="form-control" id="file" name="attachment">

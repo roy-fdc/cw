@@ -132,13 +132,12 @@
                           <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
                         </div>
                         <div class="btn-group">
-                                    <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="icon-link"></i></a>
-                                      <div class="dropdown-menu input-append">
-                                              <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
-                                              <button class="btn" type="button">Add</button>
-                          </div>
-                          <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="icon-cut"></i></a>
-
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="icon-link"></i></a>
+                            <div class="dropdown-menu input-append">
+                                <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
+                                <button class="btn" type="button">Add</button>
+                            </div>
+                            <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="icon-cut"></i></a>
                         </div>
 
                         <div class="btn-group">
