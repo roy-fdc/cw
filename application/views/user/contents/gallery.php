@@ -16,7 +16,7 @@
           <div class="project-items" data-animated="fadeIn" ng-show="albumContainer" style="padding:20px"> 
             <div class="item cat-2 cat-3 albums" ng-repeat="album in albums" >
               <a class="image-popup-vertical-fit" ng-click="viewByAlbum(album.album_id)">
-              <img src="images/galleries/{{ album.images[0].image_name}}" data-at2x="images/galleries/{{ album.images[0].image_name}}" alt="Item Image">
+              <img src="images/galleries/{{ album.images[0].image_name}}" data-at2x="images/galleries/{{ album.images[0].image_name}}" alt="Item Image" style="max-height: 225px;">
               </a>
               <div class="item-details">
                 <h3 class="project-title">{{ album.album_name }}</h3>

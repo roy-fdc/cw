@@ -70,7 +70,7 @@
                                     <div class="col-md-2"> 
 
                                         <a class="thumbnail">
-                                        <img src="<?php echo base_url().'images/galleries/thumb/'.$img['image_name'];?>" class="img-responsive adminImg"/>
+                                        <img src="<?php echo base_url().'images/galleries/thumb/'.$img['image_name'];?>" class="img-responsive adminImg" style="height:155px;"/>
                                         </a>
                                         <a style="cursor:pointer"onclick="delete_item(<?php echo $img['image_id']; ?>)">
                                             <div class="delete">x</div>
