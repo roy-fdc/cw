@@ -44,6 +44,27 @@ myApp.controller('fupController', function ($scope, $http) {
         $scope.IsVisible = false;
     }
     
+    // career option
+    $scope.careerClickName = '';
+    $scope.quickApply = function() {
+        $scope.careerClickName = $scope.careername;
+    }
+    
+    $scope.removeCareerDescription = function() {
+        $scope.careerVisibleContainer = false;
+        $scope.careerClickName = '';
+    }
+    // for career single show details
+    $scope.showCareerDetail = function(id) {
+        $scope.careerVisibleContainer = true;
+        angular.forEach($scope.careers, function(career) {
+            if (career.id == id) {
+                $scope.careerDetailContainer = career.career_detail;
+                $scope.careername = career.career_title;
+            }
+        })
+    }
+    
 });
 
 function all_benefit($scope, $http) {
@@ -89,7 +110,7 @@ function company_vision($scope, $http) {
     });
 }
 
-function all_career($scope = null, $http = null) {
+function all_career($scope, $http) {
     $http({method:'GET', url:base_url+'/all-career'}).success(function(response){
         $scope.careers = response;
     }).error(function (error) {
