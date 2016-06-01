@@ -20,7 +20,7 @@
               <option ng-repeat="carOp in careers" value="carOp.career_title" ng-if="carOp.career_title !== careerClickName">{{carOp.career_title}}</option>
           </select>
           <textarea id="message" class="form-control" name="message" placeholder="Your Message *" rows="3" required></textarea>
-          <input type="file" class="form-control" id="file" name="attachment">
+          <input type="file" class="form-control" id="myfile" name="attachment">
           <button name="submit" class="btn submit-btn" type="submit" id="submit">Send Message</button>
           <button name="reset" class="btn submit-btn" type="reset" id="reset">Reset</button>
         </form><!-- /#contactform -->
@@ -29,6 +29,27 @@
   </section>
 
   <!-- Contact Section -->
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#myfile').bind('change', function() {
+        //get file extension
+        var ext = $('#myfile').val().split('.').pop().toLowerCase();
+        if($.inArray(ext, ['doc', 'docx', 'pdf', 'odt', 'rt']) == -1) {
+            alert('Error: Invalid file extension!');
+            $('#myfile').val('');
+        }
+        //get file size
+        var iSize = (this.files[0].size / 1024); 
+        iSize = (Math.round(iSize * 100) / 100)
+        if(iSize > 1000) {
+          alert('Error: File should not beyond 1mb.')
+          $('#myfile').val('');
+        }
+
+      });
+    });
+  </script>
 
 
 

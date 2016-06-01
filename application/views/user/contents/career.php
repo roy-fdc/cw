@@ -52,7 +52,7 @@
             <div class="col-sm-12 jumbotron">
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
-                        <button class="btn btn-primary pull-right" ng-click="removeCareerDescription()"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button class="backToback btn btn-primary pull-right" ng-click="removeCareerDescription()"><span class="glyphicon glyphicon-remove"></span></button>
                         <div ng-bind-html="careerDetailContainer"></div>
                         <a href="#contact" ng-click="quickApply(careerClickId)">Click here to apply</a>
                     </div>
@@ -60,4 +60,11 @@
             </div>
         </div>
     </section>
-
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.backToback').click(function(){
+          var y = $(window).scrollTop();  //your current y position on the page
+          $(window).scrollTop(y-450);    
+        });
+      });
+    </script>
