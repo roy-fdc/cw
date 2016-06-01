@@ -36,7 +36,25 @@
 .padd{
     padding: 85px 0px 0px 0px;
 }
-
+.padds{
+    padding: 40px 10px !important;
+}
+.bold{
+    font-weight: bold !important;
+}
+.gallery{
+    background-color: #ccc;
+    padding: 20px;
+}
+.career_desc{
+    font-size: 1.875em;
+    font-weight: 300;
+    color: #fff;
+    line-height: 30px;
+}
+.gray{
+    color: #8B4513 !important;
+}
 /*animation*/
 .animate-enter, 
 .animate-leave

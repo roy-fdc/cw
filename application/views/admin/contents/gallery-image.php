@@ -66,11 +66,15 @@
                                     <hr>
                                     <?php if (isset($row['images'])) { ?>
                                     <?php foreach($row['images'] as $img) { ?>
-                                    <div class="col-sm-1">
-                                        <div class="alert alert-info">
-                                        <a onclick="delete_item(<?php echo $img['image_id']; ?>)" id="close"></a>
-                                        <img src="<?php echo base_url().'images/galleries/'.$img['image_name'];?>" class="img-responsive"/>
-                                        </div>
+
+                                    <div class="col-md-2"> 
+
+                                        <a class="thumbnail">
+                                        <img src="<?php echo base_url().'images/galleries/thumb/'.$img['image_name'];?>" class="img-responsive adminImg"/>
+                                        </a>
+                                        <a style="cursor:pointer"onclick="delete_item(<?php echo $img['image_id']; ?>)">
+                                            <div class="delete">x</div>
+                                        </a>
                                     </div>
                                     <?php } ?>
                                     <?php } ?>
