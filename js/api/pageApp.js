@@ -3,6 +3,22 @@ var base_url = "http://comweb.dev/api";
 var myApp = angular.module('fupApp',['ngSanitize','jkuri.gallery']);
 //var myApp = angular.module('fupApp',[]);
 
+myApp.directive('attachment', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.attachment);
+            var modelSetter = model.assign;
+            
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
+
 myApp.controller('fupController', function ($scope, $http) {
     
     $scope.IsVisible = false;
@@ -67,6 +83,32 @@ myApp.controller('fupController', function ($scope, $http) {
             }
         })
     }
+
+    //sendMail
+    $scope.sendMail = function() {
+        var _data = {};
+        _data.Post = $scope.add;
+        var bl = new FormData();
+
+        bl.append('attachment', $scope.attachment);
+        bl.append('name', $scope.name);
+        bl.append('email', $scope.email);
+        bl.append('phone', $scope.phone);
+        bl.append('subject', $scope.subject);
+        bl.append('message', $scope.message);               
+
+        $http
+            .post('http://fdc-inc.com/new-design/contact-us/processMail', bl,{
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            })
+            .success(function(response) {
+                $('#contactform').find('input[type=text], input[type=file], input[type=password], input[type=number], input[type=email], textarea, select').val('');
+                load();
+            }).error(function(data, status, headers, config) {
+        });
+    }
+
     
 });
 

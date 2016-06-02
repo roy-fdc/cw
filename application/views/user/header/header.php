@@ -7,8 +7,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Polmo - One Page HTML5 Template By Jewel Theme</title>
-  <meta name="description" content="Polmo - One Page HTML5 Template By Jewel Theme">
+  <title>FDC-INC.COM | Come and work with us. Enjoy working while learning something new as you get to know a diverse team that is willing to help you succeed.</title>
+  <meta name="description" content="FDC-INC.COM | Come and work with us. Enjoy working while learning something new as you get to know a diverse team that is willing to help you succeed.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 

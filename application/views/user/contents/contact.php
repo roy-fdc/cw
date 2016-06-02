@@ -9,21 +9,22 @@
       </div><!-- /#google-map -->
 
       <div class="form-area text-center wow animated fadeInRight" data-wow-delay=".75s">
-        <h2 class="section-title bold"><span>CONTACT</span> WITH US</h2><!-- /.section-title -->
-        <form action="email.php" method="post" id="contactform" class="contactform">
-          <input id="name" class="form-control" name="name" type="text" placeholder="Name *" value="" required>
-          <input id="email" class="form-control pull-right" name="email" type="email" placeholder="Email *" value="" required>
-          <input type="text" class="form-control numeric" id="phone" name="phone" placeholder="Phone number *" required>
-          <select name="subject" id="subject" class="form-control" style="margin-bottom: 10px">
+        <h2 class="section-title bold"><span>CONTACT</span> US</h2><!-- /.section-title -->
+        <form id="contactform" class="contactform" role="form" name="myForm"  ng-submit="sendMail()">
+        <?php echo form_open_multipart(base_url().'contact-us/processMail', array('id'=>'contactform', 'class'=>'contactform'));?>
+          <input id="name" ng-model="name" class="form-control alpha" name="name" type="text" placeholder="Name *" value="" required>
+          <input id="email" ng-model="email" class="form-control pull-right" name="email" type="email" placeholder="Email *" value="" required>
+          <input type="text" ng-model="phone" class="form-control numeric" id="phone" name="phone" placeholder="Phone number *" required>
+          <select name="subject" ng-model="subject" id="subject" class="form-control" style="margin-bottom: 10px">
               <option value="careerClickName" ng-if="careerClickName !==''" selected>{{careerClickName}}</option>
               <option value="Inquiry">Inquiry</option>
               <option ng-repeat="carOp in careers" value="carOp.career_title" ng-if="carOp.career_title !== careerClickName">{{carOp.career_title}}</option>
           </select>
-          <textarea id="message" class="form-control" name="message" placeholder="Your Message *" rows="3" required></textarea>
-          <input type="file" class="form-control" id="myfile" name="attachment">
-          <button name="submit" class="btn submit-btn" type="submit" id="submit">Send Message</button>
-          <button name="reset" class="btn submit-btn" type="reset" id="reset">Reset</button>
-        </form><!-- /#contactform -->
+          <textarea id="message" ng-model="message" class="form-control" name="message" placeholder="Your Message *" rows="2" required></textarea>
+          <input type="file" class="form-control" id="myfile" name="attachment" attachment="attachment">
+          <input type="submit" class="btn submit-btn" id="submit" value="Send Message">
+          <input type="reset" class="btn submit-btn" id="reset" value="Reset">
+          </form>
       </div><!-- /.form-area -->
     </div><!-- /.contact-inner -->
   </section>
@@ -32,6 +33,16 @@
 
   <script type="text/javascript">
     $(document).ready(function(){
+      $('.numeric').keypress(function(e) {
+        if(e.charCode < 48 || e.charCode > 57) return false;
+      });
+      $('.numeric').bind("paste", function(e) {
+          e.preventDefault();
+      });
+      $(".alpha").keypress(function(e){
+        if((e.charCode < 97 || e.charCode > 122) && (e.charCode < 65 || e.charCode > 90) && (e.charCode != 45) && (e.charCode != 32)) return false;
+      });
+
       $('#myfile').bind('change', function() {
         //get file extension
         var ext = $('#myfile').val().split('.').pop().toLowerCase();
