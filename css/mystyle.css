@@ -55,29 +55,56 @@
 .gray{
     color: #8B4513 !important;
 }
-/*animation*/
-.animate-enter, 
-.animate-leave
-{ 
-    -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    position: relative;
-    display: block;
-} 
- 
-.animate-enter.animate-enter-active, 
-.animate-leave {
-    opacity: 1;
-    top: 0;
-    height: 30px;
+
+.navbar{
+    min-height: 80px !important;
 }
- 
-.animate-leave.animate-leave-active,
-.animate-enter {
-    opacity: 0;
-    top: -50px;
-    height: 0px;
+.navbar-brand img{
+    height: 66px !important;
+}
+#main-menu{
+    padding: 15px 0px !important;
+}
+.font14{
+    font-size: 14px;
+}
+.padd35{
+    padding: 0 0 35px 0;
+}
+.navbar-brand{
+    height: 80px !important;
+}
+
+
+.polaroid {
+    /* ... */
+   -webkit-transform: rotate(10deg);
+   -webkit-transition: -webkit-transform 0.5s ease-in;
+}
+.polaroid:hover,
+.polaroid:focus,
+.polaroid:active {
+    /* ... */
+    -webkit-transform: rotate(0deg);
+}
+
+
+.multiple-borders {
+  -webkit-box-shadow:
+     0px 0px 0px 2px rgba(0,0,0,0.6),
+                0px 0px 0px 14px #fff,
+                0px 0px 0px 18px rgba(0,0,0,0.2),
+                6px 6px 8px 17px #555;
+  
+     -moz-box-shadow:
+     0px 0px 0px 2px rgba(0,0,0,0.6),
+                0px 0px 0px 14px #fff,
+                0px 0px 0px 18px rgba(0,0,0,0.2),
+                6px 6px 8px 17px #555;
+  
+          box-shadow:
+     0px 0px 0px 2px rgba(0,0,0,0.6),
+                0px 0px 0px 14px #fff,
+                0px 0px 0px 18px rgba(0,0,0,0.2),
+                6px 6px 8px 17px #555;
 }
