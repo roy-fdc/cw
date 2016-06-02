@@ -21,7 +21,6 @@ class ContactusController extends CI_Controller {
     }
 
     public function processMail(){
-        var_dump($_FILES);
         if (!empty($_FILES['attachment']['name'])) {
             $this->load->library('upload');
             $config['upload_path'] = 'images/attachment/';
@@ -50,8 +49,10 @@ class ContactusController extends CI_Controller {
             if(isset($data)){
                 unlink($data['upload_data']['full_path']);
             }
-        } 
-        redirect(base_url().'#contact');
+            echo "Email successfully sent.";
+        }  else{
+            echo "Error in sending email.";
+        }
     }
     
 }

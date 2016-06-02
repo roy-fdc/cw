@@ -665,7 +665,7 @@ button:focus {
     top: 0px;
     right: 0px;
     height: 100%;
-    padding: 15px 8% 15px 55px;
+    padding: 0px 8% 15px 55px;
 }
 .contactform {
     text-align: left;
@@ -676,8 +676,8 @@ button:focus {
     border-bottom: 1px solid #e6e6e6 !important;
     box-shadow: none;
     margin-bottom: 7px;
-    min-width: 380px;
-    padding: 8px 15px;
+    min-width: 100px;
+    padding: 6px 15px;
 }
 .contactform .form-control {
     border: none;
