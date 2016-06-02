@@ -15,12 +15,13 @@
 
           <div class="project-items" data-animated="fadeIn" ng-show="albumContainer" style="padding:20px"> 
             <div class="item cat-2 cat-3 albums" ng-repeat="album in albums" >
-              <a class="image-popup-vertical-fit" ng-click="viewByAlbum(album.album_id)">
-              <img src="images/galleries/{{ album.images[0].image_name}}" data-at2x="images/galleries/{{ album.images[0].image_name}}" alt="Item Image" style="max-height: 225px;">
-              </a>
+              <a class="image-popup-vertical-fit" ng-click="viewByAlbum(album.album_id)" >
+              <img src="images/galleries/{{ album.images[0].image_name}}" data-at2x="images/galleries/{{ album.images[0].image_name}}" alt="Item Image" style="max-height: 225px; border:3px solid #000; padding: 15px;" class="multiple-borders">
+              
               <div class="item-details">
                 <h3 class="project-title">{{ album.album_name }}</h3>
               </div><!-- /.item-details -->
+              </a>
             </div><!-- /.item -->
           </div>
 
@@ -29,7 +30,7 @@
                 <button class="btn btn-primary" ng-click="closeImages()">Close album</button>
                 <h3>{{ albumName }}</h3>
                 <div class="center-block">
-                    <ng-gallery images="ctrl.images" thumbs-num="10" ></ng-gallery>
+                    <ng-gallery images="ctrl.images" thumbs-num="10"></ng-gallery>
                 </div>
             </div>
 

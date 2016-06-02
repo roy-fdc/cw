@@ -139,13 +139,13 @@ function company_detail($scope, $http) {
 
 function company_mission($scope, $http) {   
     $http.get(base_url+'/company-mission').success(function(data){
-        $scope.company_mission = data;
+        $scope.company_mission = data[0].description;
     });
 }
 
 function company_vision($scope, $http) {  
      $http.get(base_url+'/company-vision').success(function(data){
-        $scope.company_vision = data;
+        $scope.company_vision = data[0].description;
     });
 }
 

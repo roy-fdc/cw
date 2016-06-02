@@ -7,7 +7,7 @@
           <div class="row">
             <div class="section-top wow animated fadeInUp" data-wow-delay=".5s">
               <h2 class="section-title bold" style="text-align: center;"><span>ABOUT </span>US</h2>
-              <div ng-bind-html="detail"></div>
+              <div ng-bind-html="detail" class="font14"></div>
             </div><!-- /.section-top -->
           </div>
 
@@ -17,17 +17,17 @@
 
     <div class="about-middle">
       <div class="about-breifing">
-        <div class="col-md-6 col-sm-6" style="height: 200px;">
-          <div class="item media wow animated fadeInLeft" data-wow-delay=".35s">
+        <div class="col-md-6 col-sm-6">
+          <div class="item media wow animated fadeInLeft" data-wow-delay=".35s" style="padding: 0 10px;">
               <h2 class="section-title"><span class="gray bold">M</span>ission</h2><!-- /.section-title -->
-              <p class="subtitile white">{{ company_mission[0].description }}</p>
+              <div ng-bind-html="company_mission" class="font14 padd35"></div>
           </div><!-- /.item -->
         </div>
 
-        <div class="col-md-6 col-sm-6" style="height: 200px;">
-          <div class="item media wow animated fadeInLeft" data-wow-delay=".55s">
+        <div class="col-md-6 col-sm-6" >
+          <div class="item media wow animated fadeInLeft" data-wow-delay=".55s" style="padding: 0 10px;">
               <h2 class="section-title "><span class="gray bold">V</span>ission</h2><!-- /.section-title -->
-              <p class="subtitile white">{{ company_vision[0].description }}</p>
+              <div ng-bind-html="company_vision" class="font14 padd35"></div>
           </div><!-- /.item -->
         </div>
 
@@ -58,7 +58,7 @@
                 <h2 class="section-title bold" style="text-align: center;"><span>OUR </span>TEAM</h2>
               </div><!-- /.section-top -->
 
-              <div class="col-md-3" ng-repeat="team in teams" style="height: 385px;">
+              <div class="col-md-3" ng-repeat="team in teams">
                 <div class="know-about-us wow animated fadeInLeft" data-wow-delay=".5s">
                   <img class="img-responsive picsGall imgCenter" src="<?php echo base_url();?>images/teams/{{team.team_image}}"/>
                   <div class="post-content center">
