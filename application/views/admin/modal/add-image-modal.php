@@ -37,14 +37,14 @@
                 $submit_button = array(
                     'type' => 'submit',
                     'class' => 'btn btn-primary',
-                    'content' => 'Add'
+                    'content' => '<span class="glyphicon glyphicon-plus"></span> Add'
                 );
                 echo form_button($submit_button);
                 
                 $cancel_button = array(
                     'class' => 'btn btn-default',
                     'data-dismiss' => 'modal',
-                    'content' => 'Cancel'
+                    'content' => '<span class="glyphicon glyphicon-off"></span> Cancel'
                 );
                 echo form_button($cancel_button);
                 ?>

@@ -3,6 +3,17 @@
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
+                    <div style="" class="row">
+                        <div class="col-xs-6" style="padding: 8px 8px 8px 35px">
+                            <img src="<?php echo base_url().'images/users/'.$account->admin_image; ?>" style="height: 100px; width: 100px; border: 1px solid black" class="img-circle img-responsive changeProfile"/>
+                        </div>
+                        <div class="col-xs-4 text-center" style="padding: 35px 0px 0px 0px;">
+                            <?php echo ucwords(strtolower($account->admin_firstname.' '.$account->admin_lastname)); ?>
+                            <br>
+                            <span class="glyphicon glyphicon-ok-circle" style="color: green"></span>
+                            <small>Online</small>
+                        </div>
+                    </div>
                     <ul class="nav" id="side-menu">
                         <li>
                             <a href="<?php echo base_url();?>admin/homepage"><i class="glyphicon glyphicon-home"></i> Dashboard</a>

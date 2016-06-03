@@ -11,9 +11,11 @@ class AdminTeamsController extends CI_Controller {
             redirect(base_url().'admin');
         }
         $this->load->model('Team');
+        $this->load->model('AdminUser');
         $this->load->library('alert');
         $this->title = 'Admin-teams';
         $this->pageHeader = 'Teams';
+        $this->adminInfo = $this->AdminUser->get_info($this->session_data['ADMIN_LOGIN_ID']);
     }
     
     /*
@@ -25,18 +27,20 @@ class AdminTeamsController extends CI_Controller {
         // construct data to view in array form
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'page_header' => $this->pageHeader,
             'form' => array(
                 'name' => true,
                 'position' => true,
                 'action' => 'admin-add-team-exec'
-            )
+            ),
+            'account' => $this->adminInfo,
+            'form_name' => 'Team'
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
         $this->load->view('admin/header/menu-bar');
         $this->load->view('admin/contents/form-content');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
     }
     
@@ -200,12 +204,12 @@ class AdminTeamsController extends CI_Controller {
         // construct data to view via array form
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'all_teams' => $this->team_table($teams),
             'action_status_link' => 'admin-status-team',
             'action_delete_link' => 'admin-delete-team',
             'page_header' => $this->pageHeader,
-            'item_name' => 'team'
+            'item_name' => 'team',
+            'account' => $this->adminInfo
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
@@ -213,6 +217,7 @@ class AdminTeamsController extends CI_Controller {
         $this->load->view('admin/contents/view-teams');
         $this->load->view('admin/modal/status-modal');
         $this->load->view('admin/modal/delete-modal');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
     }
     
@@ -232,11 +237,12 @@ class AdminTeamsController extends CI_Controller {
         $this->table->set_heading('No', 'Image', 'Name', 'Position', 'Description', 'Status', 'Action');
         $counter = 1;
         foreach($teams as $row) {
-            $btn_text = ($row->team_status == 0) ? 'Enable' : 'Disable';
+            $btn_text = ($row->team_status == 0) ? ' Enable' : ' Disable';
             $btn_type = ($row->team_status == 0) ? 'success' : 'warning';
-            $update_btn = '<a href="'.base_url().'admin/admin-edit-team/'.$row->id.'" class="btn btn-primary">Update</a>';
-            $change_status_btn = '<a onclick="change_status('.$row->id.', '.$row->team_status.')"  class="btn btn-'.$btn_type.'">'.$btn_text.'</a>';
-            $delete_btn = '<a onclick="delete_item('.$row->id.')" class="btn btn-danger">Delete</a>';
+            $status_icon = ($row->team_status == 0) ? 'ok-sign' : 'remove-sign';
+            $update_btn = '<a href="'.base_url().'admin/admin-edit-team/'.$row->id.'" class="btn btn-primary">'.$this->get_icon('pencil').' Update</a>';
+            $change_status_btn = '<a onclick="change_status('.$row->id.', '.$row->team_status.')"  class="btn btn-'.$btn_type.'">'.$this->get_icon($status_icon).$btn_text.'</a>';
+            $delete_btn = '<a onclick="delete_item('.$row->id.')" class="btn btn-danger">'.$this->get_icon('trash').'Delete</a>';
             $to_row = array(
                 $counter++,
                 '<img src="'.base_url().'images/teams/'.$row->team_image.'" width="50" height="50"/>',
@@ -252,6 +258,16 @@ class AdminTeamsController extends CI_Controller {
     }
     
     /*
+     * get button icon
+     * @params : $name (String)
+     * @return : $icon (String)
+     */
+    private function get_icon($name) {
+        $icon = '<span class="glyphicon glyphicon-'.$name.'"></span>';
+        return $icon;
+    }
+    
+    /*
      * admin/admin-edit-team/1
      * @params: $id (int)
      * @return : void
@@ -260,14 +276,15 @@ class AdminTeamsController extends CI_Controller {
         // construct data to view in array form
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'team' => $this->Team->single($id),
-            'page_header' => $this->pageHeader
+            'page_header' => $this->pageHeader,
+            'account' => $this->adminInfo
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
         $this->load->view('admin/header/menu-bar');
         $this->load->view('admin/contents/edit-teams');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
     }
     

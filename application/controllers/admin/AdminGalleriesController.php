@@ -11,9 +11,11 @@ class AdminGalleriesController extends CI_Controller {
         }
         $this->load->model('GalleryAlbum');
         $this->load->model('Gallery');
+        $this->load->model('AdminUser');
         $this->load->library('Alert');
         $this->load->library('ImageValidator');
         $this->load->library('Generate');
+        $this->adminInfo = $this->AdminUser->get_info($this->session_data['ADMIN_LOGIN_ID']);
     }
     
     /*
@@ -28,11 +30,11 @@ class AdminGalleriesController extends CI_Controller {
         $data = array(
             'pagetitle' => 'Admin-hompage',
             'page_header' => 'Image Gallery',
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'action_status_link' => 'admin-gallery-status',
             'action_delete_link' => 'admin-gallery-image-delete',
             'item_name' => 'image',
-            'image_by_album' => $this->gallery_by_album($album)
+            'image_by_album' => $this->gallery_by_album($album),
+            'account' => $this->adminInfo
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
@@ -43,7 +45,45 @@ class AdminGalleriesController extends CI_Controller {
         $this->load->view('admin/modal/update-album-modal');
         $this->load->view('admin/modal/delete-modal');
         $this->load->view('admin/modal/delete-album-modal');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
+    }
+    
+        /*
+     * admin/admin-album-add-exec
+     * @params :
+     * @return : void
+     */
+    public function add_album_exec() {
+        // validation in array
+        $validate = array(
+            array(
+                'field' => 'album',
+                'label' => 'Album name',
+                'rules' => 'required'
+            )
+        );
+        // run the validation
+        $this->form_validation->set_rules($validate);
+        if ($this->form_validation->run() == false) {
+            $this->admin->index();
+        } else {
+            // sanitize inputed data
+            $name = trim($this->input->post('album'));
+            // prepare data to save
+            $to_save = array(
+                'album_name' => $name,
+                'created' => date('Y-m-d H:i:s')
+            );
+            $response = $this->GalleryAlbum->insert($to_save);
+            if (!$response['created']) {
+                $this->session->set_flashdata('error', $this->alert->show('Cannot add album name', 0));
+            } else {
+                $this->session->set_flashdata('success', $this->alert->show('Album name add success!', 1));
+            }
+            redirect(base_url().'admin/admin-gallery');
+            exit();
+        }
     }
     
     /*
@@ -101,6 +141,7 @@ class AdminGalleriesController extends CI_Controller {
             }
             $this->session->set_flashdata('success', $this->alert->show('Image delete success!', 1));
         }
+        $this->session->set_flashdata('accor_id', $response['album_id']);
         redirect(base_url().'admin/admin-gallery');
         exit();
     }
@@ -211,9 +252,9 @@ class AdminGalleriesController extends CI_Controller {
             foreach($not_upload as $not) {
                 $errorMessage = $errorMessage.'<li>'.$not['image_name'].' - ('.$not['error'].')</li>';
             }
-            $this->session->set_flashdata('error', $this->alert->show('<ul>'.$errorMessage.'</ul>', 0));
+            $this->session->set_flashdata('add_error', $this->alert->show('<ul>'.$errorMessage.'</ul>', 0));
         }
-
+        $this->session->set_flashdata('accor_id', $album_id);
         redirect(base_url().'admin/admin-gallery');
         exit();      
     }

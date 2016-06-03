@@ -57,6 +57,8 @@ $route['admin/admin-login-exec'] = 'admin/AdminLoginController/login_exec';
 $route['admin/admin-logout'] = 'admin/AdminLogoutController';
 $route['admin/admin-settings'] = 'admin/AdminUserController/settings';
 $route['admin/admin-settings-exec'] = 'admin/AdminUserController/setting_exec';
+$route['admin/admin-change-password'] = 'admin/AdminUserController/change_password_exec';
+$route['admin/admin-change-profile'] = 'admin/AdminUserController/change_profile';
 $route['admin/homepage'] = 'admin/AdminHomepageController';
 $route['admin/admin-user-add'] = 'admin/AdminUserController/add';
 $route['admin/admin-adduser-exec'] = 'admin/AdminUserController/add_exec';
@@ -98,7 +100,7 @@ $route['admin/admin-status-value'] = 'admin/AdminAboutValuesController/change_st
 $route['admin/admin-delete_value'] = 'admin/AdminAboutValuesController/delete';
 //gallery album
 $route['admin/admin-gallery'] = 'admin/AdminGalleriesController';
-$route['admin/admin-album-add-exec'] = 'admin/AdminGalleryAlbumsController/add_album_exec';
+$route['admin/admin-album-add-exec'] = 'admin/AdminGalleriesController/add_album_exec';
 $route['admin/admin-add-gallery-exec'] = 'admin/AdminGalleriesController/add_image_exec';
 $route['admin/admin-gallery-status'] = 'admin/AdminGalleryAlbumsController/change_status';
 $route['admin/admin-album-update-exec'] = 'admin/AdminGalleryAlbumsController/update';

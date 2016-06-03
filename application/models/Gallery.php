@@ -44,8 +44,15 @@ class Gallery extends CI_Model {
      * @return : $result (array)
      */
     public function delete($id) {
-        $filename = $this->get_image_filename($id);
-        $result['old_image_filename'] = ($filename) ? $filename : false;
+        $image_info = $this->get_image_filename($id);
+        if ($image_info == false) {
+            $result['old_image_filename'] = false;
+        } else {
+            $result = array(
+                'old_image_filename' => $image_info['filename'],
+                'album_id' => $image_info['album_id']
+            );
+        }
         $this->db->where('id', $id);
         $result['deleted'] = ($this->db->delete('galleries')) ? true : false;
         return $result;
@@ -58,15 +65,18 @@ class Gallery extends CI_Model {
      */
     private function get_image_filename($id) {
         $this->db->where('id', $id);
-        $this->db->select(array('image_name'));
+        $this->db->select(array('image_name', 'album_id'));
         $result = $this->db->get('galleries');
         if ($result->num_rows() > 0) {
             $row = $result->row();
-            $filename = $row->image_name;
+            $image_info = array(
+                'filename' => $row->image_name,
+                'album_id' => $row->album_id
+            );
         } else {
-            $filename = false;
+            $image_info = false;
         }
-        return $filename;
+        return $image_info;
     }
     
     /*

@@ -39,15 +39,15 @@
                 $submit_btn = array(
                     'type' => 'submit',
                     'class' => 'btn btn-primary',
-                    'content' => 'Update'
+                    'content' => '<span class="glyphicon glyphicon-pencil"></span> Update'
                 );
                 $cancel_btn = array(
                     'class' => 'btn btn-default',
                     'data-dismiss' => 'modal',
-                    'content' => 'Cancel'
+                    'content' => '<span class="glyphicon glyphicon-off"></span> Cancel'
                 );
-                echo form_button($cancel_btn);
                 echo form_button($submit_btn);
+                echo form_button($cancel_btn);
                 ?>
             </div>
             <?php echo form_close(); ?>
