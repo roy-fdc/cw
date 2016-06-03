@@ -7,7 +7,7 @@
           <div class="wow animated fadeInUp" data-wow-delay=".5s">
             <h2 class="section-title bold">Why Work Here?</h2><!-- /.section-title -->
             <p class="career_desc">
-              We are dependable, innovative, adaptable, and easy to do business with. 
+              We are dependable, innovative, adaptable, and easy to do business with. Aside that we value the talent & expertise of every employee, we provide benefits on day one, industry leading training and with a team like no other.
             </p><!-- /.section-description -->
 
             

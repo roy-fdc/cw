@@ -370,7 +370,7 @@ button:focus {
 /* 6 ------- Subscribe Section Styles ---------*/
 
 .subscribe-section {
-    background: url(../../images/background/it.jpg) no-repeat center center fixed;
+    /*background: url(../../images/background/it.jpg) no-repeat center center fixed;*/
     background-size: cover;
     color: #ffffff;
 }
@@ -677,7 +677,7 @@ button:focus {
     box-shadow: none;
     margin-bottom: 7px;
     min-width: 100px;
-    padding: 6px 15px;
+    padding: 5px 15px;
 }
 .contactform .form-control {
     border: none;
