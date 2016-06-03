@@ -11,9 +11,11 @@ class AdminAboutValuesController extends CI_Controller {
             redirect(base_url().'admin');
         }
         $this->load->model('AboutValue');
+        $this->load->model('AdminUser');
         $this->load->library('Alert');
         $this->title = 'Admin-values';
         $this->pageHeader = 'Company values';
+        $this->adminInfo = $this->AdminUser->get_info($this->session_data['ADMIN_LOGIN_ID']);
     }
     
     /*
@@ -24,17 +26,19 @@ class AdminAboutValuesController extends CI_Controller {
     public function index(){
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'page_header' => $this->pageHeader,
             'form' => array(
                 'title' => true,
                 'action' => 'admin-add-value-exec'
-            )
+            ),
+            'account' => $this->adminInfo,
+            'form_name' => 'Company Values'
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
         $this->load->view('admin/header/menu-bar');
         $this->load->view('admin/contents/form-content');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
         
     }
@@ -144,12 +148,12 @@ class AdminAboutValuesController extends CI_Controller {
         // construct data for view in array form
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'page_header' => $this->pageHeader,
             'all_values' => $this->AboutValue->get_all(),
             'action_status_link' => 'admin-status-value',
             'action_delete_link' => 'admin-delete_value',
-            'item_name' => 'value'
+            'item_name' => 'value',
+            'account' => $this->adminInfo
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
@@ -157,6 +161,7 @@ class AdminAboutValuesController extends CI_Controller {
         $this->load->view('admin/contents/view-values');
         $this->load->view('admin/modal/status-modal');
         $this->load->view('admin/modal/delete-modal');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
     }
     
@@ -169,14 +174,15 @@ class AdminAboutValuesController extends CI_Controller {
         // construct data for view in array form
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'page_header' => $this->pageHeader,
-            'value' => $this->AboutValue->single($id)
+            'value' => $this->AboutValue->single($id),
+            'account' => $this->adminInfo
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
         $this->load->view('admin/header/menu-bar');
         $this->load->view('admin/contents/edit-values');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
     }
     

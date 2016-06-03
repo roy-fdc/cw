@@ -11,9 +11,11 @@ class AdminBenefitsController extends CI_Controller {
             redirect(base_url().'admin');
         }
         $this->load->model('Benefit');
+        $this->load->model('AdminUser');
         $this->load->library('Alert');
         $this->title = 'Admin-benefits';
         $this->pageHeader = 'Benefits';
+        $this->adminInfo = $this->AdminUser->get_info($this->session_data['ADMIN_LOGIN_ID']);
     }
 
     /*
@@ -25,17 +27,19 @@ class AdminBenefitsController extends CI_Controller {
         //construct data for view in array form
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'page_header' => $this->pageHeader,
             'form' => array(
                 'title' => true,
                 'action' => 'admin-add-benefit-exec'
-            )
+            ),
+            'account' => $this->adminInfo,
+            'form_name' => 'Benefits'
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
         $this->load->view('admin/header/menu-bar');
         $this->load->view('admin/contents/form-content');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
     }
     
@@ -148,12 +152,12 @@ class AdminBenefitsController extends CI_Controller {
         // data for view construct in array form
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'page_header' => $this->pageHeader,
             'all_benefits' => $this->benefit_table($benefits),
             'action_status_link' => 'admin-status-benefit',
             'action_delete_link' => 'admin-delete-benefit',
-            'item_name' => 'benefit'
+            'item_name' => 'benefit',
+            'account' => $this->adminInfo
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
@@ -161,6 +165,7 @@ class AdminBenefitsController extends CI_Controller {
         $this->load->view('admin/contents/view-benefits');
         $this->load->view('admin/modal/status-modal');
         $this->load->view('admin/modal/delete-modal');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
     }
     
@@ -181,11 +186,12 @@ class AdminBenefitsController extends CI_Controller {
         $counter = 1;
         // load benefit object to construct a table row
         foreach ($benefits as $row) {
-            $btn_text = ($row->benefit_status == 0) ? 'Enable' : 'Disable';
+            $btn_text = ($row->benefit_status == 0) ? ' Enable' : ' Disable';
             $btn_type = ($row->benefit_status == 0) ? 'success' : 'warning';
-            $update_btn = '<a href="'.base_url().'admin/admin-edit-benefit/'.$row->id.'" class="btn btn-primary">Update</a>';
-            $change_status_btn = '<a onclick="change_status('.$row->id.', '.$row->benefit_status.')"  class="btn btn-'.$btn_type.'">'.$btn_text.'</a>';
-            $delete_btn = '<a onclick="delete_item('.$row->id.')" class="btn btn-danger">Delete</a>';
+            $status_icon = ($row->benefit_status == 0) ? 'ok-sign' : 'remove-sign';
+            $update_btn = '<a href="'.base_url().'admin/admin-edit-benefit/'.$row->id.'" class="btn btn-primary">'.$this->get_icon('pencil').' Update</a>';
+            $change_status_btn = '<a onclick="change_status('.$row->id.', '.$row->benefit_status.')"  class="btn btn-'.$btn_type.'">'.$this->get_icon($status_icon).$btn_text.'</a>';
+            $delete_btn = '<a onclick="delete_item('.$row->id.')" class="btn btn-danger">'.$this->get_icon('trash').'Delete</a>';
             $to_row = array(
                 $counter++,
                 '<img src="'.base_url().'images/benefits/'.$row->benefit_image.'" width="50" height="50"/>',
@@ -200,6 +206,16 @@ class AdminBenefitsController extends CI_Controller {
     }
     
     /*
+     * get icon
+     * @params : $name (String)
+     * @return : $icon (String)
+     */
+    private function get_icon($name) {
+        $icon = '<span class="glyphicon glyphicon-'.$name.'"></span>';
+        return $icon;
+    }
+    
+    /*
      * admin/admin-edit-benefit/1 ( page for edit benefit)
      * @params : $id (int)
      * @return : void
@@ -208,14 +224,15 @@ class AdminBenefitsController extends CI_Controller {
         // construct data to view in array form
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'page_header' => $this->pageHeader,
-            'benefit' => $this->Benefit->single($id)
+            'benefit' => $this->Benefit->single($id),
+            'account' => $this->adminInfo
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
         $this->load->view('admin/header/menu-bar');
         $this->load->view('admin/contents/edit-benefits');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
     }
     

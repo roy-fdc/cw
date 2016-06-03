@@ -19,6 +19,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
     
     /*
+     * get account info
+     * @params : $id (int)
+     * @return : Object
+     */
+    public function get_info($id) {
+        $field = array(
+            'admin_firstname',
+            'admin_lastname',
+            'admin_username',
+            'admin_image',
+            'admin_token'
+        );
+        $this->db->where('id', $id);
+        $this->db->select($field);
+        $query = $this->db->get('admin_users');
+        return ($query->num_rows() > 0) ? $query->row() : false;
+    }
+    
+    /*
+     * update profile image
+     * @params : $id (int), $token (String), $image (String)
+     * @return : $result (array)
+     */
+    public function update_profile($id, $token, $image) {
+        $this->db->where('id', $id);
+        $this->db->where('admin_token', $token);
+        $result['udpated'] = ($this->db->update('admin_users', array('admin_image' => $image))) ? true : false;
+        return $result;
+    }
+    
+    /*
+     * get old profile image
+     * @params : $id (int)
+     * @return : $result (array)
+     */
+    public function get_old_profile($id) {
+        $this->db->where('id', $id);
+        $this->db->select(array('admin_image'));
+        $query = $this->db->get('admin_users');
+        if ($query->num_rows() > 0) {
+            $result = array(
+                'had_profile' => true,
+                'image_profile' => $query->row()
+            );
+        } else {
+            $result['had_profile'] = false;
+        }
+        return $result;
+    }
+    
+    /*
      * check existing username
      * @params : $id (int), $token (String), $username (String)
      * @return : $result (array)
@@ -26,6 +77,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function check_username($id, $username) {
         $query = $this->db->query('SELECT admin_username FROM admin_users WHERE id <>'.$id.' AND admin_username = "'.$username.'"');
         $result['exist'] = ($query->num_rows() > 0) ? true : false;
+        return $result;
+    }
+    
+    /*
+     * Update password
+     * @params : $id (int), $token (String), $prepare_data (array)
+     * @return : boolean
+     */
+    public function update_password($id, $token, $data) {
+        $this->db->where('id', $id);
+        $this->db->where('admin_token', $token);
+        $result['updated'] = ($this->db->update('admin_users', $data)) ? true : false;
+        return $result;
+    }
+    
+    /*
+     * check correct password
+     * @params : $id (int), $token (String), $old_password (String)
+     * @return : boolean
+     */
+    public function get_password($id, $token) {
+        $this->db->where('id', $id);
+        $this->db->where('admin_token', $token);
+        $this->db->select(array('admin_password'));
+        $query = $this->db->get('admin_users');
+        if ($query->num_rows() > 0) {
+            $result = array(
+                'correct' => true,
+                'password' => $query->row()
+            );
+        } else {
+            $result['correct'] = false;
+        }
         return $result;
     }
     
@@ -112,8 +196,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      */
     public function save_login_logout($id, $data) {
         $this->db->where('id', $id);
-        $update = $this->db->update('admin_users', $data);
-        $response['saved'] = ($update) ? true : false;
+        $response['saved'] = ($this->db->update('admin_users', $data)) ? true : false;
         return $response;
     }
      

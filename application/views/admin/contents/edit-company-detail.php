@@ -3,6 +3,7 @@
     <!-- /.row -->
     <div class="row">
         <div class="col-sm-12">
+            <span class="text-success"><?php echo $this->session->flashdata('success_profile_update');?></span>
             <span class="text-success"><?php echo $this->session->flashdata('success');?></span>
             <span class="text-error"><?php echo $this->session->flashdata('error');?></span>
             <div class="panel panel-default">
@@ -82,7 +83,7 @@
                     $update_btn = array(
                         'type' => 'submit',
                         'class' => 'btn btn-primary',
-                        'content' => 'Udpate'
+                        'content' => '<span class="glyphicon glyphicon-pencil"></span> Update'
                     );
                     echo form_button($update_btn);
                     ?>

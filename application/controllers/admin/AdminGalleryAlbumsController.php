@@ -14,42 +14,6 @@ class AdminGalleryAlbumsController extends CI_Controller {
         $this->load->library('Alert');
     }
     
-    /*
-     * admin/admin-album-add-exec
-     * @params :
-     * @return : void
-     */
-    public function add_album_exec() {
-        // validation in array
-        $validate = array(
-            array(
-                'field' => 'album',
-                'label' => 'Album name',
-                'rules' => 'required'
-            )
-        );
-        // run the validation
-        $this->form_validation->set_rules($validate);
-        if ($this->form_validation->run() == false) {
-            $this->index();
-        } else {
-            // sanitize inputed data
-            $name = trim($this->input->post('album'));
-            // prepare data to save
-            $to_save = array(
-                'album_name' => $name,
-                'created' => date('Y-m-d H:i:s')
-            );
-            $response = $this->GalleryAlbum->insert($to_save);
-            if (!$response['created']) {
-                $this->session->set_flashdata('error', $this->alert->show('Cannot add album name', 0));
-            } else {
-                $this->session->set_flashdata('success', $this->alert->show('Album name add success!', 1));
-            }
-            redirect(base_url().'admin/admin-gallery');
-            exit();
-        }
-    }
     
     /*
      * admin/admin-gallery-status
@@ -68,6 +32,7 @@ class AdminGalleryAlbumsController extends CI_Controller {
         } else {
             $this->session->set_flashdata('success', $this->alert->show('Change status success!', 1));
         }
+        $this->session->set_flashdata('accor_id',$id);
         redirect(base_url().'admin/admin-gallery');
         exit();
     }
@@ -88,6 +53,7 @@ class AdminGalleryAlbumsController extends CI_Controller {
         } else {
             $this->session->set_flashdata('success', $this->alert->show('Album update success!', 1));
         }
+        $this->session->set_flashdata('accor_id',$id);
         redirect(base_url().'admin/admin-gallery');
         exit();
     }
@@ -119,7 +85,7 @@ class AdminGalleryAlbumsController extends CI_Controller {
                     unlink('images/galleries/thumb/'.$row->image_name);
                 }
             }
-            $this->session->set_flashdata('success', $this->alert->show('Album delete success!', 1));
+            $this->session->set_flashdata('del_success', $this->alert->show('Album delete success!', 1));
             redirect(base_url().'admin/admin-gallery');
             exit();
         }

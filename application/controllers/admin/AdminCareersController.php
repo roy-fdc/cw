@@ -12,8 +12,10 @@ class AdminCareersController extends CI_Controller {
         }
         $this->load->library('alert');
         $this->load->model('Career');
+        $this->load->model('AdminUser');
         $this->title = 'Admin-careers';
         $this->pageHeader = 'Careers';
+        $this->adminInfo = $this->AdminUser->get_info($this->session_data['ADMIN_LOGIN_ID']);
     }
     
     /*
@@ -25,19 +27,21 @@ class AdminCareersController extends CI_Controller {
         // Prepare data in array to view
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'page_header' => $this->pageHeader,
             'form' => array(
                 'title' => true,
                 'action' => 'admin-add-career-exec',
                 'detail' => true
-            )
+            ),
+            'account' => $this->adminInfo,
+            'form_name' => 'Career'
         );
         // load layout
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
         $this->load->view('admin/header/menu-bar');
         $this->load->view('admin/contents/form-content');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');       
     }
     
@@ -112,12 +116,12 @@ class AdminCareersController extends CI_Controller {
         // construct data for view in array form
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'page_header' => $this->pageHeader,
             'all_careers' => $this->Career->get_all(),
             'action_status_link' => 'admin-status-career',
             'action_delete_link' => 'admin-delete-career',
-            'item_name' => 'Carrer'
+            'item_name' => 'Career',
+            'account' => $this->adminInfo
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
@@ -125,6 +129,7 @@ class AdminCareersController extends CI_Controller {
         $this->load->view('admin/contents/view-careers');
         $this->load->view('admin/modal/status-modal');
         $this->load->view('admin/modal/delete-modal');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
     }
     
@@ -137,14 +142,15 @@ class AdminCareersController extends CI_Controller {
         // construct data for view in array form
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'career' => $this->Career->single($id),
-            'page_header' => $this->pageHeader
+            'page_header' => $this->pageHeader,
+            'account' => $this->adminInfo
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
         $this->load->view('admin/header/menu-bar');
         $this->load->view('admin/contents/edit-careers');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
     }
     
@@ -252,6 +258,7 @@ class AdminCareersController extends CI_Controller {
         } else {
             $this->session->set_flashdata('success', $this->alert->show('Success change status.', 1));
         }
+        $this->session->set_flashdata('tab_id', $id);
         redirect(base_url().'admin/admin-view-career');
         exit();
     }

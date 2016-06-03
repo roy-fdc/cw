@@ -3,12 +3,12 @@
   <!-- /.row -->
   <div class="row">
       <div class="col-sm-12">
-          
+        <span class="text-success"><?php echo $this->session->flashdata('success_profile_update');?></span>  
         <span class="text-success"><?php echo $this->session->flashdata('success');?></span>
         <span class="text-error"><?php echo $this->session->flashdata('error');?></span>
         <div class="panel panel-default">
             <div class="panel-heading">
-                Add
+                <span class="glyphicon glyphicon-plus"></span> Add <?php echo $form_name; ?>
             </div>
             <?php //echo form_open(base_url().'admin/admin-add-career-exec');?>
             <form name="my_form" method="post" enctype="multipart/form-data" onSubmit="document.my_form.details.value = $('#editor').html()" action="<?php echo base_url().'admin/'.$form['action'];?>">
@@ -162,13 +162,13 @@
                 $submit_btn = array(
                     'type' => 'submit',
                     'class' => 'btn btn-primary',
-                    'content' => 'Create'
+                    'content' => '<span class="glyphicon glyphicon-plus"></span> Add'
                 );
                 echo form_button($submit_btn);
                 $reset_btn = array(
                     'type' => 'reset',
                     'class' => 'btn btn-default',
-                    'content' => 'Clear'
+                    'content' => '<span class="glyphicon glyphicon-refresh"></span> Clear'
                 );
                 echo form_button($reset_btn);
                 ?>
