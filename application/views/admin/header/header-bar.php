@@ -18,12 +18,15 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <?php echo $username_admin_account;?>
+                        <?php echo $account->admin_username;?>
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
                             <a href="<?php echo base_url();?>admin/admin-settings"><i class="glyphicon glyphicon-cog"></i> Settings</a>
+                        </li>
+                        <li>
+                            <a class="changeProfile"><i class="glyphicon glyphicon-user"></i> Change Profile</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url();?>admin/admin-logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

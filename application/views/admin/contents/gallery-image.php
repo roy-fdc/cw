@@ -12,6 +12,7 @@
 
             <div class="row">
                 <div class="col-sm-12">
+                    <span class="text-success"><?php echo $this->session->flashdata('success_profile_update');?></span>
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
                             <?php echo form_open(base_url().'admin/admin-album-add-exec'); ?>
@@ -40,34 +41,58 @@
                             </div>
                             <?php echo form_close();?>
                         </div>
+                        
                         <div class="panel-body">
-                            <?php echo $this->session->flashdata('success');?>
+                            <?php echo $this->session->flashdata('del_success'); ?>
                             <?php echo $this->session->flashdata('error'); ?>
-                            
-                            <div class="panel-group">
+                            <div class="panel-group" id="accordion">
+                                <?php $gall_act = 1;?>
+                                <?php $active_acor = $this->session->flashdata('accor_id'); ?>
                                 <?php foreach($image_by_album as $row) { ?>
-                                <div class="panel panel-default" style="background: #428bca; ">
-                                    <a data-toggle="collapse" href="#collapse<?php echo $row['album_id']; ?>">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title" style="color: #FFF">
-                                                <?php echo $row['album_name']; ?>
-                                                <span class="badge" style="color:white; background-color: black"><?php echo (isset($row['images'])) ? count($row['images']) : 0;?></span>
-                                            </h4>
-                                        </div>
-                                    </a>
-                                  <div id="collapse<?php echo $row['album_id']; ?>" class="panel-collapse collapse">
-                                    <div class="panel-body" style="background: #FFF">
-                                        <a onclick="add_image(<?php echo $row['album_id'];?>)" class="btn btn-small btn-success">Add image</a>
+                                <div class="panel panel-primary">
+                                  <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $row['album_id']; ?>">
+                                            <?php echo $row['album_name']; ?>
+                                            <span class="badge" style="color:white; background-color: black"><?php echo (isset($row['images'])) ? count($row['images']) : 0;?></span>
+                                        </a>
+                                    </h4>
+                                  </div>
+                                  <div id="collapse<?php echo $row['album_id']; ?>" class="panel-collapse collapse <?php 
+                                  if (isset($active_acor) && !empty($active_acor) && $active_acor == $row['album_id']) {
+                                      echo 'in';
+                                  } else if (!isset ($active_acor) && empty ($active_acor) && $gall_act == 1) {
+                                      echo 'in';
+                                  }
+                                  ?>">
+                                    <div class="panel-body">
+                                        <div class="panel-body" style="background: #FFF">
+                                            <?php
+                                            if (isset($active_acor) && !empty($active_acor) && $active_acor == $row['album_id']) {
+                                                echo $this->session->flashdata('success');
+                                                echo $this->session->flashdata('add_error');
+                                            } else if (!isset ($active_acor) && empty ($active_acor) && $gall_act == 1) {
+                                                echo $this->session->flashdata('success');
+                                            }
+                                            ?>
+                                            <a onclick="add_image(<?php echo $row['album_id'];?>)" class="btn btn-small btn-success">
+                                                <span class="glyphicon glyphicon-plus"></span> Add image
+                                            </a>
                                     
-                                    <a onclick="update_album(<?php echo $row['album_id'];?>, '<?php echo $row['album_name'];?>')" class="btn btn-primary">Update</a>
+                                            <a onclick="update_album(<?php echo $row['album_id'];?>, '<?php echo $row['album_name'];?>')" class="btn btn-primary">
+                                                <span class="glyphicon glyphicon-pencil"></span> Update
+                                            </a>
                                     
-                                    <?php $btn_text = ($row['album_status'] == 0) ? 'Enable' : 'Disable'; ?>
-                                    <?php $btn_type = ($row['album_status'] == 0) ? 'default' : 'warning'; ?>
-                                    <a onclick="change_status(<?php echo $row['album_id'];?>, <?php echo $row['album_status'];?>)"  class="btn btn-<?php echo $btn_type;?>">
-                                    <?php echo $btn_text;?>
-                                    </a>
-                                    
-                                    <a onclick="delete_album(<?php echo $row['album_id'];?>)" class="btn btn-danger">Delete</a>
+                                            <?php $btn_text = ($row['album_status'] == 0) ? 'Enable' : 'Disable'; ?>
+                                            <?php $btn_type = ($row['album_status'] == 0) ? 'default' : 'warning'; ?>
+                                            <?php $status_button = ($row['album_status'] == 0) ? 'ok-sign' : 'remove-sign'; ?>
+                                            <a onclick="change_status(<?php echo $row['album_id'];?>, <?php echo $row['album_status'];?>)"  class="btn btn-<?php echo $btn_type;?>">
+                                                <span class="glyphicon glyphicon-<?php echo $status_button;?>"></span>
+                                                <?php echo $btn_text;?>
+                                            </a>
+                                            <a onclick="delete_album(<?php echo $row['album_id'];?>)" class="btn btn-danger">
+                                                <span class="glyphicon glyphicon-trash"></span>Delete
+                                            </a>
                                     
                                     <hr>
                                     <?php if (isset($row['images'])) { ?>
@@ -85,13 +110,12 @@
                                     <?php } ?>
                                     <?php } ?>
                                     </div>
-                                    <div class="panel-footer">Panel Footer</div>
+                                    </div>
                                   </div>
                                 </div>
+                                <?php $gall_act++; ?>
                                 <?php } ?>
-                             </div>
-                            
-                            
+                            </div>
                         </div>
                         <div class="panel-footer"></div>
                     </div>

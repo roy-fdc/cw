@@ -3,10 +3,12 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-sm-12">
+                    <span class="text-success"><?php echo $this->session->flashdata('success_profile_update');?></span>
                     <span class="text-error"><?php echo $this->session->flashdata('error');?></span>
+                    <span class="text-success"><?php echo $this->session->flashdata('success');?></span>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Add admin user
+                            <span class="glyphicon glyphicon-plus"></span> Add Admin User
                         </div>
                         <?php echo form_open(base_url().'admin/admin-adduser-exec'); ?>
                         <div class="panel-body">
@@ -86,13 +88,13 @@
                             $submit = array(
                                 'type' => 'submit',
                                 'class' => 'btn btn-primary',
-                                'content' => 'Submit'
+                                'content' => '<span class="glyphicon glyphicon-plus"></span> Add User'
                             );
                             echo form_button($submit);
                             $clear = array(
                                 'type' => 'reset',
                                 'class' => 'btn btn-default',
-                                'content' => 'Clear'
+                                'content' => '<span class="glyphicon glyphicon-refresh"></span> Clear'
                             );
                             echo form_button($clear);
                             ?>

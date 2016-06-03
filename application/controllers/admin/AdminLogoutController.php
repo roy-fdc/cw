@@ -6,6 +6,8 @@ class AdminLogoutController extends CI_Controller{
     
     public function __construct() {
         parent::__construct();
+        $this->load->model('AdminUser');
+        $this->session_data = $this->session->userdata('logged_in');
     }
     
     public function index() {
@@ -13,8 +15,7 @@ class AdminLogoutController extends CI_Controller{
             'admin_flag' => 0,
             'admin_lastlogout' => date('Y-m-d H:i:s')
         );
-        $id = $this->session->userdata('ADMIN_LOGIN_ID');
-        $this->load->model('AdminUser');
+        $id = $this->session_data['ADMIN_LOGIN_ID'];
         $logout = $this->AdminUser->save_login_logout($id, $save_to_logout);
         if ($logout['saved']) {
             $this->session->unset_userdata('logged_in');

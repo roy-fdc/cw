@@ -11,9 +11,11 @@ class AdminAboutsController extends CI_Controller {
             redirect(base_url().'admin');
         }
         $this->load->model('About');
+        $this->load->model('AdminUser');
         $this->load->library('Alert');
         $this->title = 'Admin - about company';
         $this->pageHeader = 'About the company';
+        $this->adminInfo = $this->AdminUser->get_info($this->session_data['ADMIN_LOGIN_ID']);
     }
     
     /*
@@ -33,17 +35,18 @@ class AdminAboutsController extends CI_Controller {
         // construc  data for view in array form
         $data = array(
             'pagetitle' => $this->title,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
             'page_header' => $this->pageHeader,
             'about' => $this->About->get_description($state),
             'action_status_link' => 'admin-status-about',
-            'panel_title' => $segment
+            'panel_title' => $segment,
+            'account' => $this->adminInfo
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
         $this->load->view('admin/header/menu-bar');
         $this->load->view('admin/contents/view-company-about');
         $this->load->view('admin/modal/status-modal');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
     }
     
@@ -57,14 +60,15 @@ class AdminAboutsController extends CI_Controller {
         $data = array(
             'pagetitle' => $this->title,
             'page_header' => $this->pageHeader,
-            'username_admin_account' => $this->session_data['ADMIN_USERNAME'],
-            'about' => $this->About->get_description($id)
+            'about' => $this->About->get_description($id),
+            'account' => $this->adminInfo
         );
         $this->load->view('admin/header/head', $data);
         $this->load->view('admin/header/header-bar');
         $this->load->view('admin/header/menu-bar');
         $this->load->view('admin/contents/edit-company-detail');
         $this->load->view('admin/modal/status-modal');
+        $this->load->view('admin/modal/change-profile-modal');
         $this->load->view('admin/footer/footer');
     }
     
