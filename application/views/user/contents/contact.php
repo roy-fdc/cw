@@ -12,6 +12,7 @@
         <h2 class="section-title bold"><span>CONTACT</span> US</h2><!-- /.section-title -->
         <form id="contactform" class="contactform" role="form" name="myForm"  ng-submit="sendMail()">
         <?php echo form_open_multipart(base_url().'contact-us/processMail', array('id'=>'contactform', 'class'=>'contactform'));?>
+          <div class="msgContact">{{msgContact}}</div>
           <input id="name" ng-model="name" class="form-control alpha" name="name" type="text" placeholder="Name *" value="" required>
           <input id="email" ng-model="email" class="form-control pull-right" name="email" type="email" placeholder="Email *" value="" required>
           <input type="text" ng-model="phone" class="form-control numeric" id="phone" name="phone" placeholder="Phone number *" required>
