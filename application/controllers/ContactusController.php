@@ -21,6 +21,7 @@ class ContactusController extends CI_Controller {
     }
 
     public function processMail(){
+       
         if (!empty($_FILES['attachment']['name'])) {
             $this->load->library('upload');
             $config['upload_path'] = 'images/attachment/';
@@ -35,8 +36,16 @@ class ContactusController extends CI_Controller {
             $data = array('upload_data' => $this->upload->data());
         }    
         //send Email
-        $to = 'fdcgrace@gmail.com';
+        
         $this->load->library('email');
+        $conf['charset'] = "utf-8";
+        $conf['mailtype'] = "text";
+        $conf['newline'] = "\r\n";
+        $conf['crlf'] = "\r\n";
+
+
+        $this->email->initialize($conf);
+        $to = 'fdcgrace@gmail.com';
         $this->email->from($_POST['email'], $_POST['name']);
         $this->email->to('fdcgrace@gmail.com');
 
@@ -44,11 +53,17 @@ class ContactusController extends CI_Controller {
         if(isset($data)){
             $this->email->attach($data['upload_data']['full_path']);    
         }
-        $this->email->message($_POST['message']);
+        $content = "Name: ".$_POST['name']."\r\n".
+                   "Email: ".$_POST['email']."\r\n".
+                   "Phone: ".$_POST['phone']."\r\n\r\n".$_POST['message'];
+
+
+        $this->email->message($content);
         if($this->email->send()){
             if(isset($data)){
                 unlink($data['upload_data']['full_path']);
             }
+
             echo "Email successfully sent.";
         }  else{
             echo "Error in sending email.";

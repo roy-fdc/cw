@@ -4,13 +4,7 @@
   <script>window.jQuery || document.write('<script src="assets/js/jquery-1.11.2.min.js"><\/script>')</script>
   <!-- Include WOW Min Js -->
   <script src="assets/js/wow.min.js"></script>
-  <!-- Google Maps Script -->
-  <!-- Gmap3.js For Static Maps -->
-  <script src="assets/js/gmap3.js"></script>
-  <!-- Include Waypoint Js -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-  <!-- Include Ajax MailChimp Js -->
-  <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+ 
     <!-- Include Custom Js </-->
   <script src="assets/js/custom.min.js"></script>
 

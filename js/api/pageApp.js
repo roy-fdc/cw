@@ -20,7 +20,7 @@ myApp.directive('attachment', ['$parse', function ($parse) {
 }]);
 
 myApp.controller('fupController', function ($scope, $http) {
-    
+    $scope.msgContact = '';
     $scope.IsVisible = false;
     $scope.albumContainer = true;
     var self = this;
@@ -61,14 +61,16 @@ myApp.controller('fupController', function ($scope, $http) {
     }
     
     // career option
-    $scope.careerClickName = '';
+    $scope.careerClickName = 'INQUIRY';
     $scope.quickApply = function() {
-        $scope.careerClickName = $scope.careername;
+        //$scope.careerClickName = $scope.careername;
+        $("select#subject").val($scope.careername);
     }
     
     $scope.removeCareerDescription = function() {
         $scope.careerVisibleContainer = false;
-        $scope.careerClickName = '';
+        //$scope.careerClickName = 'INQUIRY';
+        $("select#subject").val('INQUIRY'); 
     }
     // for career single show details
     $scope.showCareerDetail = function(id) {
@@ -80,6 +82,7 @@ myApp.controller('fupController', function ($scope, $http) {
             if (career.id == id) {
                 $scope.careerDetailContainer = career.career_detail;
                 $scope.careername = career.career_title;
+                $scope.careerID = career.id;
             }
         })
     }
@@ -103,9 +106,11 @@ myApp.controller('fupController', function ($scope, $http) {
                 headers: {'Content-Type': undefined}
             })
             .success(function(response) {
-                $('#contactform').find('input[type=text], input[type=file], input[type=password], input[type=number], input[type=email], textarea, select').val('');
-                load();
+                $scope.msgContact = "Email Sent.";
+                $('#contactform').find('input[type=text], input[type=file], input[type=password], input[type=number], input[type=email], textarea').val('');
             }).error(function(data, status, headers, config) {
+                $scope.msgContact = "Error in Sending Email.";
+                $('Error in Sending Email.').appendTo('#msgContact');
         });
     }
 

@@ -12,14 +12,25 @@
         <h2 class="section-title bold"><span>CONTACT</span> US</h2><!-- /.section-title -->
         <form id="contactform" class="contactform" role="form" name="myForm"  ng-submit="sendMail()">
         <?php echo form_open_multipart(base_url().'contact-us/processMail', array('id'=>'contactform', 'class'=>'contactform'));?>
+          <div class="msgContact">{{msgContact}}</div>
           <input id="name" ng-model="name" class="form-control alpha" name="name" type="text" placeholder="Name *" value="" required>
           <input id="email" ng-model="email" class="form-control pull-right" name="email" type="email" placeholder="Email *" value="" required>
           <input type="text" ng-model="phone" class="form-control numeric" id="phone" name="phone" placeholder="Phone number *" required>
-          <select name="subject" ng-model="subject" id="subject" class="form-control" style="margin-bottom: 10px">
+          <!-- <select name="subject" ng-model="subject" id="subject" class="form-control" style="margin-bottom: 10px">
               <option value="careerClickName" ng-if="careerClickName !==''" selected>{{careerClickName}}</option>
               <option value="Inquiry">Inquiry</option>
               <option ng-repeat="carOp in careers" value="carOp.career_title" ng-if="carOp.career_title !== careerClickName">{{carOp.career_title}}</option>
+          </select> -->
+
+           <select name="subject" ng-model="subject" ng-init="subject=careerClickName" id="subject" class="form-control" style="margin-bottom: 10px">
+              <option value="INQUIRY">INQUIRY</option>
+              <option value="WEB PROGRAMMERS">WEB PROGRAMMERS</option>
+              <option value="WEB TRANSLATOR">WEB TRANSLATOR</option>
+              <option value="WEB APPLICATION TESTER">WEB APPLICATION TESTER</option>
+              
+              <!-- <option ng-repeat="carOp in careers" value="carOp.career_title" > {{carOp.career_title}} {{carOp.id}}</option>  -->
           </select>
+
           <textarea id="message" ng-model="message" class="form-control" name="message" placeholder="Your Message *" rows="2" required></textarea>
           <input type="file" class="form-control" id="myfile" name="attachment" attachment="attachment">
           <input type="submit" class="btn submit-btn" id="submit" value="Send Message">
