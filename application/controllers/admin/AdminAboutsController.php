@@ -78,6 +78,9 @@ class AdminAboutsController extends CI_Controller {
      * @return : void
      */
     public function edit_exec(){
+        // sanitize input data
+        $id = $this->input->post('id');
+        $description = $this->input->post('details');
         // initialize input validation in array form
         $validate = array(
             array(
@@ -91,9 +94,6 @@ class AdminAboutsController extends CI_Controller {
         if ($this->form_validation->run() == false) {
             $this->edit($id);
         } else {
-            // sanitize input data
-            $id = $this->input->post('id');
-            $description = $this->input->post('details');
             // call to update data
             $response = $this->About->update($id, $description);
             if (!$response['updated']) {
